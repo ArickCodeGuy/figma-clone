@@ -1,0 +1,29 @@
+.KButton {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: black;
+  border: 2px solid black;
+  border-radius: 5px;
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+  }
+
+  &--size-MINI {
+    gap: 3px;
+    font-size: 8px;
+    padding: 2px;
+    border-radius: 2px;
+
+    .icon {
+      width: 8px;
+      height: 8px;
+    }
+  }
+}

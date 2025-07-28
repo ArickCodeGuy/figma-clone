@@ -1,0 +1,14 @@
+@use '../../assets/styles/vars';
+
+.KIcon {
+  display: inline-block;
+  vertical-align: middle;
+  --size: 10px;
+  font-size: var(--size);
+  line-height: var(--size);
+  width: var(--size);
+  height: var(--size);
+  @media (min-width: vars.$breakpoint-lg) {
+    --size: 16px;
+  }
+}
