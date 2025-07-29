@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 .cache
-uikit-*.tgz
+figmaclone-uikit-*.tgz
 
 # Editor directories and files
 .vscode/*
