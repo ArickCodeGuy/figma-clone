@@ -14,6 +14,6 @@ async function getScetches() {
   return json as ScetchItem[];
 }
 
-export const scetchesController = {
+export const ScetchesController = {
   getScetches,
 };

@@ -1,8 +1,7 @@
 import { KCard } from 'figmaclone-uikit';
 import type { ScetchesWithFallbackProps } from './types';
 import { useNavigate } from 'react-router-dom';
-import { ROUTER_ROUTES } from '../../router/constants';
-import type { ScetchItem } from '../../api/scetchesController';
+import type { ScetchItem } from '../../api/ScetchesController/ScetchesController';
 import { replaceRouteParams } from '../../router/replaceRouteParams';
 
 export function ScetshesRow(

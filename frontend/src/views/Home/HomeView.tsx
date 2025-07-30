@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import {
-  scetchesController,
-  type GetScetchesReturnType,
-} from '../../api/scetchesController';
 import { ScetchesWithFallback } from '../../components/ScetchesWithFallback/ScetchesWithFallback';
 import { DefaultLayout } from '../../layouts/DefaultLayout/DefaultLayout';
+import {
+  ScetchesController,
+  type GetScetchesReturnType,
+} from '../../api/ScetchesController/ScetchesController';
 
 export function HomeView() {
   // Sort with lru cache?
@@ -12,7 +12,7 @@ export function HomeView() {
   const [scetches, setScetches] = useState<GetScetchesReturnType>([]);
 
   async function fetchScetches() {
-    const res = await scetchesController.getScetches();
+    const res = await ScetchesController.getScetches();
     setScetches(res);
   }
   fetchScetches();

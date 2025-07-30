@@ -1,4 +1,4 @@
-import type { GetScetchesReturnType } from '../../api/scetchesController';
+import type { GetScetchesReturnType } from '../../api/ScetchesController/ScetchesController';
 
 export type ScetchesWithFallbackProps = {
   scetches?: GetScetchesReturnType;
