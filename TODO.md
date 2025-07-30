@@ -13,12 +13,12 @@
     - [x] Import to frontend (11-07-2025 @arickcodeguy)
     - [x] Import icon pack (27-07-2025 @arickcodeguy)
   - [ ] Frontend
-    - [ ] Set up router
-    - [ ] Main page
+    - [x] Set up router (30-07-2025 @arickcodeguy)
+    - [x] Main page
       - [x] Default classes. `row`, `col`, `container` styles (19-07-2025 @arickcodeguy)
       - [x] Card component (27-07-2025 @arickcodeguy)
       - [x] Call `GET` scetches. (27-07-2025 @arickcodeguy)
-      - [ ] Display scetches in row of `KCards`.
+      - [x] Display scetches in row of `KCards`. (30-07-2025 @arickcodeguy)
     - [ ] Scetch page
       - [ ] Draw empty canvas
 

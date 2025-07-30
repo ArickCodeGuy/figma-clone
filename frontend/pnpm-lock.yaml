@@ -889,7 +889,7 @@ packages:
         optional: true
 
   figmaclone-uikit@file:../uikit/figmaclone-uikit-0.0.1.tgz:
-    resolution: {integrity: sha512-3KLTi4sPP73buENejflB8FrEwW4JYmAxSUcJHG0IGI7qwlqoLMtyUeuGh991lxCEl/W7wSPmUrVWT1iSzjVOOg==, tarball: file:../uikit/figmaclone-uikit-0.0.1.tgz}
+    resolution: {integrity: sha512-Ts1NLO7KXEo2ssWd0MKCMJivLe0hwIMuanwCaBBgunqpYxWt6y8vdXwuZ26bG0buo/2cMcutsd4wRfsQwmhnSA==, tarball: file:../uikit/figmaclone-uikit-0.0.1.tgz}
     version: 0.0.1
 
   file-entry-cache@8.0.0:

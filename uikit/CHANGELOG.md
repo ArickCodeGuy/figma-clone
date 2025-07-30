@@ -14,3 +14,4 @@ Imported mdi icons **(css is 6MB now)**. Should fix
 Added `playwright` visual testing.
 Added `KCard`.
 Added `KIcon`.
+Added `KCard` image fallback. JSDoc add to props. Added `onBottomClick` prop.

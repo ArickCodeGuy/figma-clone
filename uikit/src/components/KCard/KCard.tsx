@@ -2,6 +2,7 @@ import type { KCardProps } from './types';
 import './styles.scss';
 import { trim } from '../../utils/trim';
 import { KButton } from '../KButton';
+import { KIcon } from '../../../dist';
 
 export function KCard(props: KCardProps) {
   const firstThreeActions: KCardProps['actions'] = [];
@@ -18,11 +19,12 @@ export function KCard(props: KCardProps) {
   return (
     <div className="KCard">
       <div className="img">
-        <img
-          src={props.img}
-          alt={props.description}
-          title={props.description}
-        />
+        <div title={props.description}>
+          <img src={props.img} alt={props.description} />
+          <div className="img-icon-fallback">
+            <KIcon name="image" size={128} />
+          </div>
+        </div>
         <div className="actions">
           {firstThreeActions.map((action) => (
             <KButton
@@ -45,7 +47,7 @@ export function KCard(props: KCardProps) {
           )}
         </div>
       </div>
-      <div className="bottom">
+      <div className="bottom" onClick={props.onBottomClick}>
         <div className="title" title={props.title}>
           {trim(props.title, 30)}
         </div>

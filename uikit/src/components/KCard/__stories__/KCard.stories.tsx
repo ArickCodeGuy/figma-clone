@@ -13,24 +13,24 @@ type Story = StoryObj<typeof KCard>;
 export const Primary: Story = {
   args: {
     title: 'Primary ' + 'very '.repeat(10) + 'long title',
-    description: 'Primary description',
+    description: 'Image description',
     actions: [
       {
-        description: 'Action description',
+        description: 'Remove from favorite',
         icon: 'star',
         onClick: () => {
           fn();
         },
       },
       {
-        description: 'Action description 2',
+        description: 'Add to favorite',
         icon: 'star-outline',
         onClick: () => {
           fn();
         },
       },
       {
-        description: 'Action description 3',
+        description: 'Something something',
         icon: 'close',
         onClick: () => {
           fn();
