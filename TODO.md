@@ -1,3 +1,7 @@
+# TODO
+
+## Preparation
+
 - [x] Figure out req (11-07-2025 @arickcodeguy)
 - [ ] Prepare for development
   - [x] Backend (18-07-2025 @arickcodeguy)
@@ -21,6 +25,27 @@
       - [x] Display scetches in row of `KCards`. (30-07-2025 @arickcodeguy)
     - [ ] Scetch page
       - [ ] Draw empty canvas
+
+## First iteration
+
+- [ ] Canvas
+  - [ ] Mousetouch, mousemove event listeners to change position
+  - [ ] Define basic objects
+  - [ ] Define objects layout. Objects draw priority.
+  - [ ] Sidebar
+    - [ ] Hand. Move on canvas
+    - [ ] Figures list
+    - [ ] Current chosen figure info
+      - [ ] Figure styles.
+- [ ] Back
+  - [ ] Set up MinIO
+    - [ ] Connect
+    - [ ] Schema
+    - [ ] Controller
+    - [ ] Upload content
+    - [ ] Retrieve content
+  - [ ] Save scetches content
+  - [ ] Serve scetches content
 
 ### Postpone
 
