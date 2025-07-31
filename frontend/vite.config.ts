@@ -1,7 +1,7 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-
-const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:5137';
+import { BACKEND_URL } from './constants';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -14,5 +14,9 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
+  },
+  test: {
+    include: ['**/*.vitest.?(ts|js)'],
+    globals: true,
   },
 });
