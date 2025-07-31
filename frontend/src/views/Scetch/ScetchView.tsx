@@ -1,7 +1,13 @@
+import { useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
 export function ScetchView() {
-  const params = useParams();
+  const params = useParams<{ id: string }>();
+  const canvasEl = useRef<HTMLCanvasElement>(null);
 
-  return <>ScetchView: {params.id}</>;
+  return (
+    <div>
+      <canvas ref={canvasEl} />
+    </div>
+  );
 }
