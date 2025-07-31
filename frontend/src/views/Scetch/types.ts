@@ -1,24 +1,42 @@
 export type ElementsLayout = Array<number | ElementsLayout>;
 
-export type CanvasObjectSquare = {
+/** [x, y] */
+export type CanvasPosition = [number, number];
+
+export type CanvasShapeSquare = {
   type: 'Square';
+  position: CanvasPosition;
+  size: {
+    width: number;
+    height: number;
+  };
+  fillColor: string;
 };
 
-export type CanvasObjectCircle = {
+export type CanvasShapeCircle = {
   type: 'Circle';
+  position: CanvasPosition;
+  size: {
+    radius: number;
+  };
+  fillColor: string;
 };
 
-export type CanvasObjectLine = {
+export type CanvasShapeLine = {
   type: 'Line';
+  position: CanvasPosition;
+  vector: CanvasPosition;
+  fillColor: string;
 };
 
-export type CanvasObject =
-  | CanvasObjectSquare
-  | CanvasObjectCircle
-  | CanvasObjectLine;
+export type CanvasShape =
+  | CanvasShapeSquare
+  | CanvasShapeCircle
+  | CanvasShapeLine;
 
 export type ScetchCanvasState = {
-  pos: [number, number];
+  position: CanvasPosition;
+  windowSize: CanvasPosition;
   layout: ElementsLayout;
-  objects: Map<number, CanvasObject>;
+  shapes: Map<number, CanvasShape>;
 };
