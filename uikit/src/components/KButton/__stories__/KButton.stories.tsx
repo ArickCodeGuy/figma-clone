@@ -17,10 +17,11 @@ export const Primary: Story = {
   },
 };
 
-export const MiniIconButton: Story = {
+export const MiniIconTransparentButton: Story = {
   args: {
-    size: 'MINI',
     iconLeft: 'close',
+    size: 'MINI',
+    presetStyle: 'TRANSPARENT',
   },
 };
 

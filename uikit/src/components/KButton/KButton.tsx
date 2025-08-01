@@ -1,4 +1,4 @@
-import type { KButtonProps, KButtonSizes } from './types';
+import type { KButtonPresetStyles, KButtonProps, KButtonSizes } from './types';
 import './styles.scss';
 import { classNameArrayToString } from '../../utils';
 import { KBUTTON_ICON_SIZES } from './constants';
@@ -8,17 +8,24 @@ import { KButtonIconParentToKButtonIconProps } from './utils/KButtonIconParentTo
 
 export function KButton(props: KButtonProps) {
   const size: KButtonSizes = props.size ?? 'DEFAULT';
+  const presetStyle: KButtonPresetStyles = props.presetStyle ?? 'DEFAULT';
 
   const className = classNameArrayToString([
     'KButton',
     `KButton--size-${size}`,
+    `KButton--preset-style-${presetStyle}`,
     props.className,
   ]);
 
   const iconSize: KIconProps['size'] = KBUTTON_ICON_SIZES[size];
 
   return (
-    <button className={className} title={props.title} onClick={props.onClick}>
+    <button
+      className={className}
+      title={props.title}
+      style={props.style}
+      onClick={props.onClick}
+    >
       <KButtonIcon
         {...KButtonIconParentToKButtonIconProps(props.iconLeft, iconSize)}
       />

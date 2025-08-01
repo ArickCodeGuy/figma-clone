@@ -6,6 +6,8 @@ export type KButtonSizes = 'DEFAULT' | 'MINI';
 
 export type KButtonIconParent = KIconNames | KIconProps;
 
+export type KButtonPresetStyles = 'DEFAULT' | 'TRANSPARENT';
+
 export type KButtonProps = {
   children?: React.ReactNode;
   /** some comment */
@@ -15,4 +17,6 @@ export type KButtonProps = {
   iconLeft?: KButtonIconParent;
   iconRight?: KButtonIconParent;
   title?: string;
+  presetStyle?: KButtonPresetStyles;
+  style?: React.CSSProperties;
 };

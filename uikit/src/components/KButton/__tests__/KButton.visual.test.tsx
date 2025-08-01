@@ -7,15 +7,23 @@ test.describe('KButton', { tag: '@KButton' }, () => {
 
     expect(component).toHaveClass(/KButton/);
     expect(component).toHaveClass(/KButton--size-DEFAULT/);
+    expect(component).toHaveClass(/KButton--preset-style-DEFAULT/);
+
     expect(await component.screenshot()).toMatchSnapshot('KButton.Primary.png');
   });
 
-  test('render story: <KButton.MiniIconButton>', async ({ mount }) => {
-    const component = await mount(<KButtonComposedStories.MiniIconButton />);
+  test('render story: <KButton.MiniIconTransparentButton>', async ({
+    mount,
+  }) => {
+    const component = await mount(
+      <KButtonComposedStories.MiniIconTransparentButton />
+    );
 
     expect(component).toHaveClass(/KButton--size-MINI/);
+    expect(component).toHaveClass(/KButton--preset-style-TRANSPARENT/);
+
     expect(await component.screenshot()).toMatchSnapshot(
-      'KButton.MiniIconButton.png'
+      'KButton.MiniIconTransparentButton.png'
     );
   });
 

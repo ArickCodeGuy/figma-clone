@@ -1,10 +1,12 @@
 .KButton {
+  --bgc: black;
+
   padding: 10px 20px;
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: black;
-  border: 2px solid black;
+  background-color: var(--bgc);
+  border: 2px solid var(--bgc);
   border-radius: 5px;
 
   .icon {
@@ -15,15 +17,29 @@
     height: 20px;
   }
 
-  &--size-MINI {
-    gap: 3px;
-    font-size: 8px;
-    padding: 2px;
-    border-radius: 2px;
+  &--size {
+    &-MINI {
+      gap: 3px;
+      font-size: 8px;
+      padding: 2px;
+      border-radius: 2px;
 
-    .icon {
-      width: 8px;
-      height: 8px;
+      .icon {
+        width: 8px;
+        height: 8px;
+      }
+    }
+  }
+
+  &--preset-style {
+    &-TRANSPARENT {
+      --bgc: transparent;
+      color: black;
+
+      &:hover {
+        --bgc: black;
+        color: white;
+      }
     }
   }
 }
