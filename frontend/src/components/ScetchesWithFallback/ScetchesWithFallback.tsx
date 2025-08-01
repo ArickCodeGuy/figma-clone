@@ -10,7 +10,7 @@ export function ScetshesRow(
   const { scetches } = props;
   const navigate = useNavigate();
 
-  function bottomClick(scetch: ScetchItem) {
+  function navigateToScetch(scetch: ScetchItem) {
     navigate(replaceRouteParams('SCETCH', { id: scetch.id }));
   }
 
@@ -18,7 +18,7 @@ export function ScetshesRow(
     <div className="krow">
       {scetches.map((s) => (
         <div className="kcol-lg-2">
-          <KCard title={s.name} onBottomClick={() => bottomClick(s)} />
+          <KCard title={s.name} onBottomClick={() => navigateToScetch(s)} />
         </div>
       ))}
     </div>
@@ -26,10 +26,19 @@ export function ScetshesRow(
 }
 
 function ScetshesFallback() {
+  const navigate = useNavigate();
+
+  function navigateToNewScetch() {
+    navigate(replaceRouteParams('SCETCH', { id: -1 }));
+  }
+
   return (
     <div className="krow">
       <div className="kcol-lg-2">
-        <KCard title="Create new scetch" />
+        <KCard
+          title="Create new scetch"
+          onBottomClick={() => navigateToNewScetch()}
+        />
       </div>
     </div>
   );

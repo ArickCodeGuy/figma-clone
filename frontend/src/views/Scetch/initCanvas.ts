@@ -1,4 +1,4 @@
-import type { ScetchCanvasState } from './types';
+import type { ScetchCanvasOptions, ScetchCanvasState } from './types';
 
 export function createScetchCanvasState(): ScetchCanvasState {
   return {
@@ -9,13 +9,18 @@ export function createScetchCanvasState(): ScetchCanvasState {
   };
 }
 
-export function initCanvas(el: HTMLCanvasElement): ScetchCanvasState {
+export function initCanvas(
+  el: HTMLCanvasElement,
+  options?: ScetchCanvasOptions
+): ScetchCanvasState {
   el.style.width = '100%';
   el.style.height = '100%';
 
   const state: ScetchCanvasState = createScetchCanvasState();
 
-  const ctx = el.getContext('2d');
+  const ctx = el.getContext('2d')!;
+
+  options?.debug && console.log('state', state);
 
   return state;
 }

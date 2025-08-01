@@ -40,3 +40,7 @@ export type ScetchCanvasState = {
   layout: ElementsLayout;
   shapes: Map<number, CanvasShape>;
 };
+
+export type ScetchCanvasOptions = {
+  debug?: boolean;
+};
