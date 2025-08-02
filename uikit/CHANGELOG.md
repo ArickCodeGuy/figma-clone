@@ -15,3 +15,4 @@ Added `playwright` visual testing.
 Added `KCard`.
 Added `KIcon`.
 Added `KCard` image fallback. JSDoc add to props. Added `onBottomClick` prop.
+Added `KTitle`.
