@@ -1,4 +1,4 @@
-import type { KCardProps } from './types';
+import type { KCardAction, KCardProps } from './types';
 import './styles.scss';
 import { trim } from '../../utils/trim';
 import { KButton } from '../KButton';
@@ -14,10 +14,21 @@ export function KCard(props: KCardProps) {
     }
   }
 
+  function handleActionClick(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    action: KCardAction
+  ) {
+    e.stopPropagation();
+    action.onClick?.(e);
+  }
+
   function toggleOther() {}
 
   return (
-    <div className="KCard">
+    <div className="KCard" onClick={(e) => props.onClick?.(e)}>
+      {props.link && (
+        <a href={props.link} title={props.title} className="link" />
+      )}
       <div className="img">
         <div title={props.description}>
           <img src={props.img} alt={props.description} />
@@ -32,7 +43,7 @@ export function KCard(props: KCardProps) {
               size="MINI"
               iconLeft={action.icon}
               title={action.description}
-              onClick={action.onClick}
+              onClick={(e) => handleActionClick(e, action)}
             />
           ))}
           {/* @@TODO dropdown */}
@@ -47,7 +58,7 @@ export function KCard(props: KCardProps) {
           )}
         </div>
       </div>
-      <div className="bottom" onClick={props.onBottomClick}>
+      <div className="bottom">
         <div className="title" title={props.title}>
           {trim(props.title, 30)}
         </div>

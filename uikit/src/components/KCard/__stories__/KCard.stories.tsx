@@ -13,6 +13,7 @@ type Story = StoryObj<typeof KCard>;
 export const Primary: Story = {
   args: {
     title: 'Primary ' + 'very '.repeat(10) + 'long title',
+    link: '/',
     description: 'Image description',
     actions: [
       {

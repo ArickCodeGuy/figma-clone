@@ -3,25 +3,32 @@
 :root {
   color-scheme: dark;
 
-  // light
   --color-primary-light: #000;
-  --color-secondary-light: #282828;
-  --bgc-light: #ddd;
-  --rgba-contrast-light: 0, 0, 0;
-  --rgba-bgc-light: 255, 255, 255;
-  --contrast-light: #000000;
-  --btn-color-light: #22c55e;
-  --link-color-light: #3366cc;
-
-  // dark
   --color-primary-dark: #fff;
+
+  --color-secondary-light: #282828;
   --color-secondary-dark: #fafafa;
+
+  --bgc-light: #ddd;
   --bgc-dark: #282828;
+
+  --rgba-contrast-light: 0, 0, 0;
   --rgba-contrast-dark: 255, 255, 255;
+
+  --rgba-bgc-light: 255, 255, 255;
   --rgba-bgc-dark: 0, 0, 0;
+
+  --contrast-light: #000000;
   --contrast-dark: #ffffff;
+
+  --btn-color-light: #22c55e;
   --btn-color-dark: #91a3fb;
+
+  --link-color-light: #3366cc;
   --link-color-dark: #7ca8ff;
+
+  --block-color-dark: #3c3c3c;
+  --block-color-light: #bebebe;
 
   // margins, paddings
   --section-margin-xs: 30px;
@@ -79,6 +86,7 @@ body {
   --column-gutter: calc(var(--column-gap) / 2);
   --negative-column-gutter: calc(var(--column-gutter) * -1);
   --container-width: var(--container-width-xs);
+  --block-roundness: 10px;
 
   // set default as dark theme
   --color-primary: var(--color-primary-dark);
@@ -89,6 +97,7 @@ body {
   --rgba-contrast: var(--rgba-contrast-dark);
   --rgba-bgc: var(--rgba-bgc-dark);
   --link-color: var(--link-color-dark);
+  --block-color: var(--block-color-dark);
   &.light {
     --color-primary: var(--color-primary-light);
     --color-secondary: var(--color-secondary-light);
@@ -98,6 +107,7 @@ body {
     --rgba-contrast: var(--rgba-contrast-light);
     --rgba-bgc: var(--rgba-bgc-light);
     --link-color: var(--link-color-light);
+    --block-color: var(--block-color-light);
   }
   @media (min-width: 576px) {
     --font-size: var(--font-size-sm);

@@ -1,13 +1,11 @@
 .KButton {
-  --bgc: black;
-
   padding: 10px 20px;
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: var(--bgc);
-  border: 2px solid var(--bgc);
-  border-radius: 5px;
+  background-color: var(--btn-color);
+  border: 2px solid var(--btn-color);
+  border-radius: var(--block-roundness);
 
   .icon {
     display: flex;
@@ -22,7 +20,7 @@
       gap: 3px;
       font-size: 8px;
       padding: 2px;
-      border-radius: 2px;
+      border-radius: calc(var(--block-roundness) / 2);
 
       .icon {
         width: 8px;
@@ -34,11 +32,11 @@
   &--preset-style {
     &-TRANSPARENT {
       --bgc: transparent;
-      color: black;
+      color: var(--contrast);
 
       &:hover {
-        --bgc: black;
-        color: white;
+        --bgc: var(--btn-color);
+        color: var(--contrast);
       }
     }
   }

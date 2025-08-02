@@ -10,8 +10,7 @@ export type KButtonPresetStyles = 'DEFAULT' | 'TRANSPARENT';
 
 export type KButtonProps = {
   children?: React.ReactNode;
-  /** some comment */
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   size?: KButtonSizes;
   className?: string;
   iconLeft?: KButtonIconParent;
