@@ -1,7 +1,13 @@
+export function Burger() {
+  return <div className="Burger">B</div>;
+}
+
 export function Header() {
   return (
-    <div className="Header">
-      <div className="container">Header</div>
-    </div>
+    <header className="Header">
+      <div className="container">
+        <Burger />
+      </div>
+    </header>
   );
 }

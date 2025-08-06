@@ -28,10 +28,14 @@
 
 ## First iteration
 
-- [ ] Canvas
+- [ ] Vitest integration testing
+- [ ] Fix ui icon build
+- [ ] Footer, Header
+- [ ] Front
+  - [ ] Draw rooler background
   - [ ] Mousetouch, mousemove event listeners to change position
   - [ ] Define basic shapes
-  - [ ] Define shapes layout. Shapes draw priority.
+  - [ ] Define shapes layout. Shapes draw priority
   - [ ] Keybinds
   - [ ] Sidebar
     - [ ] Base layout. May be some new components
@@ -39,7 +43,15 @@
     - [ ] Figures list
     - [ ] Current chosen figure info
       - [ ] Figure styles.
-- [ ] Back
+- [ ] Backend
+  - [ ] Swagger on backend
+  - [ ] Auth
+    - [ ] Choose solution
+    - [ ] API
+      - [ ] Create user
+      - [ ] Delete user
+      - [ ] Change password
+    - [ ] Now serve scetches for created user
   - [ ] Set up MinIO
     - [ ] Connect
     - [ ] Schema
@@ -53,5 +65,4 @@
 
 - [ ] Look for other repos using Spring boot and fix possible architecture mistakes
 - [ ] Use env params to connect to db
-- [ ] Swagger on backend
 - [ ] uikit. Testing. Jest

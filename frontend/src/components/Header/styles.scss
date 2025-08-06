@@ -1,2 +1,15 @@
 .Header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  .container {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.Burger {
+  position: relative;
+  width: 50px;
+  height: 50px;
 }
