@@ -1,4 +1,4 @@
-export type ClassName = string | number | undefined;
+export type ClassName = string | number | undefined | null;
 
 export function classNameArrayToString(arr: ClassName[]): string {
   return arr
@@ -8,6 +8,6 @@ export function classNameArrayToString(arr: ClassName[]): string {
 
       return '';
     })
-    .filter((i) => i !== undefined)
+    .filter((i) => i !== undefined && i !== null)
     .join(' ');
 }

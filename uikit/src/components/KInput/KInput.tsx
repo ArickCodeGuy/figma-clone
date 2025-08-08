@@ -1,6 +1,7 @@
 import { useEffect, useRef, type InputEvent } from 'react';
 import { classNameArrayToString } from '../../utils';
 import type { KInputProps, KInputSize } from './types';
+import './styles.scss';
 
 export function KInput(props: KInputProps) {
   const size: KInputSize = props.size || 'DEFAULT';
@@ -24,3 +25,5 @@ export function KInput(props: KInputProps) {
     </div>
   );
 }
+
+export default KInput;

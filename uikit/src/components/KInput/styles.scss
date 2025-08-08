@@ -1,2 +1,9 @@
 .KInput {
+  position: relative;
+
+  input {
+    border-radius: var(--block-roundness);
+    overflow: hidden;
+    padding: 10px 20px;
+  }
 }

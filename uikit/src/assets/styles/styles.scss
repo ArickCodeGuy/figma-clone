@@ -12,6 +12,10 @@
   --bgc-light: #ddd;
   --bgc-dark: #282828;
 
+  --bgc-opposite-light: var(--bgc-dark);
+  --bgc-opposite-dark: var(--bgc-light);
+
+  // Contrast color to background
   --rgba-contrast-light: 0, 0, 0;
   --rgba-contrast-dark: 255, 255, 255;
 
@@ -94,6 +98,7 @@ body {
   --bgc: var(--bgc-dark);
   --contrast: var(--contrast-dark);
   --btn-color: var(--btn-color-dark);
+  --bgc-opposite: var(--bgc-opposite-dark);
   --rgba-contrast: var(--rgba-contrast-dark);
   --rgba-bgc: var(--rgba-bgc-dark);
   --link-color: var(--link-color-dark);
@@ -104,6 +109,7 @@ body {
     --bgc: var(--bgc-light);
     --contrast: var(--contrast-light);
     --btn-color: var(--btn-color-light);
+    --bgc-opposite: var(--bgc-opposite-light);
     --rgba-contrast: var(--rgba-contrast-light);
     --rgba-bgc: var(--rgba-bgc-light);
     --link-color: var(--link-color-light);
