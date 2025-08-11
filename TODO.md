@@ -45,13 +45,14 @@
     - [ ] Current chosen figure info
       - [ ] Figure styles.
 - [ ] Backend
-  - [ ] Swagger on backend
+  - [x] Swagger on backend (10-08-2025)
   - [ ] Auth
     - [ ] Choose solution
     - [ ] API
       - [ ] Create user
       - [ ] Delete user
       - [ ] Change password
+    - [ ] Use auth token
     - [ ] Now serve scetches for created user
   - [ ] Set up MinIO
     - [ ] Connect
@@ -61,6 +62,7 @@
     - [ ] Retrieve content
   - [ ] Save scetches content
   - [ ] Serve scetches content
+  - [ ] Generate .d.ts files for API
 
 ### Postpone
 

@@ -17,6 +17,13 @@ export const Primary: Story = {
   },
 };
 
+export const Secondary: Story = {
+  args: {
+    children: 'Secondary',
+    presetStyle: 'SECONDARY',
+  },
+};
+
 export const MiniIconTransparentButton: Story = {
   args: {
     iconLeft: 'close',

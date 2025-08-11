@@ -28,6 +28,9 @@
   --btn-color-light: #22c55e;
   --btn-color-dark: #91a3fb;
 
+  --btn-color-secondary-light: #aaa;
+  --btn-color-secondary-dark: #444;
+
   --link-color-light: #3366cc;
   --link-color-dark: #7ca8ff;
 
@@ -98,6 +101,7 @@ body {
   --bgc: var(--bgc-dark);
   --contrast: var(--contrast-dark);
   --btn-color: var(--btn-color-dark);
+  --btn-color-secondary: var(--btn-color-secondary-dark);
   --bgc-opposite: var(--bgc-opposite-dark);
   --rgba-contrast: var(--rgba-contrast-dark);
   --rgba-bgc: var(--rgba-bgc-dark);
@@ -109,6 +113,7 @@ body {
     --bgc: var(--bgc-light);
     --contrast: var(--contrast-light);
     --btn-color: var(--btn-color-light);
+    --btn-color-secondary: var(--btn-color-secondary-light);
     --bgc-opposite: var(--bgc-opposite-light);
     --rgba-contrast: var(--rgba-contrast-light);
     --rgba-bgc: var(--rgba-bgc-light);
@@ -323,4 +328,9 @@ select {
     background: rgba(var(--rgba-contrast), 1);
     border-radius: 10px;
   }
+}
+
+.kblock {
+  background-color: var(--block-color);
+  border-radius: var(--block-roundness);
 }

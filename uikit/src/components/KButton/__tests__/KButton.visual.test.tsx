@@ -12,6 +12,16 @@ test.describe('KButton', { tag: '@KButton' }, () => {
     expect(await component.screenshot()).toMatchSnapshot('KButton.Primary.png');
   });
 
+  test('render story: <KButton.Secondary>', async ({ mount }) => {
+    const component = await mount(<KButtonComposedStories.Secondary />);
+
+    expect(component).toHaveClass(/KButton--preset-style-SECONDARY/);
+
+    expect(await component.screenshot()).toMatchSnapshot(
+      'KButton.Secondary.png'
+    );
+  });
+
   test('render story: <KButton.MiniIconTransparentButton>', async ({
     mount,
   }) => {

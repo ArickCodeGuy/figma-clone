@@ -1,10 +1,14 @@
 .KButton {
+  --k-button-color: var(--btn-color);
+  --k-button-text-color: var(--color-primary);
+
   padding: 10px 20px;
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: var(--btn-color);
-  border: 2px solid var(--btn-color);
+  background-color: var(--k-button-color);
+  border: 2px solid var(--k-button-color);
+  color: var(--k-button-text-color);
   border-radius: var(--block-roundness);
 
   .icon {
@@ -31,13 +35,16 @@
 
   &--preset-style {
     &-TRANSPARENT {
-      --bgc: transparent;
-      color: var(--contrast);
+      --k-button-color: transparent;
+      --k-button-text-color: var(--color-primary);
 
       &:hover {
-        --bgc: var(--btn-color);
-        color: var(--contrast);
+        --k-button-color: var(--btn-color);
       }
+    }
+
+    &-SECONDARY {
+      --k-button-color: var(--btn-color-secondary);
     }
   }
 }
