@@ -1,4 +1,4 @@
-import { classNameArrayToString, KCard } from 'figmaclone-uikit';
+import { classNameArrayToString, KCard, KCardSceleton } from 'figmaclone-uikit';
 import type { ScetchesWithFallbackProps } from './types';
 import type { ScetchItem } from '../../api/ScetchesController/ScetchesController';
 import { replaceRouteParams } from '../../router/replaceRouteParams';
@@ -31,6 +31,13 @@ export function ScetchesWithFallback(props: ScetchesWithFallbackProps) {
       <div className={colClasses}>
         <ScetchCreate />
       </div>
+      {props.showSceletons
+        ? new Array(3).fill(0).map(() => (
+            <div className={colClasses}>
+              <KCardSceleton />
+            </div>
+          ))
+        : null}
       {(scetches || []).map((s) => (
         <div className={colClasses}>
           <Scetch scetch={s} />

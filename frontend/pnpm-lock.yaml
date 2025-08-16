@@ -960,7 +960,7 @@ packages:
         optional: true
 
   figmaclone-uikit@file:../uikit/figmaclone-uikit-0.0.1.tgz:
-    resolution: {integrity: sha512-VXmmA+TSs6BYYvVDVzoKLvS7++rkeqi3sDqKaBfUd2AFrdR64ZCNcrGzIZ51iz1r1FohodBwgaas0DwWjyBA7A==, tarball: file:../uikit/figmaclone-uikit-0.0.1.tgz}
+    resolution: {integrity: sha512-VXeig1rvyUSdmwZYK9b7/HbyXX+vNY50gHJI23U/eoyxPs/UinYC8+6eOTji+5vhjrxdMyg6q05FKwG6u5Wyxg==, tarball: file:../uikit/figmaclone-uikit-0.0.1.tgz}
     version: 0.0.1
 
   file-entry-cache@8.0.0:

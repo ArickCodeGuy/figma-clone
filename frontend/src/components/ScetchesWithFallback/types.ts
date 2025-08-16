@@ -2,4 +2,5 @@ import type { GetScetchesReturnType } from '../../api/ScetchesController/Scetche
 
 export type ScetchesWithFallbackProps = {
   scetches?: GetScetchesReturnType;
+  showSceletons?: boolean;
 };
