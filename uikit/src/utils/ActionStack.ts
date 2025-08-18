@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-function-type */
 
-/** Makes sure that pushed functions would run synchronously */
+/**
+ * Makes sure that pushed functions would run synchronously
+ *
+ * Functions executed in `FIFO` order
+ */
 export class ActionQueue {
   private queue: Function[];
   private busy: boolean;

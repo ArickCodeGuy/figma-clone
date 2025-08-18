@@ -18,3 +18,6 @@ Added `KCard` image fallback. JSDoc add to props. Added `onBottomClick` prop.
 Added `KTitle`.
 Added `KInput`
 Added `KSceleton`
+Added `KCardSceleton`
+Added `KModal`
+Added some `./utils`

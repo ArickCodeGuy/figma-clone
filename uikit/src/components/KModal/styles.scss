@@ -6,27 +6,33 @@
   bottom: 0;
   z-index: 1000;
 
-  .ANIMATION_IN_START {
+  &.ANIMATION_IN_START {
     opacity: 0;
     transition: 0s;
   }
-  .ANIMATION_IN_GOING {
+  &.ANIMATION_IN_GOING {
     opacity: 1;
     transition: 1s;
   }
-  .ANIMATION_IN_END {
+  &.ANIMATION_IN_END {
   }
-  .ANIMATION_OUT_START {
+  &.ANIMATION_OUT_START {
     opacity: 1;
     transition: 0s;
   }
-  .ANIMATION_OUT_GOING {
+  &.ANIMATION_OUT_GOING {
     opacity: 0;
     transition: 1s;
   }
-  .ANIMATION_OUT_END {
+  &.ANIMATION_OUT_END {
     display: none;
   }
+}
+
+.KModalClose {
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
 
 .KModalBackground {
