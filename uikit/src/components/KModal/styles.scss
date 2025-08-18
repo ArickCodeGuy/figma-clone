@@ -1,0 +1,55 @@
+.KModalWrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+
+  .ANIMATION_IN_START {
+    opacity: 0;
+    transition: 0s;
+  }
+  .ANIMATION_IN_GOING {
+    opacity: 1;
+    transition: 1s;
+  }
+  .ANIMATION_IN_END {
+  }
+  .ANIMATION_OUT_START {
+    opacity: 1;
+    transition: 0s;
+  }
+  .ANIMATION_OUT_GOING {
+    opacity: 0;
+    transition: 1s;
+  }
+  .ANIMATION_OUT_END {
+    display: none;
+  }
+}
+
+.KModalBackground {
+  background-color: rgba(var(--rgba-bgc), 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.KModal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--block-color);
+  border-radius: var(--block-roundness);
+  padding: 20px;
+  width: 500px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
