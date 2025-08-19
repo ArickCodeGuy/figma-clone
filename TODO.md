@@ -47,21 +47,15 @@
 - [ ] Backend
   - [x] Swagger on backend (10-08-2025)
   - [ ] Auth
-    - [ ] Choose solution
-    - [ ] API
-      - [ ] Create user
-      - [ ] Delete user
-      - [ ] Change password
+    - [ ] OAuth2 integration with Github
     - [ ] Use auth token
     - [ ] Now serve scetches for created user
-  - [ ] Set up MinIO
+  - [ ] Set up MinIO (for scetches values)
     - [ ] Connect
     - [ ] Schema
     - [ ] Controller
-    - [ ] Upload content
-    - [ ] Retrieve content
-  - [ ] Save scetches content
-  - [ ] Serve scetches content
+    - [ ] PUT request
+    - [ ] GET request
   - [ ] Generate .d.ts files for API
 
 ### Postpone
