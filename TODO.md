@@ -29,8 +29,12 @@
 ## First iteration
 
 - [ ] Vitest integration testing
-- [ ] Fix ui icon build
-- [ ] Storybook themes
+- [ ] uikit
+  - [ ] Fix ui icon build
+  - [ ] Storybook themes
+  - [ ] KModal
+  - [ ] KInput
+  - [ ] KSceleton
 - [ ] Footer, Header
 - [ ] Front
   - [ ] Draw rooler background
