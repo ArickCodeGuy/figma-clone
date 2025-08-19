@@ -17,12 +17,12 @@ import jakarta.persistence.OneToMany;
 public class Person {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public Long id;
-  public String name;
-  public String email;
+  private Long id;
+  private String name;
+  private String email;
 
-  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-  private Set<PersonScetch> userScetches = new HashSet<>();
+  @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<PersonScetch> personScetchs = new HashSet<>();
 
   @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
   private Set<Scetch> scetches = new HashSet<>();
@@ -36,7 +36,7 @@ public class Person {
     this.email = email;
   }
 
-  public Long getId() {
-    return this.id;
-  }
+  public Long getId() { return this.id; }
+  public String getName() { return this.name; }
+  public String getEmail() { return this.email; }
 }

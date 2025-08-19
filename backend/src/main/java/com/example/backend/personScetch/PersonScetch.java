@@ -15,19 +15,21 @@ import jakarta.persistence.ManyToOne;
 public class PersonScetch {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public Long id;
+  private Long id;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "user_id", referencedColumnName = "id")
-  private Person user;
+  @JoinColumn(name = "person_id", referencedColumnName = "id")
+  private Person person;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "scetch_id", referencedColumnName = "id")
   private Scetch scetch;
 
   public PersonScetch() {};
-  public PersonScetch(Person user, Scetch scetch) {
-    this.user = user;
+  public PersonScetch(Person person, Scetch scetch) {
+    this.person = person;
     this.scetch = scetch;
   };
+
+  public Long getId() { return this.id; }
 }
