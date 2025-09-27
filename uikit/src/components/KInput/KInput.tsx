@@ -20,9 +20,10 @@ export function KInput(props: KInputProps) {
   }, [props.value]);
 
   return (
-    <div className={classNames}>
+    <label className={classNames}>
+      {props.label && <div className="KInput-label">{props.label}</div>}
       <input value={value.current} onInput={handleInput} />
-    </div>
+    </label>
   );
 }
 

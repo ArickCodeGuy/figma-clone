@@ -32,9 +32,11 @@
 - [ ] uikit
   - [ ] Fix ui icon build
   - [ ] Storybook themes
-  - [ ] KModal
-  - [ ] KInput
-  - [ ] KSceleton
+  - [x] KModal (27-09-2025 @arickcodeguy)
+  - [x] KInput (27-09-2025 @arickcodeguy)
+  - [x] KSceleton (27-09-2025 @arickcodeguy)
+  - [ ] KAccordion
+  - [ ] KTitle
 - [ ] Footer, Header
 - [ ] Front
   - [ ] Draw rooler background

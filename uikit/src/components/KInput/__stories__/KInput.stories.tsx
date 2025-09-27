@@ -11,7 +11,8 @@ type Story = StoryObj<typeof KInput>;
 
 export const Primary: Story = {
   args: {
-    value: 'Dummy text',
+    value: 'Dummy text '.repeat(10),
+    label: 'label '.repeat(20),
     onInput: function (v) {
       this.value = v;
     },

@@ -1,9 +1,21 @@
 .KInput {
   position: relative;
 
+  .KInput-label {
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    width: calc(100% - 40px);
+    font-size: 8px;
+    line-height: 1em;
+    top: 0px;
+    left: 20px;
+  }
+
   input {
     border-radius: var(--block-roundness);
     overflow: hidden;
     padding: 10px 20px;
+    border: none;
   }
 }
