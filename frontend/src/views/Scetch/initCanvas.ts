@@ -1,3 +1,4 @@
+import { addListeners } from './addListeners';
 import type { ScetchCanvasOptions, ScetchCanvasState } from './types';
 
 export function createScetchCanvasState(): ScetchCanvasState {
@@ -21,6 +22,8 @@ export function initCanvas(
   const ctx = el.getContext('2d')!;
 
   options?.debug && console.log('state', state);
+
+  addListeners(el, state);
 
   return state;
 }

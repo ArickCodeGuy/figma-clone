@@ -15,10 +15,24 @@ export function draw(
   state: ScetchCanvasState
 ): void {}
 
+export function drawAligners(
+  ctx: CanvasRenderingContext2D,
+  state: ScetchCanvasState
+): void {
+  const GAP = 100;
+  let horizontal = Math.ceil(state.position[0] / GAP) * GAP;
+  let vertical = Math.ceil(state.position[1] / GAP) * GAP;
+
+  // draw horizontal lines
+
+  // draw vertical lines
+}
+
 export function render(
   ctx: CanvasRenderingContext2D,
   state: ScetchCanvasState
 ): void {
   clear(ctx, state);
+  drawAligners(ctx, state);
   draw(ctx, state);
 }
