@@ -12,52 +12,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.backend.personScetch.PersonScetchRepository;
-import com.example.backend.scetchContent.ScetchContent;
-import com.example.backend.scetchContent.ScetchContentRepository;
-
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @RequestMapping("/api/v1/scetches")
 public class ScetchController {
   @Autowired
-  private PersonScetchRepository personScetchRepository;
-  @Autowired
   private ScetchRepository scetchRepository;
-  @Autowired
-  private ScetchContentRepository scetchContentRepository;
 
-  @Operation(summary = "Get list of scetches allowed for view by user")
+  @Operation(summary = "Get list of scetches")
   @GetMapping
   @ResponseBody
   private ResponseEntity<List<ScetchDto>> getScetches() {
-    // @@TODO
-    Long user_id = (long) 1;
-    
-    List<Long> scetchIdList = personScetchRepository
-      .findAllByPersonId(user_id)
-      .stream()
-      .map(i -> i.getId())
-      .collect(Collectors.toList());
-
     List<ScetchDto> res = scetchRepository
-      .findAllById(scetchIdList)
-      .stream()
-      .map(i -> new ScetchDto(i))
-      .collect(Collectors.toList());
-      
+        .findAll()
+        .stream()
+        .map(i -> new ScetchDto(i))
+        .collect(Collectors.toList());
+
     return ResponseEntity.ok(res);
   }
 
   @GetMapping("/{id}")
-  private ResponseEntity<String> getScetchValueById(@PathVariable Long id) {
-    Optional<ScetchContent> sc = scetchContentRepository.findById(id);
+  private ResponseEntity<Scetch> getScetchValueById(@PathVariable Long id) {
+    Optional<Scetch> sc = scetchRepository.findById(id);
 
     if (sc.isEmpty()) {
       return ResponseEntity.notFound().build();
     }
 
-    return ResponseEntity.ok(sc.get().getValue());
+    return ResponseEntity.ok(sc.get());
+  }
+
+  @PostMapping("/new")
+  public Scetch postMethodName(@RequestBody String name,
+      @RequestBody String description) {
+    Scetch scetch = new Scetch(name, description);
+
+    return scetchRepository.save(scetch);
   }
 }

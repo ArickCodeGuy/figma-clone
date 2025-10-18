@@ -17,7 +17,6 @@ Java, Spring boot
 
 - Postgresql. Store general info
 - MinIO. Object store for handling images and user scetches
-- Redis. Cache storage. Use before storing all in object storage
 
 ## API
 

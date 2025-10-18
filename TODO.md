@@ -52,16 +52,7 @@
       - [ ] Figure styles.
 - [ ] Backend
   - [x] Swagger on backend (10-08-2025)
-  - [ ] Auth
-    - [ ] OAuth2 integration with Github
-    - [ ] Use auth token
-    - [ ] Now serve scetches for created user
-  - [ ] Set up MinIO (for scetches values)
-    - [ ] Connect
-    - [ ] Schema
-    - [ ] Controller
-    - [ ] PUT request
-    - [ ] GET request
+  - [ ] Scetch content API
   - [ ] Generate .d.ts files for API
 
 ### Postpone
