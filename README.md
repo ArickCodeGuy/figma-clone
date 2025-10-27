@@ -5,13 +5,13 @@ Fullstack application. Figma clone.
 ## Frontend
 
 React, local ui lib  
-`./frontend`  
-`./uikit`
+[frontend](/frontend/) in here  
+[uikit](/uikit/) in here
 
 ## Backend
 
 Java, Spring boot  
-`./backend`
+[/backend](/backend/)
 
 ### DB
 
