@@ -4,28 +4,24 @@ Fullstack application. Figma clone.
 
 ## Frontend
 
-React, local ui lib  
-[frontend](/frontend/) in here  
-[uikit](/uikit/) in here
+Base: React
+
+[Frontend](/frontend/)  
+[UI Kit](/uikit/)
 
 ## Backend
 
-Java, Spring boot  
-[/backend](/backend/)
+Java, Spring boot
+
+[Backend](/backend/)
 
 ### DB
 
-- Postgresql. Store general info
-- MinIO. Object store for handling images and user scetches
+Postgresql
 
 ## API
 
-- Get list of available scetches. `GET` `/api/v1/scetches`
-- Get scetch. `GET` `/api/v1/scetch/{id}`.
-- Save scetch. `PUT` `/api/v1/scetch/{id}`. `body: change[]`. Figure out how we should update file. Probably don't update whole file on each update.
-- Delete scetch. `DELETE` `/api/v1/scetch/{id}`
-- Change visibility `POST` `/api/v1/scetch/change-visibility/{id}` `body: { visibility: 'type' }`
-- Sign in.
+Swagger
 
 ## Other
 
@@ -33,3 +29,7 @@ Java, Spring boot
 - Unlimited viewers per file.
 - 100k concurrent viewers\editors.
 - No scaling. Don't care.
+
+## Testing
+
+TODO
