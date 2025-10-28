@@ -28,9 +28,12 @@ export class NestedLinkedList<T> {
     return this.fromNestedArray(JSON.parse(s) as NestedArray<T>);
   }
 
+  /**
+   * Converts nested array to nested doubly linked list
+   */
   fromNestedArray(arr: NestedArray<T>): NestedLinkedListNode<T> {
-    const node: NestedLinkedListNode<T> = new Node();
+    const tempHead: NestedLinkedListNode<T> = new Node();
 
-    return node.next!;
+    return tempHead.next!;
   }
 }
