@@ -1,6 +1,5 @@
 import { Node } from './Node';
 
-// 1
 // [1, 2, 3]
 // [1, [2, [3]]]
 export type NestedArray<T = unknown> = Array<T | NestedArray<T>>;
