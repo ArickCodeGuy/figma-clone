@@ -1,0 +1,36 @@
+import type { Folder } from './Folder';
+
+export class File {
+  public id: number;
+  public name: string;
+  public parent?: Folder;
+
+  constructor(id: number, name: string, parent?: Folder) {
+    if (!name || name.includes('/')) {
+      throw new Error('File name cannot be empty or contain slashes.');
+    }
+    this.id = id;
+    this.name = name;
+    this.parent = parent;
+  }
+
+  public static getPath(file: File): string {
+    if (file.parent) {
+      return `${File.getPath(file.parent)}/${file.name}`;
+    }
+    return file.name;
+  }
+
+  public static toJSON(file: File): { id: number; name: string } {
+    const { id, name } = file;
+    return { id, name } as const;
+  }
+
+  public static fromJSON(json: Object): File | null {
+    const { id, name } = json;
+
+    if (!id || !name) return null;
+
+    return new File(id, name);
+  }
+}
