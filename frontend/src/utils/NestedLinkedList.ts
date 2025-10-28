@@ -3,8 +3,10 @@ import { Node } from './Node';
 // 1
 // [1, 2, 3]
 // [1, [2, [3]]]
-export type NestedArray<T = unknown> = T | NestedArray<T>[];
-export type NestedLinkedListNode<T> = NestedArray<Node<T>>;
+export type NestedArray<T = unknown> = Array<T | NestedArray<T>>;
+// node.val = 1
+// node.val = new Node(1);
+export type NestedLinkedListNode<T> = Node<T | NestedLinkedListNode<T>>;
 
 export class NestedLinkedList<T> {
   head: NestedLinkedListNode<T>;
