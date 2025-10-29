@@ -1,8 +1,11 @@
 import type { File } from './File';
 import { Folder } from './Folder';
 
+export type FileContents = Map<number, string>;
+
 export class FileSystem {
   public root = new Folder(1, 'root');
+  public fileContents: FileContents = new Map();
 
   constructor() {}
 
@@ -11,14 +14,18 @@ export class FileSystem {
     Folder.addChild(target, source);
   }
 
-  public static toString(root: Folder): string {
-    return JSON.stringify(Folder.toJSON(root));
+  public static toString(root: Folder, fileContents: FileContents): string {
+    return JSON.stringify({
+      root: Folder.toJSON(root),
+    });
   }
 
   public static fromString(s: string) {
     const json = JSON.parse(s);
-    const root = Folder.fromJSON(json);
+    const root = Folder.fromJSON(json.root);
 
-    return root;
+    return {
+      root,
+    };
   }
 }
