@@ -1,5 +1,7 @@
 import type { Folder } from './Folder';
 
+export type FileAsJSON = { id: number; name: string };
+
 export class File {
   public id: number;
   public name: string;
@@ -21,15 +23,17 @@ export class File {
     return file.name;
   }
 
-  public static toJSON(file: File): { id: number; name: string } {
+  public static toJSON(file: File): FileAsJSON {
     const { id, name } = file;
     return { id, name } as const;
   }
 
   public static fromJSON(json: Object): File | null {
+    // @ts-expect-error
     const { id, name } = json;
 
-    if (!id || !name) return null;
+    if (!id || !name || typeof id !== 'number' || typeof name !== 'string')
+      return null;
 
     return new File(id, name);
   }

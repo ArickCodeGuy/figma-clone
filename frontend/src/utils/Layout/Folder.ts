@@ -1,8 +1,8 @@
-import { File } from './File';
+import { File, type FileAsJSON } from './File';
 
 export type FolderAsJSON = ReturnType<typeof File.toJSON> & {
   type: 'folder';
-  children: Record<number, ReturnType<typeof Folder.toJSON>>;
+  children: Record<number, FolderAsJSON | FileAsJSON>;
 };
 
 export class Folder extends File {
@@ -57,9 +57,11 @@ export class Folder extends File {
   }
 
   public static fromJSON(json: Object): Folder | File | null {
+    // @ts-expect-error
     const { id, name, type, children } = json;
 
-    if (!id || !name) return null;
+    if (!id || !name || typeof id !== 'number' || typeof name !== 'string')
+      return null;
 
     const parent = new Folder(id, name);
 

@@ -2,7 +2,7 @@ import type { File } from './File';
 import { Folder } from './Folder';
 
 export class FileSystem {
-  public root = new Folder(0, 'root');
+  public root = new Folder(1, 'root');
 
   constructor() {}
 
