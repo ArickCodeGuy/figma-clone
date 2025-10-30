@@ -13,7 +13,13 @@ export function clear(
 export function draw(
   ctx: CanvasRenderingContext2D,
   state: ScetchCanvasState
-): void {}
+): void {
+  for (const shape of state.shapes.values()) {
+    if (!shape.isVisible(state)) continue;
+
+    shape.draw(ctx, state);
+  }
+}
 
 export function drawAligners(
   ctx: CanvasRenderingContext2D,
