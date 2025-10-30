@@ -21,3 +21,8 @@ Added `KSceleton`
 Added `KCardSceleton`
 Added `KModal`
 Added some `./utils`
+
+### 0.0.2
+
+Fix `kcol` style priority
+Fix `h1` `h2` `h3` color

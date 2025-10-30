@@ -37,8 +37,9 @@
   - [x] KSceleton (27-09-2025 @arickcodeguy)
   - [ ] KAccordion
   - [ ] KTitle
-- [ ] Footer, Header
+- [x] Footer, Header (30-10-2025 @arickcodeguy)
 - [ ] Front
+  - [ ] Layout class for storing and updating state
   - [ ] Draw rooler background
   - [ ] Mousetouch, mousemove event listeners to change position
   - [ ] Define basic shapes

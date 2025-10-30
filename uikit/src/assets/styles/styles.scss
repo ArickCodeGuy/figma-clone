@@ -178,6 +178,7 @@ body {
 
 .h1,
 h1 {
+  color: var(--color-primary);
   font-size: 3em;
   line-height: 1em;
   margin-bottom: 1em;
@@ -192,6 +193,7 @@ h1 {
 
 .h2,
 h2 {
+  color: var(--color-primary);
   font-size: 2.4em;
   line-height: 1em;
   margin-bottom: 1em;
@@ -206,6 +208,7 @@ h2 {
 
 .h3,
 h3 {
+  color: var(--color-primary);
   font-size: 1.5em;
   line-height: 1em;
   margin-bottom: 1em;
@@ -279,27 +282,37 @@ img {
   .kcol-#{$i} {
     width: calc($i * 100% / 12);
   }
-  @media (min-width: vars.$breakpoint-sm) {
+}
+@media (min-width: vars.$breakpoint-sm) {
+  @for $i from 1 through 12 {
     .kcol-sm-#{$i} {
       width: calc($i * 100% / 12);
     }
   }
-  @media (min-width: vars.$breakpoint-md) {
+}
+@media (min-width: vars.$breakpoint-md) {
+  @for $i from 1 through 12 {
     .kcol-md-#{$i} {
       width: calc($i * 100% / 12);
     }
   }
-  @media (min-width: vars.$breakpoint-lg) {
+}
+@media (min-width: vars.$breakpoint-lg) {
+  @for $i from 1 through 12 {
     .kcol-lg-#{$i} {
       width: calc($i * 100% / 12);
     }
   }
-  @media (min-width: vars.$breakpoint-xl) {
+}
+@media (min-width: vars.$breakpoint-xl) {
+  @for $i from 1 through 12 {
     .kcol-xl-#{$i} {
       width: calc($i * 100% / 12);
     }
   }
-  @media (min-width: vars.$breakpoint-xxl) {
+}
+@media (min-width: vars.$breakpoint-xxl) {
+  @for $i from 1 through 12 {
     .kcol-xxl-#{$i} {
       width: calc($i * 100% / 12);
     }

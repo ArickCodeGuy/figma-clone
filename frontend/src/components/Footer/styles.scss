@@ -1,0 +1,23 @@
+.Footer {
+  background-color: rgb(30, 30, 30);
+  color: white;
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--column-gap);
+  align-items: center;
+  justify-content: center;
+}
+.footer-link {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  &__img {
+    background-color: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+  }
+}

@@ -24,7 +24,13 @@ function ScetchCreate() {
 export function ScetchesWithFallback(props: ScetchesWithFallbackProps) {
   const { scetches } = props;
 
-  const colClasses = classNameArrayToString(['kcol-lg-2']);
+  const colClasses = classNameArrayToString([
+    'kcol-12',
+    'kcol-sm-6',
+    'kcol-md-4',
+    'kcol-lg-3',
+    'kcol-xl-3',
+  ]);
 
   return (
     <div className="krow">

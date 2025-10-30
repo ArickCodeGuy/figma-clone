@@ -11,27 +11,27 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.8.2",
-    "figmaclone-uikit": "file:..\\uikit\\figmaclone-uikit-0.0.1.tgz",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "@reduxjs/toolkit": "^2.9.2",
+    "figmaclone-uikit": "file:..\\uikit\\figmaclone-uikit-0.0.2.tgz",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.7.1"
+    "react-router-dom": "^7.9.5"
   },
   "devDependencies": {
-    "@eslint/js": "^9.29.0",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "@vitejs/plugin-react": "^4.5.2",
-    "eslint": "^9.29.0",
+    "@eslint/js": "^9.38.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^4.7.0",
+    "eslint": "^9.38.0",
     "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^16.2.0",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.4.0",
+    "sass": "^1.93.2",
+    "sass-loader": "^16.0.6",
     "typescript": "~5.8.3",
-    "typescript-eslint": "^8.34.1",
-    "sass": "^1.89.2",
-    "sass-loader": "^16.0.5",
-    "vite": "^7.0.0",
+    "typescript-eslint": "^8.46.2",
+    "vite": "^7.1.12",
     "vitest": "^3.2.4"
   }
 }

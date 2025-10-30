@@ -21,10 +21,15 @@ export function HomeView() {
 
   return (
     <DefaultLayout>
-      <div className="container">
-        <h1 className="h1">Your recently used scetches</h1>
-        <ScetchesWithFallback scetches={scetches} showSceletons={isFetching} />
-      </div>
+      <section className="section">
+        <div className="container">
+          <h1 className="h1">Your recently used scetches</h1>
+          <ScetchesWithFallback
+            scetches={scetches}
+            showSceletons={isFetching}
+          />
+        </div>
+      </section>
     </DefaultLayout>
   );
 }
