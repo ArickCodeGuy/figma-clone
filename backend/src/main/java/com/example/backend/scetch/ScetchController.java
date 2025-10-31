@@ -36,6 +36,7 @@ public class ScetchController {
     return ResponseEntity.ok(res);
   }
 
+  @Operation(summary = "Get scetch by id")
   @GetMapping("/{id}")
   private ResponseEntity<Scetch> getScetchById(@PathVariable Long id) {
     Optional<Scetch> scetch = scetchRepository.findById(id);
@@ -47,6 +48,7 @@ public class ScetchController {
     return ResponseEntity.ok(scetch.get());
   }
 
+  @Operation(summary = "Create scetch")
   @PostMapping("/create")
   public Scetch postMethodName(@RequestBody String name,
       @RequestBody String description) {
@@ -55,6 +57,7 @@ public class ScetchController {
     return scetchRepository.save(scetch);
   }
 
+  @Operation(summary = "Update scetch by id")
   @PutMapping("/update")
   public ResponseEntity<Scetch> putMethodName(@RequestBody ScetchDto scetchJSON) {
     Optional<Scetch> optionalScetch = scetchRepository.findById(scetchJSON.id);
