@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/api/v1/scetches")
@@ -36,21 +37,38 @@ public class ScetchController {
   }
 
   @GetMapping("/{id}")
-  private ResponseEntity<Scetch> getScetchValueById(@PathVariable Long id) {
-    Optional<Scetch> sc = scetchRepository.findById(id);
+  private ResponseEntity<Scetch> getScetchById(@PathVariable Long id) {
+    Optional<Scetch> scetch = scetchRepository.findById(id);
 
-    if (sc.isEmpty()) {
+    if (scetch.isEmpty()) {
       return ResponseEntity.notFound().build();
     }
 
-    return ResponseEntity.ok(sc.get());
+    return ResponseEntity.ok(scetch.get());
   }
 
-  @PostMapping("/new")
+  @PostMapping("/create")
   public Scetch postMethodName(@RequestBody String name,
       @RequestBody String description) {
     Scetch scetch = new Scetch(name, description);
 
     return scetchRepository.save(scetch);
+  }
+
+  @PutMapping("/update")
+  public ResponseEntity<Scetch> putMethodName(@RequestBody ScetchDto scetchJSON) {
+    Optional<Scetch> optionalScetch = scetchRepository.findById(scetchJSON.id);
+
+    if (optionalScetch.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
+
+    Scetch scetch = optionalScetch.get();
+
+    scetch.setName(scetchJSON.name);
+    scetch.setDescription(scetchJSON.description);
+    scetch.setContent(scetchJSON.content);
+
+    return ResponseEntity.ok(scetchRepository.save(scetch));
   }
 }
