@@ -30,7 +30,7 @@ public class ScetchController {
     List<ScetchDto> res = scetchRepository
         .findAll()
         .stream()
-        .map(i -> new ScetchDto(i))
+        .map(i -> Scetch.toDto(i))
         .collect(Collectors.toList());
 
     return ResponseEntity.ok(res);
@@ -50,7 +50,7 @@ public class ScetchController {
 
   @Operation(summary = "Create scetch")
   @PostMapping("/create")
-  public Scetch postMethodName(@RequestBody String name,
+  public Scetch createScetch(@RequestBody String name,
       @RequestBody String description) {
     Scetch scetch = new Scetch(name, description);
 
@@ -59,7 +59,7 @@ public class ScetchController {
 
   @Operation(summary = "Update scetch by id")
   @PutMapping("/update")
-  public ResponseEntity<Scetch> putMethodName(@RequestBody ScetchDto scetchJSON) {
+  public ResponseEntity<Scetch> updateScetch(@RequestBody ScetchDto scetchJSON) {
     Optional<Scetch> optionalScetch = scetchRepository.findById(scetchJSON.id);
 
     if (optionalScetch.isEmpty()) {

@@ -24,6 +24,17 @@ public class Scetch {
         this.description = description;
     }
 
+    public static ScetchDto toDto(Scetch scetch) {
+        ScetchDto scetchDto = new ScetchDto();
+
+        scetchDto.id = scetch.getId();
+        scetchDto.name = scetch.getName();
+        scetchDto.content = scetch.getContent();
+        scetchDto.description = scetch.getDescription();
+
+        return scetchDto;
+    }
+
     public Long getId() {
         return this.id;
     }
