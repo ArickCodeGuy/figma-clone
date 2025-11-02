@@ -6,11 +6,15 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,28 +43,34 @@ public class ScetchController {
   @Operation(summary = "Get scetch by id")
   @GetMapping("/{id}")
   private ResponseEntity<Scetch> getScetchById(@PathVariable Long id) {
-    Optional<Scetch> scetch = scetchRepository.findById(id);
+    Optional<Scetch> optionalScetch = scetchRepository.findById(id);
 
-    if (scetch.isEmpty()) {
+    if (optionalScetch.isEmpty()) {
       return ResponseEntity.notFound().build();
     }
 
-    return ResponseEntity.ok(scetch.get());
+    return ResponseEntity.ok(optionalScetch.get());
   }
 
   @Operation(summary = "Create scetch")
   @PostMapping("/create")
-  public Scetch createScetch(@RequestBody String name,
-      @RequestBody String description) {
-    Scetch scetch = new Scetch(name, description);
+  public Scetch createScetch(@RequestBody ScetchDto scetchDto) {
+    Scetch scetch = new Scetch()
+        .setName(scetchDto.name)
+        .setDescription(scetchDto.description)
+        .setContent(scetchDto.content);
 
     return scetchRepository.save(scetch);
   }
 
   @Operation(summary = "Update scetch by id")
   @PutMapping("/update")
-  public ResponseEntity<Scetch> updateScetch(@RequestBody ScetchDto scetchJSON) {
-    Optional<Scetch> optionalScetch = scetchRepository.findById(scetchJSON.id);
+  public ResponseEntity<Scetch> updateScetch(@RequestBody ScetchDto scetchDto) {
+    if (scetchDto.id == null) {
+      return ResponseEntity.notFound().build();
+    }
+
+    Optional<Scetch> optionalScetch = scetchRepository.findById(scetchDto.id);
 
     if (optionalScetch.isEmpty()) {
       return ResponseEntity.notFound().build();
@@ -68,10 +78,25 @@ public class ScetchController {
 
     Scetch scetch = optionalScetch.get();
 
-    scetch.setName(scetchJSON.name);
-    scetch.setDescription(scetchJSON.description);
-    scetch.setContent(scetchJSON.content);
+    scetch
+        .setName(scetchDto.name)
+        .setDescription(scetchDto.description)
+        .setContent(scetchDto.content);
 
     return ResponseEntity.ok(scetchRepository.save(scetch));
+  }
+
+  @Operation(summary = "Delete scetch by id")
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Boolean> deleteScetch(@PathVariable Long id) {
+    Optional<Scetch> optionalScetch = scetchRepository.findById(id);
+
+    if (optionalScetch.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
+
+    scetchRepository.delete(optionalScetch.get());
+
+    return ResponseEntity.ok(true);
   }
 }

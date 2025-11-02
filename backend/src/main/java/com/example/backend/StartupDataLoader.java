@@ -12,8 +12,12 @@ public class StartupDataLoader {
     @Bean
     public CommandLineRunner addTestData(ScetchRepository scetchRepository) {
         return args -> {
-            Scetch testScetch = new Scetch("Test scetch", "Test scetch description");
-            Scetch testScetch2 = new Scetch("Test scetch 2", "Test scetch description 2");
+            Scetch testScetch = new Scetch()
+                    .setName("Test scetch")
+                    .setDescription("Test scetch description");
+            Scetch testScetch2 = new Scetch()
+                    .setName("Test scetch 2")
+                    .setDescription("Test scetch description 2");
 
             if (scetchRepository.count() == 0) {
                 scetchRepository.save(testScetch);

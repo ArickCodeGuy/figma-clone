@@ -14,16 +14,6 @@ public class Scetch {
     private String description;
     private String content;
 
-    public Scetch() {
-    }
-
-    public Scetch(
-            String name,
-            String description) {
-        this.name = name;
-        this.description = description;
-    }
-
     public static ScetchDto toDto(Scetch scetch) {
         ScetchDto scetchDto = new ScetchDto();
 
@@ -51,15 +41,18 @@ public class Scetch {
         return this.content;
     }
 
-    public void setName(String name) {
+    public Scetch setName(String name) {
         this.name = name;
+        return this;
     }
 
-    public void setDescription(String description) {
+    public Scetch setDescription(String description) {
         this.description = description;
+        return this;
     }
 
-    public void setContent(String content) {
+    public Scetch setContent(String content) {
         this.content = content;
+        return this;
     }
 }
