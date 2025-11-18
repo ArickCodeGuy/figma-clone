@@ -1,3 +1,4 @@
+import { FileSystem } from '../../utils/Layout/FileSystem';
 import { addListeners } from './addListeners';
 import type { ScetchCanvasOptions, ScetchCanvasState } from './types';
 
@@ -5,7 +6,7 @@ export function createScetchCanvasState(): ScetchCanvasState {
   return {
     position: [0, 0],
     windowSize: [window.innerWidth, window.innerHeight],
-    layout: [],
+    layout: new FileSystem(),
     shapes: new Map(),
   };
 }

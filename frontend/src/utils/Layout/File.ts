@@ -1,13 +1,14 @@
+import { FILE_ID } from './FileSystem';
 import type { Folder } from './Folder';
 
-export type FileAsJSON = { id: number; name: string };
+export type FileAsJSON = { id: FILE_ID; name: string };
 
 export class File {
-  public id: number;
+  public id: FILE_ID;
   public name: string;
   public parent?: Folder;
 
-  constructor(id: number, name: string, parent?: Folder) {
+  constructor(id: FILE_ID, name: string, parent?: Folder) {
     if (!name || name.includes('/')) {
       throw new Error('File name cannot be empty or contain slashes.');
     }

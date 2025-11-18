@@ -1,18 +1,18 @@
 import { File, type FileAsJSON } from './File';
+import { FILE_ID } from './FileSystem';
 
 export type FolderAsJSON = ReturnType<typeof File.toJSON> & {
   type: 'folder';
-  children: Record<number, FolderAsJSON | FileAsJSON>;
+  children: (FolderAsJSON | FileAsJSON)[];
 };
 
 export class Folder extends File {
   public type = 'folder';
-  // [key: id]
-  public children: Record<number, Folder | File>;
+  public children: (Folder | File)[];
 
-  constructor(id: number, name: string) {
+  constructor(id: FILE_ID, name: string) {
     super(id, name);
-    this.children = {};
+    this.children = [];
   }
 
   /**
@@ -22,7 +22,7 @@ export class Folder extends File {
     if (parent.children[child.id]) {
       throw new Error(`An item with the id: '${child.id}' already exists.`);
     }
-    parent.children[child.id] = child;
+    parent.children.push(child);
     child.parent = parent;
   }
 
@@ -34,7 +34,7 @@ export class Folder extends File {
 
     if (!parent) return;
 
-    delete parent.children[item.id];
+    parent.children = parent.children.filter((i) => i.id !== item.id);
   }
 
   // Override toJSON for folders to include children.
@@ -42,7 +42,7 @@ export class Folder extends File {
     const serialized: FolderAsJSON = {
       ...File.toJSON(folder),
       type: 'folder',
-      children: {},
+      children: [],
     };
     for (const id in folder.children) {
       const folderOrFile = folder.children[id];

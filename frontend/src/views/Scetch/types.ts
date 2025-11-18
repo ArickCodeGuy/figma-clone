@@ -1,6 +1,5 @@
+import { FileSystem } from '../../utils/Layout/FileSystem';
 import { BaseShape } from './utils/ScetchShapes/BaseShape';
-
-export type ElementsLayout = Array<number | ElementsLayout>;
 
 /** [x, y] */
 export type CanvasPosition = [number, number];
@@ -8,7 +7,7 @@ export type CanvasPosition = [number, number];
 export type ScetchCanvasState = {
   position: CanvasPosition;
   windowSize: CanvasPosition;
-  layout: ElementsLayout;
+  layout: FileSystem;
   shapes: Map<number, BaseShape>;
 };
 

@@ -1,7 +1,9 @@
 import type { File } from './File';
 import { Folder } from './Folder';
 
-export type FileContents = Map<number, string>;
+export type FileContents = Map<FILE_ID, string>;
+
+export type FILE_ID = number;
 
 export class FileSystem {
   public root = new Folder(1, 'root');

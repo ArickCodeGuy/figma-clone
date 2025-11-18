@@ -1,4 +1,5 @@
 import type { ScetchCanvasState } from '../types';
+import { filePostorderTraversal } from './filePostorderTraversal';
 
 export const CANVAS_BACKGROUND_COLLOR = 'yellow';
 
@@ -14,10 +15,15 @@ export function draw(
   ctx: CanvasRenderingContext2D,
   state: ScetchCanvasState
 ): void {
-  for (const shape of state.shapes.values()) {
-    if (!shape.isVisible(state)) continue;
+  // In our case files are only BaseShapes
+  // This function should return shapes in
+  // order which we want to render them
+  const ids = filePostorderTraversal(state.layout);
 
-    shape.draw(ctx, state);
+  for (const id of ids) {
+    const item = state.shapes.get(id);
+    if (!item || !item.isVisible(state)) continue;
+    item.draw(ctx, state);
   }
 }
 
