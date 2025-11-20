@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { initCanvas } from './initCanvas';
+import { ScetchCanvasState } from './classes/ScetchCanvasState';
 
 export function ScetchView() {
   const params = useParams<{ id: string }>();
@@ -9,8 +9,12 @@ export function ScetchView() {
   useEffect(() => {
     if (!canvasEl.current) return;
 
-    initCanvas(canvasEl.current);
+    state = new ScetchCanvasState(canvasEl.current, {
+      debug: true,
+    });
   }, [canvasEl]);
+
+  let state: ScetchCanvasState;
 
   return (
     <div>

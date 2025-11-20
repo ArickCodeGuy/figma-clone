@@ -1,4 +1,4 @@
-import type { ScetchCanvasState } from './types';
+import { ScetchCanvasState } from './classes/ScetchCanvasState';
 
 export function addListeners(
   canvas: HTMLCanvasElement,
