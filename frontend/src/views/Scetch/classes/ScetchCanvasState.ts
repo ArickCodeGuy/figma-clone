@@ -28,8 +28,6 @@ export class ScetchCanvasState {
     this.windowSize.x = window.innerWidth;
     this.windowSize.y = window.innerHeight;
 
-    this.root.children.push(new Circle(50, 50, 50));
-
     this.init();
   }
 

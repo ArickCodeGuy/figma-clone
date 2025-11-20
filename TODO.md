@@ -37,23 +37,25 @@
   - [x] KSceleton (27-09-2025 @arickcodeguy)
   - [ ] KAccordion
   - [ ] KTitle
+  - [ ] KIconList
 - [x] Footer, Header (30-10-2025 @arickcodeguy)
 - [ ] Front
-  - [ ] Layout class for storing and updating state
-  - [ ] Draw rooler background
-  - [ ] Mousetouch, mousemove event listeners to change position
-  - [ ] Define basic shapes
-  - [ ] Define shapes layout. Shapes draw priority
-  - [ ] Keybinds
-  - [ ] Sidebar
-    - [ ] Base layout. May be some new components
-    - [ ] Hand. Move on canvas
+  - [x] Define basic shapes (20-11-2025 @arickcodeguy)
+    - [ ] Draw rooler background
+  - [x] Define shapes layout. Shapes draw priority (20-11-2025 @arickcodeguy)
+  - [ ] Left sidebar
+    - [ ] Hand. Move
+    - [ ] Cursor. Choose. Move figure
     - [ ] Figures list
+    - [ ] Keybinds
+  - [ ] Right Sidebar
     - [ ] Current chosen figure info
-      - [ ] Figure styles.
+    - [ ] Figure styles
+    - [ ] Layout
+  - [ ] Layout class for storing and updating state
 - [ ] Backend
   - [x] Swagger on backend (10-08-2025)
-  - [ ] Scetch content API
+  - [x] Scetch content API
   - [ ] Generate .d.ts files for API
 
 ### Postpone
