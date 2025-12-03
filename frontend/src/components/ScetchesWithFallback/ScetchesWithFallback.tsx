@@ -28,8 +28,8 @@ export function ScetchesWithFallback(props: ScetchesWithFallbackProps) {
     'kcol-12',
     'kcol-sm-6',
     'kcol-md-4',
-    'kcol-lg-3',
-    'kcol-xl-3',
+    'kcol-lg-2',
+    'kcol-xl-2',
   ]);
 
   return (
@@ -38,7 +38,7 @@ export function ScetchesWithFallback(props: ScetchesWithFallbackProps) {
         <ScetchCreate />
       </div>
       {props.showSceletons
-        ? new Array(3).fill(0).map((_, idx) => (
+        ? new Array(4).fill(0).map((_, idx) => (
             <div className={colClasses} key={idx}>
               <KCardSceleton />
             </div>

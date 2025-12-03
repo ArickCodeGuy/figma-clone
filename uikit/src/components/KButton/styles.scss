@@ -2,7 +2,7 @@
   --k-button-color: var(--btn-color);
   --k-button-text-color: var(--color-primary);
 
-  padding: 10px 20px;
+  padding: 10px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -11,25 +11,12 @@
   color: var(--k-button-text-color);
   border-radius: var(--block-roundness);
 
-  .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-  }
-
   &--size {
     &-MINI {
       gap: 3px;
       font-size: 8px;
       padding: 2px;
       border-radius: calc(var(--block-roundness) / 2);
-
-      .icon {
-        width: 8px;
-        height: 8px;
-      }
     }
   }
 

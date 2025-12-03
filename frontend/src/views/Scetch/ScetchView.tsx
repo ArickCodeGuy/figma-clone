@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { ScetchCanvasState } from './classes/ScetchCanvasState';
+import { ScetchSideMenu } from './components/ScetchSideMenu/ScetchSideMenu';
 
 export function ScetchView() {
   const params = useParams<{ id: string }>();
@@ -18,6 +19,7 @@ export function ScetchView() {
 
   return (
     <div>
+      <ScetchSideMenu />
       <canvas ref={canvasEl} />
     </div>
   );

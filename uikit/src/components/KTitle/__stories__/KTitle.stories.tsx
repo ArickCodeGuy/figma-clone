@@ -15,7 +15,7 @@ export const Primary: Story = {
     children: 'Title',
     actions: [
       {
-        icon: '10k',
+        icon: 'account-box',
         onClick: fn,
       },
     ],

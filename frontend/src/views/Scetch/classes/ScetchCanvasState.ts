@@ -1,6 +1,5 @@
 import { CanvasPosition } from './CanvasPosition';
 import { Folder } from './ScetchItems/Folder';
-import { Circle } from './ScetchItems/Circle';
 
 export type ScetchCanvasStateOptions = {
   debug: boolean;

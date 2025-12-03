@@ -26,3 +26,10 @@ Added some `./utils`
 
 Fix `kcol` style priority
 Fix `h1` `h2` `h3` color
+
+### 0.0.3
+
+Added `KButtonList`
+Changed `KButtonIcon` sizes a little
+Added screenshot test for `KTitle`
+Updated Screenshots
