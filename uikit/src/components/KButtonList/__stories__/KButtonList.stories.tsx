@@ -25,7 +25,7 @@ export const Primary: Story = {
       },
     ],
     style: {
-      flexDirection: 'column',
+      // flexDirection: 'column',
     },
     size: 'MINI',
   },

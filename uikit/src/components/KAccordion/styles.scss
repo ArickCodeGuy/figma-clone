@@ -1,0 +1,20 @@
+.KAccordion {
+  border-radius: var(--block-roundness);
+  background-color: rgba(var(--rgba-contrast), 0.05);
+
+  .KAccordion-button {
+    width: 100%;
+    font-size: 1.5rem;
+  }
+
+  .KAccordion-top::marker {
+    display: none;
+  }
+
+  .KAccordion-bottom {
+    padding: var(--k-button-default-padding);
+    &.closed {
+      display: none;
+    }
+  }
+}

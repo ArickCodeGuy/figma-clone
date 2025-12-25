@@ -35,8 +35,8 @@
   - [x] KModal (27-09-2025 @arickcodeguy)
   - [x] KInput (27-09-2025 @arickcodeguy)
   - [x] KSceleton (27-09-2025 @arickcodeguy)
-  - [ ] KAccordion
-  - [ ] KTitle
+  - [x] KAccordion (25-12-2025 @arickcodeguy)
+  - [x] KTitle (25-12-2025 @arickcodeguy)
   - [x] KButtonList (03-12-2025 @arickcodeguy)
 - [x] Footer, Header (30-10-2025 @arickcodeguy)
 - [ ] Front

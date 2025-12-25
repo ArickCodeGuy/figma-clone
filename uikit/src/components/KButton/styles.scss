@@ -1,8 +1,12 @@
+:root {
+  --k-button-default-padding: 10px;
+}
+
 .KButton {
   --k-button-color: var(--btn-color);
   --k-button-text-color: var(--color-primary);
 
-  padding: 10px;
+  padding: var(--k-button-default-padding);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -10,6 +14,7 @@
   border: 2px solid var(--k-button-color);
   color: var(--k-button-text-color);
   border-radius: var(--block-roundness);
+  cursor: pointer;
 
   &--size {
     &-MINI {

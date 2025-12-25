@@ -1,12 +1,12 @@
 @use '../../assets/styles/vars';
 
 .KButtonList {
-  background-color: var(--bgc);
-  padding: var(--column-gutter);
+  // background-color: var(--bgc);
+  // padding: var(--column-gutter);
+  // border: 1px solid var(--contrast);
   border-radius: var(--column-gutter);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  // align-items: center;
+  // justify-content: center;
   gap: var(--column-gutter);
-  border: 1px solid var(--contrast);
 }

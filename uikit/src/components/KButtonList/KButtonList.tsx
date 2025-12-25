@@ -9,7 +9,12 @@ export function KButtonList(props: KButtonListProps) {
   return (
     <div className={classNames} style={props.style}>
       {(props.items || []).map((i) => (
-        <KButton iconLeft={i.name} title={i.title} size={props.size} />
+        <KButton
+          iconLeft={i.name}
+          title={i.title}
+          children={i.children}
+          size={props.size}
+        />
       ))}
     </div>
   );
