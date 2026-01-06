@@ -2,8 +2,8 @@ import type { KCardAction, KCardProps } from './types';
 import './styles.scss';
 import { trim } from '../../utils/trim';
 import { KButton, type KButtonProps } from '../KButton';
-import { KIcon } from '../../../dist';
 import { KList } from '../KList';
+import { KIcon } from '../KIcon';
 
 export function KCard(props: KCardProps) {
   const visibleActions: KButtonProps[] = [];
