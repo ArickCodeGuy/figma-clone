@@ -33,3 +33,11 @@ Added `KButtonList`
 Changed `KButtonIcon` sizes a little
 Added screenshot test for `KTitle`
 Updated Screenshots
+
+### 0.0.4
+
+Removed `KButtonList`. Use more general `KList`
+Added `KList`
+Added `KTittle` `actions`
+Updated `KCard` `actions` using `KList`
+Updated `KAccordion`

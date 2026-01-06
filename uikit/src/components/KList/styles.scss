@@ -1,0 +1,16 @@
+@use '../../assets/styles/vars';
+
+.KList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-radius: var(--column-gutter);
+  display: flex;
+  gap: var(--column-gutter);
+
+  li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}

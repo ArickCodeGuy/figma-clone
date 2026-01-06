@@ -1,8 +1,26 @@
 import type { KTitleProps } from './types';
 import './styles.scss';
+import { KList } from '../KList';
+import { KButton, type KButtonProps } from '../KButton';
 
 export function KTitle(props: KTitleProps) {
-  return <div className="KTitle">{props.children}</div>;
+  const actions =
+    props.actions &&
+    props.actions.map<KButtonProps>((i) => ({
+      ...i,
+      size: 'MINI',
+    }));
+
+  return (
+    <div className="KTitle">
+      <div className="children">{props.children}</div>
+      {props.actions && (
+        <div className="actions">
+          <KList component={KButton} items={actions} />
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default KTitle;

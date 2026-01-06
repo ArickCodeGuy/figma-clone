@@ -1,5 +1,7 @@
 .KTitle {
   color: var(--color-primary);
+  display: flex;
+  justify-content: space-between;
   .KTitle-actions {
   }
 }

@@ -15,8 +15,20 @@ export const Primary: Story = {
     children: 'Title',
     actions: [
       {
-        icon: 'account-box',
-        onClick: fn,
+        iconLeft: 'account-box',
+        onClick: () => fn,
+      },
+      {
+        iconLeft: 'account-box',
+        onClick: () => fn,
+      },
+      {
+        iconLeft: 'account-box',
+        onClick: () => fn,
+      },
+      {
+        iconLeft: 'account-box',
+        onClick: () => fn,
       },
     ],
   },

@@ -1,32 +1,30 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import KButtonList from '../KButtonList';
+import KList from '../KList';
 import { fn } from 'storybook/test';
+import { KButton, type KButtonProps } from '../../KButton';
 
 export default {
-  title: 'Components/KButtonList',
-  component: KButtonList,
+  title: 'Components/KList',
+  component: KList,
   tags: ['autodocs'],
 } as Meta;
 
-type Story = StoryObj<typeof KButtonList>;
+type Story = StoryObj<typeof KList<KButtonProps>>;
 
 export const Primary: Story = {
   args: {
+    component: KButton,
     items: [
       {
-        name: 'close',
+        iconLeft: 'close',
         onClick: () => fn,
         title: 'Title for button',
       },
       {
-        name: 'star-outline',
+        iconLeft: 'star-outline',
         onClick: () => fn,
         title: 'Title for button 2',
       },
     ],
-    style: {
-      // flexDirection: 'column',
-    },
-    size: 'MINI',
   },
 };

@@ -37,7 +37,7 @@
   - [x] KSceleton (27-09-2025 @arickcodeguy)
   - [x] KAccordion (25-12-2025 @arickcodeguy)
   - [x] KTitle (25-12-2025 @arickcodeguy)
-  - [x] KButtonList (03-12-2025 @arickcodeguy)
+  - [x] KList (03-12-2025 @arickcodeguy)
 - [x] Footer, Header (30-10-2025 @arickcodeguy)
 - [ ] Front
   - [x] Define basic shapes (20-11-2025 @arickcodeguy)

@@ -1,16 +1,32 @@
 import type { KCardAction, KCardProps } from './types';
 import './styles.scss';
 import { trim } from '../../utils/trim';
-import { KButton } from '../KButton';
+import { KButton, type KButtonProps } from '../KButton';
 import { KIcon } from '../../../dist';
+import { KList } from '../KList';
 
 export function KCard(props: KCardProps) {
-  const firstThreeActions: KCardProps['actions'] = [];
-  const otherActions: KCardProps['actions'] = [];
+  const visibleActions: KButtonProps[] = [];
+
   if (props.actions) {
-    for (let i = 0; i < props.actions?.length; i++) {
-      if (i < 3) firstThreeActions.push(props.actions[i]);
-      else otherActions.push(props.actions[i]);
+    for (let i = 0; i < props.actions.length && i < 3; i++) {
+      visibleActions.push({
+        className: 'action',
+        size: 'MINI',
+        iconLeft: props.actions[i].icon,
+        title: props.actions[i].description,
+        onClick: (e) => handleActionClick(e, props.actions![i]),
+      });
+    }
+
+    if (props.actions.length > 3) {
+      visibleActions.push({
+        className: 'action',
+        size: 'MINI',
+        iconLeft: 'dots-vertical',
+        title: 'Other actions',
+        onClick: toggleOther,
+      });
     }
   }
 
@@ -22,6 +38,7 @@ export function KCard(props: KCardProps) {
     action.onClick?.(e);
   }
 
+  // @@TODO
   function toggleOther() {}
 
   return (
@@ -37,25 +54,14 @@ export function KCard(props: KCardProps) {
           </div>
         </div>
         <div className="actions">
-          {firstThreeActions.map((action) => (
-            <KButton
-              className="action"
-              size="MINI"
-              iconLeft={action.icon}
-              title={action.description}
-              onClick={(e) => handleActionClick(e, action)}
-            />
-          ))}
-          {/* @@TODO dropdown */}
-          {otherActions.length > 0 && (
-            <KButton
-              className="action"
-              size="MINI"
-              iconLeft="dots-vertical"
-              title="Other actions"
-              onClick={toggleOther}
-            />
-          )}
+          <KList
+            component={KButton}
+            items={visibleActions}
+            style={{
+              flexDirection: 'column',
+              gap: '4px',
+            }}
+          />
         </div>
       </div>
       <div className="bottom">
