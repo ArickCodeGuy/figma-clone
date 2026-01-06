@@ -15,9 +15,11 @@ export function KTitle(props: KTitleProps) {
     <div className="KTitle">
       <div className="children">{props.children}</div>
       {props.actions && (
-        <div className="actions">
-          <KList component={KButton} items={actions} />
-        </div>
+        <KList
+          component={KButton}
+          items={actions}
+          className={'KTitle-actions'}
+        />
       )}
     </div>
   );

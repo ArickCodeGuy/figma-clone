@@ -3,7 +3,7 @@ import './styles.scss';
 import { classNameArrayToString } from '../../utils';
 
 export function KList<T>(props: KListProps<T>) {
-  const classNames = classNameArrayToString(['KList']);
+  const classNames = classNameArrayToString(['KList', props.className]);
 
   return (
     <ul className={classNames} style={props.style}>
