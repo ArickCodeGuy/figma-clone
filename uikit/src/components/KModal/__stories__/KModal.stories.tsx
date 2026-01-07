@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { KModalStory } from './KModalStory';
-import { fn } from 'storybook/internal/test';
+import { fn } from 'storybook/test';
 
 export default {
   title: 'Components/KModal',
