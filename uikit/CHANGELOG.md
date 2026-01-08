@@ -46,3 +46,8 @@ Updated `KAccordion`
 
 Storybook fix
 Build fix
+
+### 0.0.6
+
+Fixed `IconNames`
+Fixed `pnpm pw:u`
