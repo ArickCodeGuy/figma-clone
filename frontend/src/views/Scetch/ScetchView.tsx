@@ -18,9 +18,9 @@ export function ScetchView() {
   let state: ScetchCanvasState;
 
   return (
-    <div>
+    <>
       <ScetchSideMenu />
       <canvas ref={canvasEl} />
-    </div>
+    </>
   );
 }

@@ -1,6 +1,7 @@
-import { addListeners } from '../addListeners';
+import { addListeners } from './utils/addListeners';
 import { CanvasPosition } from './CanvasPosition';
 import { DefaultHandState } from './HandState/DefaultHandState';
+import { CircleHandState } from './HandState/Figures/CirCleHandState';
 import { HandState } from './HandState/HandState';
 import { Folder } from './ScetchItems/Folder';
 
@@ -14,7 +15,7 @@ export class ScetchCanvasState {
   public position = new CanvasPosition();
   public windowSize = new CanvasPosition();
   public root = new Folder();
-  public handState: HandState = new DefaultHandState();
+  public handState: HandState = new CircleHandState();
 
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
@@ -31,9 +32,10 @@ export class ScetchCanvasState {
       ...options,
     };
 
+    this.ctx = canvas.getContext('2d')!;
+
     this.canvas = canvas;
     this.canvas.style.backgroundColor = CANVAS_BACKGROUND_COLOR;
-    this.ctx = canvas.getContext('2d')!;
     this.windowSize.x = window.innerWidth;
     this.windowSize.y = window.innerHeight;
 
@@ -57,6 +59,11 @@ export class ScetchCanvasState {
   public draw() {
     this.options.debug && console.log('ScetchCanvasState: draw');
 
+    this.canvas.style.width = this.windowSize.x + 'px';
+    this.canvas.style.height = this.windowSize.y + 'px';
+    this.canvas.width = this.windowSize.x;
+    this.canvas.height = this.windowSize.y;
+
     this.clear();
     this.drawAligners();
     this.root.draw(this.ctx, this);
@@ -65,10 +72,11 @@ export class ScetchCanvasState {
   public init() {
     this.options.debug && console.log('ScetchCanvasState: init');
 
-    addListeners(this.canvas, this);
+    const removeListeners = addListeners(this.canvas, this);
 
-    this.canvas.style.width = '100%';
-    this.canvas.style.height = '100%';
-    this.draw();
+    // @@TODO unmount and more optimal render
+    setInterval(() => {
+      this.draw();
+    }, 1000 / 60);
   }
 }
