@@ -38,6 +38,8 @@
   - [x] KAccordion (25-12-2025 @arickcodeguy)
   - [x] KTitle (25-12-2025 @arickcodeguy)
   - [x] KList (03-12-2025 @arickcodeguy)
+  - [ ] Fix KTitle. Add margin-bottom
+  - [ ] Fix Accordion. `useState` error
 - [x] Footer, Header (30-10-2025 @arickcodeguy)
 - [ ] Front
   - [x] Define basic shapes (20-11-2025 @arickcodeguy)

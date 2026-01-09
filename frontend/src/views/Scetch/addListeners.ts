@@ -5,15 +5,21 @@ export function addListeners(
   state: ScetchCanvasState
 ): () => void {
   function handleMouseMove(e: MouseEvent) {
+    state.handState.onMouseMove(e, state);
+
     const dy = e.clientY,
       dx = e.clientX;
   }
 
-  function handleMouseUp() {
+  function handleMouseUp(e: MouseEvent) {
+    state.handState.onMouseUp(e, state);
+
     document.removeEventListener('mousemove', handleMouseMove);
   }
 
-  function handleMouseDown() {
+  function handleMouseDown(e: MouseEvent) {
+    state.handState.onMouseDown(e, state);
+
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
   }
