@@ -1,7 +1,6 @@
 import { addListeners } from './utils/addListeners';
 import { CanvasPosition } from './CanvasPosition';
 import { DefaultHandState } from './HandState/DefaultHandState';
-import { CircleHandState } from './HandState/Figures/CirCleHandState';
 import { HandState } from './HandState/HandState';
 import { Folder } from './ScetchItems/Folder';
 
@@ -15,31 +14,21 @@ export class ScetchCanvasState {
   public position = new CanvasPosition();
   public windowSize = new CanvasPosition();
   public root = new Folder();
-  public handState: HandState = new CircleHandState();
+  public handState: HandState = new DefaultHandState();
+  public canvas: HTMLCanvasElement = document.createElement('canvas');
 
-  private canvas: HTMLCanvasElement;
-  private ctx: CanvasRenderingContext2D;
+  private ctx: CanvasRenderingContext2D = this.canvas.getContext('2d')!;
   private options: ScetchCanvasStateOptions = {
     debug: false,
   };
+  private removeListeners: ReturnType<typeof addListeners> = () => null;
+  private intervalId: number = -1;
 
-  constructor(
-    canvas: HTMLCanvasElement,
-    options: Partial<ScetchCanvasStateOptions> = {}
-  ) {
+  constructor(options: Partial<ScetchCanvasStateOptions> = {}) {
     this.options = {
       ...this.options,
       ...options,
     };
-
-    this.ctx = canvas.getContext('2d')!;
-
-    this.canvas = canvas;
-    this.canvas.style.backgroundColor = CANVAS_BACKGROUND_COLOR;
-    this.windowSize.x = window.innerWidth;
-    this.windowSize.y = window.innerHeight;
-
-    this.init();
   }
 
   public clear() {
@@ -71,12 +60,22 @@ export class ScetchCanvasState {
 
   public init() {
     this.options.debug && console.log('ScetchCanvasState: init');
+    this.destroy();
 
-    const removeListeners = addListeners(this.canvas, this);
+    this.canvas.style.backgroundColor = CANVAS_BACKGROUND_COLOR;
+    this.windowSize.x = window.innerWidth;
+    this.windowSize.y = window.innerHeight;
+
+    this.removeListeners = addListeners(this.canvas, this);
 
     // @@TODO unmount and more optimal render
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       this.draw();
     }, 1000 / 60);
+  }
+
+  public destroy() {
+    clearInterval(this.intervalId);
+    this.removeListeners();
   }
 }

@@ -7,6 +7,9 @@ import {
   KList,
   KTitle,
 } from 'figmaclone-uikit';
+import { useSelector } from 'react-redux';
+import { StoreState } from '../../../../store/store';
+import { CircleHandState } from '../../classes/HandState/Figures/CirCleHandState';
 
 export function ScetchSideMenu(props: ScetchSideMenuProps) {
   const actions: KButtonProps[] = [
@@ -42,7 +45,7 @@ export function ScetchSideMenu(props: ScetchSideMenuProps) {
       size: 'MINI',
       iconLeft: 'circle',
       onClick: () => {
-        console.log('Circle');
+        state.handState = new CircleHandState();
       },
     },
     {
@@ -54,6 +57,10 @@ export function ScetchSideMenu(props: ScetchSideMenuProps) {
       },
     },
   ];
+
+  const state = useSelector<StoreState, StoreState['canvas']['state']>(
+    (state) => state.canvas.state
+  );
 
   return (
     <div className="ScetchSideMenu">

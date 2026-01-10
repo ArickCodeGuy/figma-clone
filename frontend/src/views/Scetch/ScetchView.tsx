@@ -1,26 +1,27 @@
-import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { ScetchCanvasState } from './classes/ScetchCanvasState';
 import { ScetchSideMenu } from './components/ScetchSideMenu/ScetchSideMenu';
+import { useSelector } from 'react-redux';
+import { StoreState } from '../../store/store';
+import { useEffect, useRef } from 'react';
 
 export function ScetchView() {
   const params = useParams<{ id: string }>();
-  const canvasEl = useRef<HTMLCanvasElement>(null);
+  const divRef = useRef<HTMLDivElement>(null);
+
+  const state = useSelector<StoreState, StoreState['canvas']['state']>(
+    (state) => state.canvas.state
+  );
+  state.init();
 
   useEffect(() => {
-    if (!canvasEl.current) return;
+    if (!divRef.current) return;
 
-    state = new ScetchCanvasState(canvasEl.current, {
-      debug: true,
-    });
-  }, [canvasEl]);
-
-  let state: ScetchCanvasState;
+    divRef.current.appendChild(state.canvas);
+  }, [divRef]);
 
   return (
-    <>
+    <div ref={divRef}>
       <ScetchSideMenu />
-      <canvas ref={canvasEl} />
-    </>
+    </div>
   );
 }

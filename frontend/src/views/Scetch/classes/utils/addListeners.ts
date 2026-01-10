@@ -17,12 +17,12 @@ export function addListeners(
   }
 
   canvas.addEventListener('mousedown', handleMouseDown);
-  canvas.addEventListener('mousemove', handleMouseMove);
-  canvas.addEventListener('mouseup', handleMouseUp);
+  document.addEventListener('mousemove', handleMouseMove);
+  document.addEventListener('mouseup', handleMouseUp);
 
   return () => {
     canvas.removeEventListener('mousedown', handleMouseDown);
-    canvas.removeEventListener('mousemove', handleMouseMove);
-    canvas.removeEventListener('mouseup', handleMouseUp);
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', handleMouseUp);
   };
 }
