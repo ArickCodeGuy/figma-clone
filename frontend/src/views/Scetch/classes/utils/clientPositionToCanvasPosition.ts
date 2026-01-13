@@ -1,10 +1,13 @@
 import { CanvasPosition } from '../CanvasPosition';
 import { ScetchCanvasState } from '../ScetchCanvasState';
+import { applyTransform } from './applyTransform';
+import { getTransformMatrix } from './getTransformMatrix';
 
 export function clientPositionToCanvasPosition(
-  pos: CanvasPosition,
+  position: CanvasPosition,
   state: ScetchCanvasState
 ): CanvasPosition {
-  // @@TODO update when have transform, scale
-  return new CanvasPosition(pos.x, pos.y);
+  const matrix = getTransformMatrix(state);
+
+  return applyTransform(position, matrix);
 }
