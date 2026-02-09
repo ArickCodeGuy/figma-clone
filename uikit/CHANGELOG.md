@@ -51,3 +51,7 @@ Build fix
 
 Fixed `IconNames`
 Fixed `pnpm pw:u`
+
+### 0.0.7
+
+Fixed `KAccordion`

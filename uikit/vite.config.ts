@@ -9,6 +9,9 @@ import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
+  server: {
+    port: 3100,
+  },
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
@@ -25,6 +28,7 @@ export default defineConfig({
       fileName: 'index',
     },
     rollupOptions: {
+      external: ['react', 'react-dom'],
       output: {
         dir: 'dist',
       },
