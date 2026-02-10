@@ -12,8 +12,8 @@ importers:
         specifier: ^2.11.2
         version: 2.11.2(react-redux@9.2.0(@types/react@19.2.13)(react@19.2.4)(redux@5.0.1))(react@19.2.4)
       figmaclone-uikit:
-        specifier: file:..\uikit\figmaclone-uikit-0.0.7.tgz
-        version: file:../uikit/figmaclone-uikit-0.0.7.tgz(@types/node@24.1.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@4.57.1)(typescript@5.8.3)(vite@7.3.1(@types/node@24.1.0)(sass@1.97.3))
+        specifier: file:..\uikit\figmaclone-uikit-0.0.8.tgz
+        version: file:../uikit/figmaclone-uikit-0.0.8.tgz(@types/node@24.1.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@4.57.1)(typescript@5.8.3)(vite@7.3.1(@types/node@24.1.0)(sass@1.97.3))
       react:
         specifier: ^19.2.4
         version: 19.2.4
@@ -349,6 +349,10 @@ packages:
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  '@fortawesome/fontawesome-free@7.1.0':
+    resolution: {integrity: sha512-+WxNld5ZCJHvPQCr/GnzCTVREyStrAJjisUPtUxG5ngDA8TMlPnKp6dddlTpai4+1GNmltAeuk1hJEkBohwZYA==}
+    engines: {node: '>=6'}
+
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
     engines: {node: '>=18.18.0'}
@@ -388,9 +392,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
-
-  '@mdi/font@7.4.47':
-    resolution: {integrity: sha512-43MtGpd585SNzHZPcYowu/84Vz2a2g31TvPMTm9uTiCSWzaheQySUcSyUH/46fPnuPQWof2yd0pGBtzee/IQWw==}
 
   '@microsoft/api-extractor-model@7.32.2':
     resolution: {integrity: sha512-Ussc25rAalc+4JJs9HNQE7TuO9y6jpYQX9nWD1DhqUzYPBr3Lr7O9intf+ZY8kD5HnIqeIRJX7ccCT0QyBy2Ww==}
@@ -1099,9 +1100,9 @@ packages:
       picomatch:
         optional: true
 
-  figmaclone-uikit@file:../uikit/figmaclone-uikit-0.0.7.tgz:
-    resolution: {integrity: sha512-t+GbpQHnPVtuFjvND6za5Rd/OYK7mg5aFyRzKBbD9BZpOpU0msp1dnbQ4qSMvMEeQAno9iV3Qy0qzGSm10fxFQ==, tarball: file:../uikit/figmaclone-uikit-0.0.7.tgz}
-    version: 0.0.7
+  figmaclone-uikit@file:../uikit/figmaclone-uikit-0.0.8.tgz:
+    resolution: {integrity: sha512-MXFhy4J5C4HwEiWDmTWQUDM2je2XlHzMt4g8KVW0gSlyNcyeK5Rl2obg20J+InXfKF8MXXD7QFBY6b5JJtZ+Iw==, tarball: file:../uikit/figmaclone-uikit-0.0.8.tgz}
+    version: 0.0.8
     peerDependencies:
       react: ^19.2.3
       react-dom: ^19.2.3
@@ -1974,6 +1975,8 @@ snapshots:
       '@eslint/core': 0.17.0
       levn: 0.4.1
 
+  '@fortawesome/fontawesome-free@7.1.0': {}
+
   '@humanfs/core@0.19.1': {}
 
   '@humanfs/node@0.16.7':
@@ -2009,8 +2012,6 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
-
-  '@mdi/font@7.4.47': {}
 
   '@microsoft/api-extractor-model@7.32.2(@types/node@24.1.0)':
     dependencies:
@@ -2757,9 +2758,9 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.3
 
-  figmaclone-uikit@file:../uikit/figmaclone-uikit-0.0.7.tgz(@types/node@24.1.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@4.57.1)(typescript@5.8.3)(vite@7.3.1(@types/node@24.1.0)(sass@1.97.3)):
+  figmaclone-uikit@file:../uikit/figmaclone-uikit-0.0.8.tgz(@types/node@24.1.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@4.57.1)(typescript@5.8.3)(vite@7.3.1(@types/node@24.1.0)(sass@1.97.3)):
     dependencies:
-      '@mdi/font': 7.4.47
+      '@fortawesome/fontawesome-free': 7.1.0
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
       vite-plugin-dts: 4.5.4(@types/node@24.1.0)(rollup@4.57.1)(typescript@5.8.3)(vite@7.3.1(@types/node@24.1.0)(sass@1.97.3))
