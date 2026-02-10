@@ -11,7 +11,7 @@ type Story = StoryObj<typeof KIcon>;
 
 export const Primary: Story = {
   args: {
-    name: 'close',
-    size: 16,
+    name: 'user',
+    size: 64,
   },
 };

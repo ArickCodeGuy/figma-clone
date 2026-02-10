@@ -30,7 +30,7 @@
 
 - [ ] Vitest integration testing
 - [ ] uikit
-  - [ ] Fix ui icon build
+  - [x] Fix ui icon build (10-02-2026 @arickcodeguy)
   - [ ] Storybook themes
   - [x] KModal (27-09-2025 @arickcodeguy)
   - [x] KInput (27-09-2025 @arickcodeguy)
@@ -38,8 +38,8 @@
   - [x] KAccordion (25-12-2025 @arickcodeguy)
   - [x] KTitle (25-12-2025 @arickcodeguy)
   - [x] KList (03-12-2025 @arickcodeguy)
-  - [ ] Fix KTitle. Add margin-bottom
-  - [ ] Fix Accordion. `useState` error
+  - [x] Fix KTitle. Add margin-bottom (10-02-2026 @arickcodeguy)
+  - [x] Fix Accordion. `useState` error (10-02-2026 @arickcodeguy)
 - [x] Footer, Header (30-10-2025 @arickcodeguy)
 - [ ] Front
   - [x] Define basic shapes (20-11-2025 @arickcodeguy)

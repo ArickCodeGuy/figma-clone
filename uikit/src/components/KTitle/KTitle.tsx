@@ -12,7 +12,7 @@ export function KTitle(props: KTitleProps) {
     }));
 
   return (
-    <div className="KTitle">
+    <div className="KTitle" style={props.style}>
       <div className="children">{props.children}</div>
       {props.actions && (
         <KList

@@ -30,7 +30,7 @@ export function KModal(props: KModalProps) {
       <div className="KModal kblock">
         <KButton
           size="MINI"
-          iconLeft="close"
+          iconLeft="x"
           className="KModalClose"
           onClick={close}
         />

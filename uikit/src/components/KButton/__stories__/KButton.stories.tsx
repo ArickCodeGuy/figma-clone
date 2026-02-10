@@ -26,7 +26,7 @@ export const Secondary: Story = {
 
 export const MiniIconTransparentButton: Story = {
   args: {
-    iconLeft: 'close',
+    iconLeft: 'x',
     size: 'MINI',
     presetStyle: 'TRANSPARENT',
   },
@@ -35,7 +35,7 @@ export const MiniIconTransparentButton: Story = {
 export const MiniWithIcons: Story = {
   args: {
     children: 'mini',
-    iconLeft: 'star-outline',
+    iconLeft: 'star',
     iconRight: { name: 'star' },
     size: 'MINI',
   },

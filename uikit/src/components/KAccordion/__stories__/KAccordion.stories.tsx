@@ -36,12 +36,12 @@ export const Secondary: Story = {
           component={KButton}
           items={[
             {
-              iconLeft: 'account-box',
-              children: 'account-box',
+              iconLeft: 'user',
+              children: 'user',
             },
             {
-              iconLeft: 'account-circle',
-              children: 'account-circle',
+              iconLeft: 'angle-up',
+              children: 'angle-up',
             },
           ]}
         />

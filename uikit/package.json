@@ -1,7 +1,7 @@
 {
   "name": "figmaclone-uikit",
   "private": true,
-  "version": "0.0.7",
+  "version": "0.0.8",
   "type": "module",
   "scripts": {
     "dev": "storybook dev -p 7007",
@@ -22,7 +22,7 @@
   "types": "./dist/index.d.ts",
   "styles": "./dist/index.css",
   "dependencies": {
-    "@mdi/font": "^7.4.47",
+    "@fortawesome/fontawesome-free": "^7.1.0",
     "vite-plugin-dts": "^4.5.4"
   },
   "peerDependencies": {

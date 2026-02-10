@@ -55,3 +55,11 @@ Fixed `pnpm pw:u`
 ### 0.0.7
 
 Fixed `KAccordion`
+
+### 0.0.8
+
+mdi icons -> fontawesome
+build 6MB -> 1MB
+
+`KTitle` add `margin-bottom`
+updated playwright screenshots

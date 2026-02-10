@@ -25,14 +25,14 @@ export const Primary: Story = {
       },
       {
         description: 'Add to favorite',
-        icon: 'star-outline',
+        icon: 'star-half',
         onClick: () => {
           fn();
         },
       },
       {
         description: 'Something something',
-        icon: 'close',
+        icon: 'x',
         onClick: () => {
           fn();
         },

@@ -5,8 +5,8 @@ import { classNameArrayToString } from '../../utils';
 export function KIcon(props: KIconProps) {
   const classNames = classNameArrayToString([
     'KIcon',
-    'mdi',
-    `mdi-${props.name}`,
+    'fa-solid',
+    `fa-${props.name}`,
   ]);
 
   const size = (props.size || 10) + 'px';

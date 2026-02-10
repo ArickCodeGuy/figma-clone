@@ -23,7 +23,7 @@ export function KCard(props: KCardProps) {
       visibleActions.push({
         className: 'action',
         size: 'MINI',
-        iconLeft: 'dots-vertical',
+        iconLeft: 'bars',
         title: 'Other actions',
         onClick: toggleOther,
       });
@@ -32,7 +32,7 @@ export function KCard(props: KCardProps) {
 
   function handleActionClick(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    action: KCardAction
+    action: KCardAction,
   ) {
     e.stopPropagation();
     action.onClick?.(e);

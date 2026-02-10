@@ -16,12 +16,12 @@ export const Primary: Story = {
     component: KButton,
     items: [
       {
-        iconLeft: 'close',
+        iconLeft: 'x',
         onClick: () => fn,
         title: 'Title for button',
       },
       {
-        iconLeft: 'star-outline',
+        iconLeft: 'star',
         onClick: () => fn,
         title: 'Title for button 2',
       },
