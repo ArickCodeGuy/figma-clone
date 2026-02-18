@@ -12,12 +12,7 @@ export type ScetchCanvasStateOptions = {
 };
 
 export class ScetchCanvasState {
-  public translation = new Matrix(3, 3, [
-    [1, 0, 0],
-    [0, 1, 0],
-    [0, 0, 1],
-  ]);
-  public zoom = new Matrix(3, 3, [
+  public transform = new Matrix(3, 3, [
     [1, 0, 0],
     [0, 1, 0],
     [0, 0, 1],
@@ -62,6 +57,15 @@ export class ScetchCanvasState {
     this.canvas.style.height = this.windowSize.y + 'px';
     this.canvas.width = this.windowSize.x;
     this.canvas.height = this.windowSize.y;
+
+    this.ctx.setTransform(
+      this.transform.state[0][0],
+      0,
+      0,
+      this.transform.state[1][1],
+      this.transform.state[0][2],
+      this.transform.state[1][2],
+    );
 
     this.clear();
     this.drawAligners();
