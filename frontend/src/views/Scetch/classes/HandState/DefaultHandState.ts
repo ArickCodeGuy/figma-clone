@@ -23,7 +23,7 @@ export class DefaultHandState implements HandState {
     const diff = CanvasPosition.diff(this.mouseDownPosition, curr);
 
     state.transform.state[0][2] = this.originalTranslation.state[0][2] + diff.x;
-    state.transform.state[1][2] = this.originalTranslation.state[0][2] + diff.y;
+    state.transform.state[1][2] = this.originalTranslation.state[1][2] + diff.y;
   }
   public onMouseUp(e: MouseEvent, state: ScetchCanvasState): void {
     this.isMouseDown = false;

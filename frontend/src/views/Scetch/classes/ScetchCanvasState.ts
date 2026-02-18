@@ -80,7 +80,7 @@ export class ScetchCanvasState {
     this.windowSize.x = window.innerWidth;
     this.windowSize.y = window.innerHeight;
 
-    this.removeListeners = addListeners(this.canvas, this);
+    this.removeListeners = addListeners(this);
 
     // @@TODO unmount and more optimal render
     this.intervalId = setInterval(() => {

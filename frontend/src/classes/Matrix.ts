@@ -3,7 +3,7 @@ export class Matrix {
   public height;
   public state: number[][];
 
-  constructor(width: number, height: number, m?: number[][]) {
+  constructor(height: number, width: number, m?: number[][]) {
     this.width = width;
     this.height = height;
     this.state = new Array(height).fill(0).map(() => new Array(width).fill(0));

@@ -1,9 +1,14 @@
+import { Matrix } from '../../../../classes/Matrix';
 import { CanvasPosition } from '../CanvasPosition';
 
 export function applyTransform(
   position: CanvasPosition,
-  transform: CanvasPosition[]
+  transform: Matrix,
 ): CanvasPosition {
-  // @@TODO
-  return position;
+  const res = Matrix.multiply(
+    transform,
+    new Matrix(3, 1, [[position.x], [position.y], [1]]),
+  );
+
+  return new CanvasPosition(res.state[0][0], res.state[1][0]);
 }

@@ -1,9 +1,8 @@
+import { Matrix } from '../../../../classes/Matrix';
 import { ScetchCanvasState } from '../ScetchCanvasState';
+import { addShortcuts } from './addShortcuts';
 
-export function addListeners(
-  canvas: HTMLCanvasElement,
-  state: ScetchCanvasState
-): () => void {
+export function addListeners(state: ScetchCanvasState): () => void {
   function handleMouseMove(e: MouseEvent) {
     state.handState.onMouseMove(e, state);
   }
@@ -16,13 +15,16 @@ export function addListeners(
     state.handState.onMouseDown(e, state);
   }
 
-  canvas.addEventListener('mousedown', handleMouseDown);
+  state.canvas.addEventListener('mousedown', handleMouseDown);
   document.addEventListener('mousemove', handleMouseMove);
   document.addEventListener('mouseup', handleMouseUp);
 
+  const removeShortcuts = addShortcuts(state);
+
   return () => {
-    canvas.removeEventListener('mousedown', handleMouseDown);
+    state.canvas.removeEventListener('mousedown', handleMouseDown);
     document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseup', handleMouseUp);
+    removeShortcuts();
   };
 }
