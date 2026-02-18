@@ -46,15 +46,19 @@
     - [ ] Draw rooler background
   - [x] Define shapes layout. Shapes draw priority (20-11-2025 @arickcodeguy)
   - [ ] Left sidebar
-    - [ ] Hand. Move
+    - [x] Hand. Move (18-02-2026 @arickcodeguy)
+    - [ ] Zoom
     - [ ] Cursor. Choose. Move figure
     - [ ] Figures list
-    - [ ] Keybinds
+      - [ ] Line
+      - [x] Circle (18-02-2026 @arickcodeguy)
+      - [ ] Square
+    - [x] Keybinds (18-02-2026 @arickcodeguy)
   - [ ] Right Sidebar
     - [ ] Current chosen figure info
     - [ ] Figure styles
     - [ ] Layout
-  - [ ] Layout class for storing and updating state
+  - [x] Layout class for storing and updating state (18-02-2026 @arickcodeguy)
 - [ ] Backend
   - [x] Swagger on backend (10-08-2025)
   - [x] Scetch content API
