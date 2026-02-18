@@ -8,6 +8,7 @@ export type KSceletonProps = {
    */
   animate?: boolean;
   borderRound?: boolean;
+  style?: React.CSSProperties;
   className?: string;
   children?: React.ReactNode;
 };

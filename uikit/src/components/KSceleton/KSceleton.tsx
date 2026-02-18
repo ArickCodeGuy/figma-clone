@@ -12,8 +12,9 @@ export function KSceleton(props: KSceletonProps) {
   ]);
 
   const style: React.CSSProperties = {
-    width: props.width ? props.width + 'px' : '100%',
-    height: props.height ? props.height + 'px' : '100%',
+    width: props.width ? props.width + 'px' : '',
+    height: props.height ? props.height + 'px' : '',
+    ...props.style,
   };
 
   return <div className={className} style={style} children={props.children} />;

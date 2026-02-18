@@ -63,3 +63,7 @@ build 6MB -> 1MB
 
 `KTitle` add `margin-bottom`
 updated playwright screenshots
+
+### 0.0.9
+
+`KCard` and `KCardSceleton` small update

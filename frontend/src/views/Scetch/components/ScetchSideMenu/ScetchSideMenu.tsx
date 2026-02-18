@@ -16,7 +16,7 @@ export function ScetchSideMenu(props: ScetchSideMenuProps) {
     {
       title: 'Choose & Drag',
       size: 'MINI',
-      iconLeft: 'cursor-default',
+      iconLeft: 'arrow-pointer',
       onClick: () => {
         console.log('Choose & Drag');
       },
@@ -24,7 +24,7 @@ export function ScetchSideMenu(props: ScetchSideMenuProps) {
     {
       title: 'Move canvas',
       size: 'MINI',
-      iconLeft: 'hand-back-left',
+      iconLeft: 'hand',
       onClick: () => {
         console.log('Move canvas');
       },
@@ -35,7 +35,7 @@ export function ScetchSideMenu(props: ScetchSideMenuProps) {
     {
       title: 'Line',
       size: 'MINI',
-      iconLeft: 'vector-line',
+      iconLeft: 'lines-leaning',
       onClick: () => {
         console.log('Line');
       },
@@ -59,7 +59,7 @@ export function ScetchSideMenu(props: ScetchSideMenuProps) {
   ];
 
   const state = useSelector<StoreState, StoreState['canvas']['state']>(
-    (state) => state.canvas.state
+    (state) => state.canvas.state,
   );
 
   return (

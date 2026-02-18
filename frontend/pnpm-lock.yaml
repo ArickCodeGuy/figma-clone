@@ -12,8 +12,8 @@ importers:
         specifier: ^2.11.2
         version: 2.11.2(react-redux@9.2.0(@types/react@19.2.13)(react@19.2.4)(redux@5.0.1))(react@19.2.4)
       figmaclone-uikit:
-        specifier: file:..\uikit\figmaclone-uikit-0.0.8.tgz
-        version: file:../uikit/figmaclone-uikit-0.0.8.tgz(@types/node@24.1.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@4.57.1)(typescript@5.8.3)(vite@7.3.1(@types/node@24.1.0)(sass@1.97.3))
+        specifier: file:..\uikit\figmaclone-uikit-0.0.9.tgz
+        version: file:../uikit/figmaclone-uikit-0.0.9.tgz(@types/node@24.1.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@4.57.1)(typescript@5.8.3)(vite@7.3.1(@types/node@24.1.0)(sass@1.97.3))
       react:
         specifier: ^19.2.4
         version: 19.2.4
@@ -1100,9 +1100,9 @@ packages:
       picomatch:
         optional: true
 
-  figmaclone-uikit@file:../uikit/figmaclone-uikit-0.0.8.tgz:
-    resolution: {integrity: sha512-MXFhy4J5C4HwEiWDmTWQUDM2je2XlHzMt4g8KVW0gSlyNcyeK5Rl2obg20J+InXfKF8MXXD7QFBY6b5JJtZ+Iw==, tarball: file:../uikit/figmaclone-uikit-0.0.8.tgz}
-    version: 0.0.8
+  figmaclone-uikit@file:../uikit/figmaclone-uikit-0.0.9.tgz:
+    resolution: {integrity: sha512-Lau9e0MxQol2tU/NSQbZc+bd6LXtzbcy0mB5aFMgtJVRDp8q/0GjSRvFRr3EbNCXpWBw/+W5Tv029MOjv+kFug==, tarball: file:../uikit/figmaclone-uikit-0.0.9.tgz}
+    version: 0.0.9
     peerDependencies:
       react: ^19.2.3
       react-dom: ^19.2.3
@@ -2758,7 +2758,7 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.3
 
-  figmaclone-uikit@file:../uikit/figmaclone-uikit-0.0.8.tgz(@types/node@24.1.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@4.57.1)(typescript@5.8.3)(vite@7.3.1(@types/node@24.1.0)(sass@1.97.3)):
+  figmaclone-uikit@file:../uikit/figmaclone-uikit-0.0.9.tgz(@types/node@24.1.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@4.57.1)(typescript@5.8.3)(vite@7.3.1(@types/node@24.1.0)(sass@1.97.3)):
     dependencies:
       '@fortawesome/fontawesome-free': 7.1.0
       react: 19.2.4

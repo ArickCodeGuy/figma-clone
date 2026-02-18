@@ -3,6 +3,7 @@ import { CanvasPosition } from './CanvasPosition';
 import { DefaultHandState } from './HandState/DefaultHandState';
 import { HandState } from './HandState/HandState';
 import { Folder } from './ScetchItems/Folder';
+import { Matrix } from '../../../classes/Matrix';
 
 const CANVAS_BACKGROUND_COLOR = '#FFFFFF';
 
@@ -11,7 +12,16 @@ export type ScetchCanvasStateOptions = {
 };
 
 export class ScetchCanvasState {
-  public position = new CanvasPosition();
+  public translation = new Matrix(3, 3, [
+    [1, 0, 0],
+    [0, 1, 0],
+    [0, 0, 1],
+  ]);
+  public zoom = new Matrix(3, 3, [
+    [1, 0, 0],
+    [0, 1, 0],
+    [0, 0, 1],
+  ]);
   public windowSize = new CanvasPosition();
   public root = new Folder();
   public handState: HandState = new DefaultHandState();
@@ -37,8 +47,8 @@ export class ScetchCanvasState {
 
   public drawAligners() {
     const GAP = 100;
-    let horizontal = Math.ceil(this.position.x / GAP) * GAP;
-    let vertical = Math.ceil(this.position.y / GAP) * GAP;
+    // let horizontal = Math.ceil(this.position.x / GAP) * GAP;
+    // let vertical = Math.ceil(this.position.y / GAP) * GAP;
 
     // draw horizontal lines
 

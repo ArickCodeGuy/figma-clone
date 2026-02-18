@@ -1,2 +1,5 @@
+@use './stylesBase';
+
 .KCardSceleton {
+  @include stylesBase.KCardBase;
 }
