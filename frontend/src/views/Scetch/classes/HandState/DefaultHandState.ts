@@ -20,10 +20,11 @@ export class DefaultHandState implements HandState {
     if (!this.isMouseDown) return;
 
     const curr = new CanvasPosition(e.clientX, e.clientY);
+    // @@TODO zoom
     const diff = CanvasPosition.diff(this.mouseDownPosition, curr);
 
-    state.transform.state[0][2] = this.originalTranslation.state[0][2] + diff.x;
-    state.transform.state[1][2] = this.originalTranslation.state[1][2] + diff.y;
+    state.transform.state[0][2] = this.originalTranslation.state[0][2] - diff.x;
+    state.transform.state[1][2] = this.originalTranslation.state[1][2] - diff.y;
   }
   public onMouseUp(e: MouseEvent, state: ScetchCanvasState): void {
     this.isMouseDown = false;

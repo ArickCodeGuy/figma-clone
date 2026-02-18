@@ -63,8 +63,8 @@ export class ScetchCanvasState {
       0,
       0,
       this.transform.state[1][1],
-      this.transform.state[0][2],
-      this.transform.state[1][2],
+      -this.transform.state[0][2],
+      -this.transform.state[1][2],
     );
 
     this.clear();

@@ -1,6 +1,7 @@
 import { Matrix } from '../../../../classes/Matrix';
 import { ScetchCanvasState } from '../ScetchCanvasState';
 import { addShortcuts } from './addShortcuts';
+import { mouseEventToCanvasPosition } from './mouseEventToCanvasPosition';
 
 export function addListeners(state: ScetchCanvasState): () => void {
   function handleMouseMove(e: MouseEvent) {
@@ -12,6 +13,10 @@ export function addListeners(state: ScetchCanvasState): () => void {
   }
 
   function handleMouseDown(e: MouseEvent) {
+    const m = mouseEventToCanvasPosition(e, state);
+
+    console.log(m);
+
     state.handState.onMouseDown(e, state);
   }
 
