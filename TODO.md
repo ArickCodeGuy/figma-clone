@@ -52,7 +52,7 @@
     - [ ] Figures list
       - [ ] Line
       - [x] Circle (18-02-2026 @arickcodeguy)
-      - [ ] Square
+      - [x] Square (19-02-2026 @arickcodeguy)
     - [x] Keybinds (18-02-2026 @arickcodeguy)
   - [ ] Right Sidebar
     - [ ] Current chosen figure info

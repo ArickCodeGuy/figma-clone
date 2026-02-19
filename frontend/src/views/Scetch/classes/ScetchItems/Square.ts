@@ -26,5 +26,11 @@ export class Square implements BaseScetchItem {
   public isVisible(state: ScetchCanvasState): boolean {
     return false;
   }
-  public draw(ctx: CanvasRenderingContext2D, state: ScetchCanvasState): void {}
+  public draw(ctx: CanvasRenderingContext2D, state: ScetchCanvasState): void {
+    ctx.beginPath();
+    ctx.rect(this.position.x, this.position.y, this.size.x, this.size.y);
+    ctx.fillStyle = this.fillColor;
+    ctx.fill();
+    ctx.stroke();
+  }
 }
