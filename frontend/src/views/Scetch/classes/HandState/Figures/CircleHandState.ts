@@ -23,6 +23,7 @@ export class CircleHandState implements HandState {
   }
 
   public onMouseMove(e: MouseEvent, state: ScetchCanvasState): void {
+    if (!this.isPlaced) return;
     const position = mouseEventToCanvasPosition(e, state);
 
     const x = position.x - this.circle.position.x;
@@ -38,7 +39,6 @@ export class CircleHandState implements HandState {
 
   private place(e: MouseEvent, state: ScetchCanvasState): void {
     this.circle.position = mouseEventToCanvasPosition(e, state);
-    this.circle.radius = 0;
 
     state.root.children.push(this.circle);
     this.isPlaced = true;

@@ -17,12 +17,16 @@ export class Square implements BaseScetchItem {
   }
 
   public toJSON() {
-    return '';
+    return JSON.stringify({
+      hidden: this.hidden,
+      position: this.position.toString(),
+      size: this.size.toString(),
+      fillColor: this.fillColor,
+    });
   }
   public fromJSON(str: string) {
     return new Square();
   }
-
   public isVisible(state: ScetchCanvasState): boolean {
     return false;
   }

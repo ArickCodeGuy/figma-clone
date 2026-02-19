@@ -16,7 +16,12 @@ export class Circle implements BaseScetchItem {
   }
 
   public toJSON() {
-    return '';
+    return JSON.stringify({
+      hidden: this.hidden,
+      position: this.position.toString(),
+      radius: this.radius,
+      fillColor: this.fillColor,
+    });
   }
 
   public fromJSON(str: string) {
