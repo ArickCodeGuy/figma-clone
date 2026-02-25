@@ -10,4 +10,5 @@ export interface HandState {
   onMouseMove(e: MouseEvent, state: ScetchCanvasState): void;
   onMouseUp(e: MouseEvent, state: ScetchCanvasState): void;
   onMouseClick(e: MouseEvent, state: ScetchCanvasState): void;
+  onWheel(e: WheelEvent, state: ScetchCanvasState): void;
 }

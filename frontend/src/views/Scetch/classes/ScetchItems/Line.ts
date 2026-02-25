@@ -27,5 +27,11 @@ export class Line implements BaseScetchItem {
   public isVisible(state: ScetchCanvasState): boolean {
     return false;
   }
-  public draw(ctx: CanvasRenderingContext2D, state: ScetchCanvasState): void {}
+  public draw(ctx: CanvasRenderingContext2D, state: ScetchCanvasState): void {
+    ctx.beginPath();
+    ctx.fillStyle = this.fillColor;
+    ctx.moveTo(this.start.x, this.start.y);
+    ctx.lineTo(this.start.x + this.vector.x, this.start.y + this.vector.y);
+    ctx.stroke();
+  }
 }

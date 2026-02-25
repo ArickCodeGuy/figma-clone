@@ -11,6 +11,10 @@ export class SquareHandState implements HandState {
 
   constructor() {}
 
+  public onWheel(e: WheelEvent, state: ScetchCanvasState): void {
+    new DefaultHandState().onWheel(e, state);
+  }
+
   public onMouseDown(e: MouseEvent, state: ScetchCanvasState): void {
     switch (this.isPlaced) {
       case false:
