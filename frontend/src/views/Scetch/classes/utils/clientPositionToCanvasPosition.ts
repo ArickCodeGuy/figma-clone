@@ -1,6 +1,6 @@
 import { CanvasPosition } from '../CanvasPosition';
-import { DOMPointToCanvasPositionAdapter } from '../DOMPointToCanvasPositionAdapter';
 import { ScetchCanvasState } from '../ScetchCanvasState';
+import { DOMPointToCanvasPositionAdapter } from './DOMPointToCanvasPositionAdapter';
 
 export function clientPositionToCanvasPosition(
   position: CanvasPosition,

@@ -1,4 +1,4 @@
-import { CanvasPosition } from './CanvasPosition';
+import { CanvasPosition } from '../CanvasPosition';
 
 export function DOMPointToCanvasPositionAdapter(
   point: DOMPoint,

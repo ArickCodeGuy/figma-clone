@@ -47,7 +47,7 @@
   - [x] Define shapes layout. Shapes draw priority (20-11-2025 @arickcodeguy)
   - [ ] Left sidebar
     - [x] Hand. Move (18-02-2026 @arickcodeguy)
-    - [ ] Zoom
+    - [x] Zoom (25-02-2026 @arickcodeguy)
     - [ ] Cursor. Choose. Move figure
     - [ ] Figures list
       - [ ] Line
