@@ -1,5 +1,6 @@
 // Every object that can be placed needs to have:
 
+import { CanvasPosition } from '../../CanvasPosition';
 import { ScetchCanvasState } from '../../ScetchCanvasState';
 
 // 1. Renderer
@@ -23,4 +24,6 @@ export interface BaseFigure {
 
   /** For rendering edit fields for item, when selected */
   component: () => React.ReactNode;
+
+  isPositionInside: (position: CanvasPosition) => boolean;
 }

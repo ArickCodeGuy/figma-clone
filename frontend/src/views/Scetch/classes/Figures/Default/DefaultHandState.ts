@@ -1,6 +1,8 @@
 import { CanvasPosition } from '../../CanvasPosition';
 import { ScetchCanvasState } from '../../ScetchCanvasState';
 import { clientPositionToCanvasPosition } from '../../utils/clientPositionToCanvasPosition';
+import { figuresInorderTraversal } from '../../utils/figuresInorderTraversal';
+import { mouseEventToCanvasPosition } from '../../utils/mouseEventToCanvasPosition';
 import type { BaseHandState } from '../Base/BaseHandState';
 
 export class DefaultHandState implements BaseHandState {
@@ -36,6 +38,7 @@ export class DefaultHandState implements BaseHandState {
     );
     this.mouseDownPosition = new CanvasPosition(e.clientX, e.clientY);
   }
+
   public onMouseMove(e: MouseEvent, state: ScetchCanvasState): void {
     if (!this.isMouseDown) return;
 
@@ -48,5 +51,13 @@ export class DefaultHandState implements BaseHandState {
   public onMouseUp(e: MouseEvent, state: ScetchCanvasState): void {
     this.isMouseDown = false;
   }
-  public onMouseClick(e: MouseEvent, state: ScetchCanvasState): void {}
+  public onMouseClick(e: MouseEvent, state: ScetchCanvasState): void {
+    const position = mouseEventToCanvasPosition(e, state);
+    for (const figure of figuresInorderTraversal(state.root)) {
+      if (!figure.isPositionInside(position)) continue;
+      state.setSelectedFigure(figure);
+      return;
+    }
+    state.setSelectedFigure();
+  }
 }

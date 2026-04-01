@@ -5,27 +5,33 @@ import { mouseEventToCanvasPosition } from './mouseEventToCanvasPosition';
 export function addListeners(state: ScetchCanvasState): () => void {
   function handleMouseMove(e: MouseEvent) {
     e.preventDefault();
-    state.BaseHandState.onMouseMove(e, state);
+    state.handState.onMouseMove(e, state);
   }
 
   function handleMouseUp(e: MouseEvent) {
     e.preventDefault();
-    state.BaseHandState.onMouseUp(e, state);
+    state.handState.onMouseUp(e, state);
   }
 
   function handleMouseDown(e: MouseEvent) {
     e.preventDefault();
     console.log(mouseEventToCanvasPosition(e, state));
 
-    state.BaseHandState.onMouseDown(e, state);
+    state.handState.onMouseDown(e, state);
   }
 
   function handleWheel(e: WheelEvent) {
     e.preventDefault();
-    state.BaseHandState.onWheel(e, state);
+    state.handState.onWheel(e, state);
+  }
+
+  function handleClick(e: MouseEvent) {
+    e.preventDefault();
+    state.handState.onMouseClick(e, state);
   }
 
   state.canvas.addEventListener('mousedown', handleMouseDown);
+  state.canvas.addEventListener('click', handleClick);
   document.addEventListener('mousemove', handleMouseMove);
   document.addEventListener('mouseup', handleMouseUp);
   document.addEventListener('wheel', handleWheel);
@@ -34,6 +40,7 @@ export function addListeners(state: ScetchCanvasState): () => void {
 
   return () => {
     state.canvas.removeEventListener('mousedown', handleMouseDown);
+    state.canvas.removeEventListener('click', handleClick);
     document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseup', handleMouseUp);
     document.addEventListener('wheel', handleWheel);

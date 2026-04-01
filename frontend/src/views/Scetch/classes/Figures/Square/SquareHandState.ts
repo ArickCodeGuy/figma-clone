@@ -47,6 +47,6 @@ export class SquareHandState implements BaseHandState {
   }
 
   private finish(e: MouseEvent, state: ScetchCanvasState): void {
-    state.BaseHandState = new DefaultHandState();
+    state.handState = new DefaultHandState();
   }
 }

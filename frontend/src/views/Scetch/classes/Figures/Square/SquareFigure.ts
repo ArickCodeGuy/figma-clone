@@ -2,7 +2,7 @@ import { CanvasPosition } from '../../CanvasPosition';
 import { ScetchCanvasState } from '../../ScetchCanvasState';
 import { BaseFigure } from '../Base/BaseFigure';
 import { SquareFigureComponent } from './SquareFigureComponent';
-import { SquareHandState } from './SquareHandState';
+import { SquareToOutlineSquareAdapter } from './SquareToOutlineSquareAdapter';
 
 export class SquareFigure implements BaseFigure {
   public type = 'Square';
@@ -11,10 +11,9 @@ export class SquareFigure implements BaseFigure {
   public position = new CanvasPosition();
   public size = new CanvasPosition();
   public fillColor = 'black';
-  // public hollow = false;
-  getOutlineFigure = () => new SquareFigure();
-  component = SquareFigureComponent;
-  handState = new SquareHandState();
+  public hollow = false;
+  public getOutlineFigure = () => SquareToOutlineSquareAdapter(this);
+  public component = SquareFigureComponent;
 
   constructor(x?: number, y?: number, w?: number, h?: number) {
     if (x) this.position.x = x;
@@ -41,7 +40,18 @@ export class SquareFigure implements BaseFigure {
     ctx.beginPath();
     ctx.rect(this.position.x, this.position.y, this.size.x, this.size.y);
     ctx.fillStyle = this.fillColor;
-    ctx.fill();
+    if (!this.hollow) ctx.fill();
+    ctx.strokeStyle = this.fillColor;
     ctx.stroke();
+  }
+
+  public isPositionInside(position: CanvasPosition): boolean {
+    const x = position.x,
+      y = position.y;
+    if (x < this.position.x) return false;
+    if (y < this.position.y) return false;
+    if (x > this.position.x + this.size.x) return false;
+    if (y > this.position.y + this.size.y) return false;
+    return true;
   }
 }

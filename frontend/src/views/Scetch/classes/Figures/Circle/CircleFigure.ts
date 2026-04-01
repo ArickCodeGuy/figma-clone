@@ -1,9 +1,7 @@
 import { CanvasPosition } from '../../CanvasPosition';
 import { ScetchCanvasState } from '../../ScetchCanvasState';
 import { BaseFigure } from '../Base/BaseFigure';
-import { BaseHandState } from '../Base/BaseHandState';
 import { CircleFigureComponent } from './CircleFigureComponent';
-import { CircleHandState } from './CircleHandState';
 import { CircleToSquareAdapter } from './CircleToSquareAdapter';
 
 export class CircleFigure implements BaseFigure {
@@ -21,6 +19,9 @@ export class CircleFigure implements BaseFigure {
     if (y) this.position.y = y;
     if (radius) this.radius = radius;
   }
+  isPositionInside = (position: CanvasPosition) => {
+    return this.getOutlineFigure().isPositionInside(position);
+  };
 
   public toJSON() {
     return JSON.stringify({

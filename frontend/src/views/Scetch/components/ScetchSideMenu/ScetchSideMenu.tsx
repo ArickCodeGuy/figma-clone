@@ -1,12 +1,6 @@
 import { ScetchSideMenuProps } from './types';
 import './styles.scss';
-import {
-  KAccordion,
-  KButton,
-  KButtonProps,
-  KList,
-  KTitle,
-} from 'figmaclone-uikit';
+import { KButton, KButtonProps, KList, KTitle } from 'figmaclone-uikit';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../../../store/store';
 import { CircleHandState } from '../../classes/Figures/Circle/CircleHandState';
@@ -46,7 +40,7 @@ export function ScetchSideMenu(props: ScetchSideMenuProps) {
       size: 'MINI',
       iconLeft: 'circle',
       onClick: () => {
-        state.BaseHandState = new CircleHandState();
+        state.handState = new CircleHandState();
       },
     },
     {
@@ -54,7 +48,7 @@ export function ScetchSideMenu(props: ScetchSideMenuProps) {
       size: 'MINI',
       iconLeft: 'square',
       onClick: () => {
-        state.BaseHandState = new SquareHandState();
+        state.handState = new SquareHandState();
       },
     },
   ];

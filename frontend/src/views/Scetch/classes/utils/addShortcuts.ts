@@ -5,10 +5,10 @@ import { SquareHandState } from '../Figures/Square/SquareHandState';
 export function addShortcuts(state: ScetchCanvasState): () => void {
   function handleKeyDown(e: KeyboardEvent): void {
     if (e.code === 'Digit1') {
-      state.BaseHandState = new CircleHandState();
+      state.handState = new CircleHandState();
     }
     if (e.code === 'Digit2') {
-      state.BaseHandState = new SquareHandState();
+      state.handState = new SquareHandState();
     }
   }
 

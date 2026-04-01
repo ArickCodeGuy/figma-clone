@@ -3,6 +3,8 @@ import { CanvasPosition } from './CanvasPosition';
 import { FolderFigure } from './Figures/Folder/FolderFigure';
 import { DefaultHandState } from './Figures/Default/DefaultHandState';
 import { BaseHandState } from './Figures/Base/BaseHandState';
+import { LineFigure } from './Figures/Line/LineFigure';
+import { BaseFigure } from './Figures/Base/BaseFigure';
 
 const CANVAS_BACKGROUND_COLOR = '#FFFFFF';
 
@@ -10,15 +12,18 @@ export type ScetchCanvasStateOptions = {
   debug: boolean;
 };
 
+type ObserverCallback = (eventName: string, ...args: string[]) => void;
+
 export class ScetchCanvasState {
   public translate = new CanvasPosition();
   public zoom = 1;
   public windowSize = new CanvasPosition();
   public root = new FolderFigure();
-  public BaseHandState: BaseHandState = new DefaultHandState();
+  public handState: BaseHandState = new DefaultHandState();
   public canvas: HTMLCanvasElement = document.createElement('canvas');
   public ctx: CanvasRenderingContext2D = this.canvas.getContext('2d')!;
-
+  public selectedFigure: BaseFigure | undefined;
+  private observers: ObserverCallback[] = new Array();
   private options: ScetchCanvasStateOptions = {
     debug: false,
   };
@@ -46,11 +51,21 @@ export class ScetchCanvasState {
   public drawAligners() {
     const GAP = 100;
 
-    // const xAxis = new Line(this.windowSize.x / 2, 0, 0, this.windowSize.y);
-    // const yAxis = new Line(0, this.windowSize.y / 2, this.windowSize.x, 0);
+    const xAxis = new LineFigure(
+      this.windowSize.x / 2,
+      0,
+      0,
+      this.windowSize.y,
+    );
+    const yAxis = new LineFigure(
+      0,
+      this.windowSize.y / 2,
+      this.windowSize.x,
+      0,
+    );
 
-    // xAxis.draw(this.ctx, this);
-    // yAxis.draw(this.ctx, this);
+    xAxis.draw(this.ctx, this);
+    yAxis.draw(this.ctx, this);
     // @@TODO
     // let horizontal = Math.ceil(this.position.x / GAP) * GAP;
     // let vertical = Math.ceil(this.position.y / GAP) * GAP;
@@ -75,6 +90,10 @@ export class ScetchCanvasState {
     this.clear();
     this.drawAligners();
     this.root.draw(this.ctx, this);
+
+    if (this.selectedFigure) {
+      this.selectedFigure.getOutlineFigure().draw(this.ctx, this);
+    }
   }
 
   public init() {
@@ -101,5 +120,14 @@ export class ScetchCanvasState {
   public destroy() {
     clearInterval(this.intervalId);
     this.removeListeners();
+  }
+
+  public subscribe(cb: ObserverCallback) {
+    this.observers.push(cb);
+  }
+
+  public setSelectedFigure(figure?: BaseFigure): void {
+    this.selectedFigure = figure;
+    for (const cb of this.observers) cb('select');
   }
 }
