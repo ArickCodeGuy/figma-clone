@@ -1,9 +1,9 @@
-import { CanvasPosition } from '../CanvasPosition';
-import { ScetchCanvasState } from '../ScetchCanvasState';
-import { clientPositionToCanvasPosition } from '../utils/clientPositionToCanvasPosition';
-import { HandState } from './HandState';
+import { CanvasPosition } from '../../CanvasPosition';
+import { ScetchCanvasState } from '../../ScetchCanvasState';
+import { clientPositionToCanvasPosition } from '../../utils/clientPositionToCanvasPosition';
+import type { BaseHandState } from '../Base/BaseHandState';
 
-export class DefaultHandState implements HandState {
+export class DefaultHandState implements BaseHandState {
   public name = 'DefaultHandState';
   private isMouseDown = false;
   private mouseDownPosition = new CanvasPosition();

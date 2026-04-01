@@ -1,12 +1,12 @@
 import { ScetchCanvasState } from '../../ScetchCanvasState';
-import { Square } from '../../ScetchItems/Square';
-import { DefaultHandState } from '../DefaultHandState';
-import { HandState } from '../HandState';
 import { mouseEventToCanvasPosition } from '../../utils/mouseEventToCanvasPosition';
+import { BaseHandState } from '../Base/BaseHandState';
+import { DefaultHandState } from '../Default/DefaultHandState';
+import { SquareFigure } from './SquareFigure';
 
-export class SquareHandState implements HandState {
-  public name = 'SquareHandState';
-  private square = new Square();
+export class SquareHandState implements BaseHandState {
+  public name = 'SquareBaseHandState';
+  private square = new SquareFigure();
   private isPlaced = false;
 
   constructor() {}
@@ -47,6 +47,6 @@ export class SquareHandState implements HandState {
   }
 
   private finish(e: MouseEvent, state: ScetchCanvasState): void {
-    state.handState = new DefaultHandState();
+    state.BaseHandState = new DefaultHandState();
   }
 }

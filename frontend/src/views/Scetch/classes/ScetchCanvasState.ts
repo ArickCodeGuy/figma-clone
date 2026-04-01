@@ -1,10 +1,8 @@
 import { addListeners } from './utils/addListeners';
 import { CanvasPosition } from './CanvasPosition';
-import { DefaultHandState } from './HandState/DefaultHandState';
-import { HandState } from './HandState/HandState';
-import { Folder } from './ScetchItems/Folder';
-import { Matrix } from '../../../classes/Matrix';
-import { Line } from './ScetchItems/Line';
+import { FolderFigure } from './Figures/Folder/FolderFigure';
+import { DefaultHandState } from './Figures/Default/DefaultHandState';
+import { BaseHandState } from './Figures/Base/BaseHandState';
 
 const CANVAS_BACKGROUND_COLOR = '#FFFFFF';
 
@@ -16,8 +14,8 @@ export class ScetchCanvasState {
   public translate = new CanvasPosition();
   public zoom = 1;
   public windowSize = new CanvasPosition();
-  public root = new Folder();
-  public handState: HandState = new DefaultHandState();
+  public root = new FolderFigure();
+  public BaseHandState: BaseHandState = new DefaultHandState();
   public canvas: HTMLCanvasElement = document.createElement('canvas');
   public ctx: CanvasRenderingContext2D = this.canvas.getContext('2d')!;
 
@@ -48,11 +46,11 @@ export class ScetchCanvasState {
   public drawAligners() {
     const GAP = 100;
 
-    const xAxis = new Line(this.windowSize.x / 2, 0, 0, this.windowSize.y);
-    const yAxis = new Line(0, this.windowSize.y / 2, this.windowSize.x, 0);
+    // const xAxis = new Line(this.windowSize.x / 2, 0, 0, this.windowSize.y);
+    // const yAxis = new Line(0, this.windowSize.y / 2, this.windowSize.x, 0);
 
-    xAxis.draw(this.ctx, this);
-    yAxis.draw(this.ctx, this);
+    // xAxis.draw(this.ctx, this);
+    // yAxis.draw(this.ctx, this);
     // @@TODO
     // let horizontal = Math.ceil(this.position.x / GAP) * GAP;
     // let vertical = Math.ceil(this.position.y / GAP) * GAP;
@@ -94,7 +92,7 @@ export class ScetchCanvasState {
 
     this.removeListeners = addListeners(this);
 
-    // @@TODO unmount and more optimal render
+    // @@TODO more optimal render?
     this.intervalId = setInterval(() => {
       this.draw();
     }, 1000 / 60);

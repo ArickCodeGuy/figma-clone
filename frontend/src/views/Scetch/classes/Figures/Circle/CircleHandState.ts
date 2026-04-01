@@ -1,12 +1,12 @@
 import { ScetchCanvasState } from '../../ScetchCanvasState';
-import { Circle } from '../../ScetchItems/Circle';
-import { DefaultHandState } from '../DefaultHandState';
-import { HandState } from '../HandState';
 import { mouseEventToCanvasPosition } from '../../utils/mouseEventToCanvasPosition';
+import { BaseHandState } from '../Base/BaseHandState';
+import { DefaultHandState } from '../Default/DefaultHandState';
+import { CircleFigure } from './CircleFigure';
 
-export class CircleHandState implements HandState {
+export class CircleHandState implements BaseHandState {
   public name = 'CircleHandState';
-  private circle = new Circle(0, 0, 0);
+  private circle = new CircleFigure(0, 0, 0);
   private isPlaced = false;
 
   constructor() {}
@@ -49,6 +49,6 @@ export class CircleHandState implements HandState {
   }
 
   private finish(e: MouseEvent, state: ScetchCanvasState): void {
-    state.handState = new DefaultHandState();
+    state.BaseHandState = new DefaultHandState();
   }
 }

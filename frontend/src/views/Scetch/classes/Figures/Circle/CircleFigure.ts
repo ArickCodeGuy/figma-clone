@@ -1,13 +1,20 @@
-import { CanvasPosition } from '../CanvasPosition';
-import { ScetchCanvasState } from '../ScetchCanvasState';
-import { BaseScetchItem } from './BaseScetchItem';
+import { CanvasPosition } from '../../CanvasPosition';
+import { ScetchCanvasState } from '../../ScetchCanvasState';
+import { BaseFigure } from '../Base/BaseFigure';
+import { BaseHandState } from '../Base/BaseHandState';
+import { CircleFigureComponent } from './CircleFigureComponent';
+import { CircleHandState } from './CircleHandState';
+import { CircleToSquareAdapter } from './CircleToSquareAdapter';
 
-export class Circle implements BaseScetchItem {
+export class CircleFigure implements BaseFigure {
   public type = 'Circle';
+  public name = 'New Circle';
   public hidden = false;
   public position = new CanvasPosition();
   public radius: number = 1;
   public fillColor = 'black';
+  public component = CircleFigureComponent;
+  public getOutlineFigure = () => CircleToSquareAdapter(this);
 
   constructor(x?: number, y?: number, radius?: number) {
     if (x) this.position.x = x;
@@ -24,8 +31,8 @@ export class Circle implements BaseScetchItem {
     });
   }
 
-  public fromJSON(str: string) {
-    return new Circle();
+  public fromJSON(str: string): BaseFigure {
+    return new CircleFigure();
   }
 
   public isVisible(state: ScetchCanvasState): boolean {

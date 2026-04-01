@@ -1,9 +1,9 @@
-import { ScetchCanvasState } from '../ScetchCanvasState';
+import { ScetchCanvasState } from '../../ScetchCanvasState';
 
 /**
- * Interface for specifying hand behavior given `HandState`
+ * Interface for specifying hand behavior given `BaseHandState`
  */
-export interface HandState {
+export interface BaseHandState {
   name: string;
 
   onMouseDown(e: MouseEvent, state: ScetchCanvasState): void;

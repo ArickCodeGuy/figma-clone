@@ -1,13 +1,20 @@
-import { CanvasPosition } from '../CanvasPosition';
-import { ScetchCanvasState } from '../ScetchCanvasState';
-import { BaseScetchItem } from './BaseScetchItem';
+import { CanvasPosition } from '../../CanvasPosition';
+import { ScetchCanvasState } from '../../ScetchCanvasState';
+import { BaseFigure } from '../Base/BaseFigure';
+import { SquareFigureComponent } from './SquareFigureComponent';
+import { SquareHandState } from './SquareHandState';
 
-export class Square implements BaseScetchItem {
+export class SquareFigure implements BaseFigure {
   public type = 'Square';
+  public name = 'New Square';
   public hidden = false;
   public position = new CanvasPosition();
   public size = new CanvasPosition();
   public fillColor = 'black';
+  // public hollow = false;
+  getOutlineFigure = () => new SquareFigure();
+  component = SquareFigureComponent;
+  handState = new SquareHandState();
 
   constructor(x?: number, y?: number, w?: number, h?: number) {
     if (x) this.position.x = x;
@@ -24,8 +31,8 @@ export class Square implements BaseScetchItem {
       fillColor: this.fillColor,
     });
   }
-  public fromJSON(str: string) {
-    return new Square();
+  public fromJSON(str: string): BaseFigure {
+    return new SquareFigure();
   }
   public isVisible(state: ScetchCanvasState): boolean {
     return false;
