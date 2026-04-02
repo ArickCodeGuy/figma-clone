@@ -17,6 +17,8 @@ export const canvasSlice = createSlice({
   name: 'canvas',
   initialState: {
     state: scetchCanvasState,
+    chosenFigureName: '',
+    chosenFigureProps: {},
   },
   reducers: {},
 });
