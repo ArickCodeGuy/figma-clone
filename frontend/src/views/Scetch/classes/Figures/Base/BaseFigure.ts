@@ -12,6 +12,7 @@ export interface BaseFigure {
   name: string;
   type: string;
   hidden: boolean;
+  position: CanvasPosition;
 
   isVisible: (state: ScetchCanvasState) => boolean;
   draw: (ctx: CanvasRenderingContext2D, state: ScetchCanvasState) => void;

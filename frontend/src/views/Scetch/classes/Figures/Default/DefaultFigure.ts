@@ -9,6 +9,7 @@ export class DefaultFigure implements BaseFigure {
   public isVisible = () => false;
   public draw = () => null;
   public getOutlineFigure = () => this;
+  public position = new CanvasPosition();
   public toJSON = () => '';
   public fromJSON = () => new DefaultFigure();
   public component = DefaultFigureComponent;

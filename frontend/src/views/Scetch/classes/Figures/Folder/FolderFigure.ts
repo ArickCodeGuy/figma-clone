@@ -2,6 +2,7 @@ import { ScetchCanvasState } from '../../ScetchCanvasState';
 import { BaseFigure } from '../Base/BaseFigure';
 import { FolderFigureComponent } from './FolderFigureComponent';
 import { DefaultFigure } from '../Default/DefaultFigure';
+import { CanvasPosition } from '../../CanvasPosition';
 
 export class FolderFigure implements BaseFigure {
   public type = 'FolderFigure';
@@ -9,6 +10,7 @@ export class FolderFigure implements BaseFigure {
   public hidden = false;
   public children: BaseFigure[] = new Array();
   public getOutlineFigure = () => new DefaultFigure();
+  public position = new CanvasPosition();
   public component = FolderFigureComponent;
 
   constructor(children?: BaseFigure[]) {

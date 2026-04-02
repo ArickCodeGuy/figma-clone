@@ -8,6 +8,8 @@ import type { BaseHandState } from '../Base/BaseHandState';
 export class DefaultHandState implements BaseHandState {
   public name = 'DefaultHandState';
   private isMouseDown = false;
+  private isMouseDownOnSelectFigure = false;
+  private mouseDownFigurePosition = new CanvasPosition();
   private mouseDownPosition = new CanvasPosition();
   private originalTranslate = new CanvasPosition();
 
@@ -32,11 +34,18 @@ export class DefaultHandState implements BaseHandState {
 
   public onMouseDown(e: MouseEvent, state: ScetchCanvasState): void {
     this.isMouseDown = true;
+    this.isMouseDownOnSelectFigure = false;
+
     this.originalTranslate = new CanvasPosition(
       state.translate.x,
       state.translate.y,
     );
     this.mouseDownPosition = new CanvasPosition(e.clientX, e.clientY);
+    if (state.selectedFigure?.isPositionInside(this.mouseDownPosition)) {
+      this.isMouseDownOnSelectFigure = true;
+      this.mouseDownFigurePosition.x = state.selectedFigure.position.x;
+      this.mouseDownFigurePosition.y = state.selectedFigure.position.y;
+    }
   }
 
   public onMouseMove(e: MouseEvent, state: ScetchCanvasState): void {
@@ -45,8 +54,13 @@ export class DefaultHandState implements BaseHandState {
     const curr = new CanvasPosition(e.clientX, e.clientY);
     const diff = CanvasPosition.diff(this.mouseDownPosition, curr);
 
-    state.translate.x = this.originalTranslate.x + diff.x;
-    state.translate.y = this.originalTranslate.y + diff.y;
+    if (this.isMouseDownOnSelectFigure && state.selectedFigure) {
+      state.selectedFigure.position.x = this.mouseDownFigurePosition.x + diff.x;
+      state.selectedFigure.position.y = this.mouseDownFigurePosition.y + diff.y;
+    } else {
+      state.translate.x = this.originalTranslate.x + diff.x;
+      state.translate.y = this.originalTranslate.y + diff.y;
+    }
   }
   public onMouseUp(e: MouseEvent, state: ScetchCanvasState): void {
     this.isMouseDown = false;
