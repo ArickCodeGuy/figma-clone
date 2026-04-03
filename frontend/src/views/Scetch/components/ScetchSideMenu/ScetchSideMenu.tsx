@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { StoreState } from '../../../../store/store';
 import { CircleHandState } from '../../classes/Figures/Circle/CircleHandState';
 import { SquareHandState } from '../../classes/Figures/Square/SquareHandState';
+import { ScetchFigureEdit } from '../ScetchFigureEdit/ScetchFigureEdit';
 
 export function ScetchSideMenu(props: ScetchSideMenuProps) {
   const actions: KButtonProps[] = [
@@ -67,6 +68,10 @@ export function ScetchSideMenu(props: ScetchSideMenuProps) {
         <div>
           <KTitle> Figures </KTitle>
           <KList component={KButton} items={figures} />
+        </div>
+        <div>
+          <KTitle> Edit figure </KTitle>
+          <ScetchFigureEdit />
         </div>
       </div>
     </div>

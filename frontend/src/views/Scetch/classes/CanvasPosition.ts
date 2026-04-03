@@ -15,4 +15,8 @@ export class CanvasPosition {
   public toString() {
     return JSON.stringify({ x: this.x, y: this.y });
   }
+  public static fromString(str: string): CanvasPosition {
+    const json = JSON.parse(str);
+    return new CanvasPosition(json.x, json.y);
+  }
 }
