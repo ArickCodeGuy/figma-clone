@@ -8,7 +8,7 @@ export function KList<T>(props: KListProps<T>) {
   return (
     <ul className={classNames} style={props.style}>
       {(props.items || []).map((i, idx) => (
-        <li>
+        <li key={idx}>
           <props.component key={idx} {...i} />
         </li>
       ))}

@@ -1,0 +1,4 @@
+/* Story previews on Docs pages get the theme background instead of the default white */
+.docs-story {
+  background-color: var(--bgc);
+}

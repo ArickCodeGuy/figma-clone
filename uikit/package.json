@@ -8,8 +8,10 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "build-storybook": "storybook build",
-    "pw": "playwright test --config=playwright/playwright.config.ts",
-    "pw:u": "npm run pw -- -u"
+    "playwright": "playwright test --config=playwright/playwright.config.ts",
+    "playwright:update-shapshots": "npm run playwright -- -u",
+    "playwright:dark": "npm run playwright -- --project=dark",
+    "playwright:light": "npm run playwright -- --project=light"
   },
   "files": [
     "dist"
