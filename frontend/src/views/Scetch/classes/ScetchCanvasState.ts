@@ -1,12 +1,7 @@
 import { addListeners } from './utils/addListeners';
-import { CanvasPosition } from './CanvasPosition';
-import { FolderFigure } from './Figures/Folder/FolderFigure';
 import { DefaultHandState } from './Figures/Default/DefaultHandState';
 import { BaseHandState } from './Figures/Base/BaseHandState';
-import { LineFigure } from './Figures/Line/LineFigure';
-import { BaseFigure } from './Figures/Base/BaseFigure';
-
-const CANVAS_BACKGROUND_COLOR = '#FFFFFF';
+import { Sketch, Base, Point, ShapeOutliner, LineShape } from './FileSystem';
 
 export type ScetchCanvasStateOptions = {
   debug: boolean;
@@ -15,27 +10,27 @@ export type ScetchCanvasStateOptions = {
 type ObserverCallback = (eventName: string, ...args: string[]) => void;
 
 export class ScetchCanvasState {
-  public translate = new CanvasPosition();
+  private CANVAS_BACKGROUND_COLOR = '#FFFFFF';
+
+  public translate = new Point();
   public zoom = 1;
-  public windowSize = new CanvasPosition();
-  public root = new FolderFigure();
+  public windowSize = new Point(innerWidth, innerHeight);
+  public root = new Sketch('root');
   public handState: BaseHandState = new DefaultHandState();
   public canvas: HTMLCanvasElement = document.createElement('canvas');
   public ctx: CanvasRenderingContext2D = this.canvas.getContext('2d')!;
-  public selectedFigure: BaseFigure | undefined;
+  public selectedFigure: Base | undefined;
   private observers: ObserverCallback[] = new Array();
-  private options: ScetchCanvasStateOptions = {
-    debug: false,
-  };
   private removeListeners: ReturnType<typeof addListeners> = () => null;
+
+  // For removing render interval on `destroy`
   private intervalId: number = -1;
 
-  constructor(options: Partial<ScetchCanvasStateOptions> = {}) {
-    this.options = {
-      ...this.options,
-      ...options,
-    };
-  }
+  constructor(
+    private options: Partial<ScetchCanvasStateOptions> = {
+      debug: false,
+    },
+  ) {}
 
   public clear() {
     // Save current transform state
@@ -49,34 +44,25 @@ export class ScetchCanvasState {
   }
 
   public drawAligners() {
-    const GAP = 100;
-
-    const xAxis = new LineFigure(
-      this.windowSize.x / 2,
-      0,
-      0,
-      this.windowSize.y,
+    const xAxis = new LineShape(
+      'xAxis',
+      new Point(this.windowSize.x / 2, 0),
+      new Point(0, this.windowSize.y),
+      'black',
     );
-    const yAxis = new LineFigure(
-      0,
-      this.windowSize.y / 2,
-      this.windowSize.x,
-      0,
+    const yAxis = new LineShape(
+      'yAxis',
+      new Point(0, this.windowSize.y / 2),
+      new Point(this.windowSize.x, 0),
+      'black',
     );
 
-    xAxis.draw(this.ctx, this);
-    yAxis.draw(this.ctx, this);
-    // @@TODO
-    // let horizontal = Math.ceil(this.position.x / GAP) * GAP;
-    // let vertical = Math.ceil(this.position.y / GAP) * GAP;
-
-    // draw horizontal lines
-
-    // draw vertical lines
+    xAxis.draw(this.ctx);
+    yAxis.draw(this.ctx);
   }
 
   public draw() {
-    this.options.debug && console.log('ScetchCanvasState: draw');
+    this.loggerLog('draw');
 
     this.ctx.setTransform(
       this.zoom,
@@ -89,20 +75,18 @@ export class ScetchCanvasState {
 
     this.clear();
     this.drawAligners();
-    this.root.draw(this.ctx, this);
+    this.root.draw(this.ctx);
 
     if (this.selectedFigure) {
-      this.selectedFigure.getOutlineFigure().draw(this.ctx, this);
+      ShapeOutliner.outline(this.selectedFigure).draw(this.ctx);
     }
   }
 
   public init() {
-    this.options.debug && console.log('ScetchCanvasState: init');
+    this.loggerLog('init', this);
     this.destroy();
 
-    this.canvas.style.backgroundColor = CANVAS_BACKGROUND_COLOR;
-    this.windowSize.x = window.innerWidth;
-    this.windowSize.y = window.innerHeight;
+    this.canvas.style.backgroundColor = this.CANVAS_BACKGROUND_COLOR;
 
     this.canvas.style.width = this.windowSize.x + 'px';
     this.canvas.style.height = this.windowSize.y + 'px';
@@ -126,8 +110,15 @@ export class ScetchCanvasState {
     this.observers.push(cb);
   }
 
-  public setSelectedFigure(figure?: BaseFigure): void {
+  public setSelectedFigure(figure?: Base): void {
     this.selectedFigure = figure;
     for (const cb of this.observers) cb('select');
+  }
+
+  private loggerLog(...args: any): void {
+    if (this.options.debug) {
+      console.log('ScetchCanvasState debugger', this);
+      console.log(...args);
+    }
   }
 }

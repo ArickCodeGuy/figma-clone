@@ -1,0 +1,11 @@
+export { Base, type BaseStatic } from './base.js';
+export { Point, type PointJSON } from './point.js';
+export { type Shape } from './shape.js';
+export { Folder } from './folder.js';
+export { Sketch } from './sketch.js';
+export { CircleShape } from './shapes/circleShape.js';
+export { RectangleShape } from './shapes/rectangleShape.js';
+export { LineShape } from './shapes/lineShape.js';
+export { ShapeOutliner } from './shapeOutliner/shapeOutliner.js';
+export { OutlineRectangleImpl } from './shapeOutliner/outlineRectangleImpl.js';
+export { registerType, deserialize, deserializeString } from './registry.js';

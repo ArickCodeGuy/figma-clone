@@ -1,11 +1,10 @@
-import { CanvasPosition } from '../CanvasPosition';
+import { Point } from '../FileSystem';
 import { ScetchCanvasState } from '../ScetchCanvasState';
-import { DOMPointToCanvasPositionAdapter } from './DOMPointToCanvasPositionAdapter';
 
-export function clientPositionToCanvasPosition(
-  position: CanvasPosition,
+export function clientPositionToPoint(
+  position: Point,
   state: ScetchCanvasState,
-): CanvasPosition {
+): Point {
   // Get current transform matrix
   const transform = state.ctx.getTransform();
   // Invert it
@@ -13,5 +12,5 @@ export function clientPositionToCanvasPosition(
   // Convert point
   const point = new DOMPoint(position.x, position.y).matrixTransform(inverted);
 
-  return DOMPointToCanvasPositionAdapter(point);
+  return new Point(point.x, point.y);
 }

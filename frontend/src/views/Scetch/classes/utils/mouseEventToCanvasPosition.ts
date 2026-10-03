@@ -1,13 +1,10 @@
-import { CanvasPosition } from '../CanvasPosition';
+import { Point } from '../FileSystem';
 import { ScetchCanvasState } from '../ScetchCanvasState';
-import { clientPositionToCanvasPosition } from './clientPositionToCanvasPosition';
+import { clientPositionToPoint } from './clientPositionToPoint';
 
 export function mouseEventToCanvasPosition(
   e: MouseEvent,
   state: ScetchCanvasState,
-): CanvasPosition {
-  return clientPositionToCanvasPosition(
-    new CanvasPosition(e.clientX, e.clientY),
-    state,
-  );
+): Point {
+  return clientPositionToPoint(new Point(e.clientX, e.clientY), state);
 }
