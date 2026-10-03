@@ -29,9 +29,9 @@
 ## First iteration
 
 - [ ] Vitest integration testing
-- [ ] uikit
+- [x] uikit
   - [x] Fix ui icon build (10-02-2026 @arickcodeguy)
-  - [ ] Storybook themes
+  - [x] Storybook themes (10-3-2026 @arickcodeguy)
   - [x] KModal (27-09-2025 @arickcodeguy)
   - [x] KInput (27-09-2025 @arickcodeguy)
   - [x] KSceleton (27-09-2025 @arickcodeguy)

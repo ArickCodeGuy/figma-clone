@@ -1,6 +1,14 @@
-# Figma clone
+# Figma Clone
+
+WIP
 
 Fullstack application. Figma clone.
+
+## Non-functional Requirements
+
+- Users can log in
+- User can view scetches, update, delete (No collaboration for now)
+- Users can draw scetches like in figma (Assume we have 3 base figures. Square, Circle and Line)
 
 ## Frontend
 
@@ -11,25 +19,10 @@ Base: React
 
 ## Backend
 
-Java, Spring boot
+Java + Spring boot
 
 [Backend](/backend/)
 
-### DB
-
-Postgresql
-
-## API
-
-Swagger
-
-## Other
-
-- Let's say 10 editors per file max.
-- Unlimited viewers per file.
-- 100k concurrent viewers\editors.
-- No scaling. Don't care.
-
 ## Testing
 
-TODO
+Optional
