@@ -6,21 +6,20 @@ import { classNameArrayToString } from '../../utils';
 
 export function KAccordion(props: KAccordionProps) {
   const [isOpen, updateIsOpen] = useState<KAccordionProps['isOpen']>(
-    props.isOpen
+    props.isOpen,
   );
-  const [bottomClassNames, setBottomClassNames] = useState<string>();
+  useEffect(() => {
+    updateIsOpen(props.isOpen);
+  }, [props.isOpen]);
 
   function topClick() {
     updateIsOpen((v) => !v);
   }
 
-  useEffect(() => {
-    updateIsOpen(props.isOpen);
-  }, [props.isOpen]);
-
+  const [bottomClassNames, setBottomClassNames] = useState<string>();
   useEffect(() => {
     setBottomClassNames(
-      classNameArrayToString(['KAccordion-bottom', isOpen ? 'open' : 'closed'])
+      classNameArrayToString(['KAccordion-bottom', isOpen ? 'open' : 'closed']),
     );
   }, [isOpen]);
 
@@ -31,6 +30,7 @@ export function KAccordion(props: KAccordionProps) {
           className="KAccordion-button"
           presetStyle="SECONDARY"
           children={props.title}
+          iconLeft={isOpen ? 'chevron-up' : 'chevron-down'}
           onClick={topClick}
         />
       </div>

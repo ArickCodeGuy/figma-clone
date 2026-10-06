@@ -73,4 +73,4 @@ updated playwright screenshots
 - Fixed minor bug in `KList`
 - Updated playwright for `light`, `dark` themes
 - Updated storybook for `light`, `dark` themse
-- No visual changes from `0.0.9`
+- `KCard` actions minor update

@@ -13,7 +13,7 @@ type Story = StoryObj<typeof KModalStory>;
 export const Primary: Story = {
   args: {
     isShown: true,
-    children: <div>Hello</div>,
+    children: <div>KModal.children</div>,
     close: fn,
   },
 };

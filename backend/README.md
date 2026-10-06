@@ -12,4 +12,4 @@ Java + Spring Boot
 ## Functional Requirements
 
 - JWT for authorization
-- Store scetches as strings of JSON sent from frontend. Frontend will validate that.
+- Store sketches as strings of JSON sent from frontend. Frontend will validate that.

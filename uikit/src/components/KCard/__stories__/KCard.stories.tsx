@@ -38,8 +38,51 @@ export const Primary: Story = {
         },
       },
       {
-        description: 'Action description 4',
+        description: 'Save',
         icon: 'bookmark',
+        onClick: () => {
+          fn();
+        },
+      },
+    ],
+  },
+};
+
+export const ActionsOverflow: Story = {
+  args: {
+    title: 'ActionsOverflow',
+    actions: [
+      {
+        description: '1',
+        icon: 'x',
+        onClick: () => {
+          fn();
+        },
+      },
+      {
+        description: '2',
+        icon: 'x',
+        onClick: () => {
+          fn();
+        },
+      },
+      {
+        description: '3',
+        icon: 'x',
+        onClick: () => {
+          fn();
+        },
+      },
+      {
+        description: '4',
+        icon: 'x',
+        onClick: () => {
+          fn();
+        },
+      },
+      {
+        description: '5',
+        icon: 'x',
         onClick: () => {
           fn();
         },
