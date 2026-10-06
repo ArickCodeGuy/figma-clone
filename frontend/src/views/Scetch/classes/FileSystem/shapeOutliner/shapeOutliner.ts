@@ -41,12 +41,12 @@ export class ShapeOutliner {
 
   static outlineCircle(circle: CircleShape): RectangleShape {
     const bottomLeft = new Point(
-      circle.center.x - circle.radius,
-      circle.center.y - circle.radius,
+      circle.position.x - circle.radius,
+      circle.position.y - circle.radius,
     );
     const topRight = new Point(
-      circle.center.x + circle.radius,
-      circle.center.y + circle.radius,
+      circle.position.x + circle.radius,
+      circle.position.y + circle.radius,
     );
     return new OutlineRectangleImpl(
       bottomLeft,
@@ -62,7 +62,7 @@ export class ShapeOutliner {
   }
 
   static outlineLine(line: LineShape): RectangleShape {
-    return new OutlineRectangleImpl(line.origin, line.vector);
+    return new OutlineRectangleImpl(line.position, line.vector);
   }
 
   /**

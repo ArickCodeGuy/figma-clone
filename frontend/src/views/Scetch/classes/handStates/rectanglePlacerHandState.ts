@@ -1,18 +1,21 @@
-import { ScetchCanvasState } from '../../ScetchCanvasState';
-import { mouseEventToCanvasPosition } from '../../utils/mouseEventToCanvasPosition';
-import { BaseHandState } from '../Base/BaseHandState';
-import { DefaultHandState } from '../Default/DefaultHandState';
-import { SquareFigure } from './SquareFigure';
+import { Point, RectangleShape } from '../FileSystem';
+import { ScetchCanvasState } from '../ScetchCanvasState';
+import { mouseEventToCanvasPosition } from '../utils/mouseEventToCanvasPosition';
+import { BaseHandState, BaseHandStateStatic } from './BaseHandState';
 
-export class SquareHandState implements BaseHandState {
-  public name = 'SquareBaseHandState';
-  private square = new SquareFigure();
+export class RectanglePlacerHandState extends BaseHandState {
+  public static type = 'SquarePlacerHandState';
+  private square = new RectangleShape(
+    'New Rectangle',
+    new Point(),
+    new Point(),
+    'black',
+    'black',
+  );
   private isPlaced = false;
 
-  constructor() {}
-
-  public onWheel(e: WheelEvent, state: ScetchCanvasState): void {
-    new DefaultHandState().onWheel(e, state);
+  constructor() {
+    super();
   }
 
   public onMouseDown(e: MouseEvent, state: ScetchCanvasState): void {
@@ -35,18 +38,17 @@ export class SquareHandState implements BaseHandState {
     this.square.size.y = position.y - this.square.position.y;
   }
 
-  public onMouseUp(e: MouseEvent, state: ScetchCanvasState): void {}
-  public onMouseClick(e: MouseEvent, state: ScetchCanvasState): void {}
-
   private place(e: MouseEvent, state: ScetchCanvasState): void {
     this.square.position = mouseEventToCanvasPosition(e, state);
     this.square.size.x = 0;
 
-    state.root.children.push(this.square);
+    state.scetch.root.children.push(this.square);
     this.isPlaced = true;
   }
 
   private finish(e: MouseEvent, state: ScetchCanvasState): void {
-    state.handState = new DefaultHandState();
+    state.handState = new BaseHandState();
   }
 }
+
+RectanglePlacerHandState satisfies BaseHandStateStatic<RectanglePlacerHandState>;

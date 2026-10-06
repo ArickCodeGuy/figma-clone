@@ -1,14 +1,14 @@
+import { CirclePlacerHandState } from '../handStates/circlePlacerHandState';
+import { RectanglePlacerHandState } from '../handStates/rectanglePlacerHandState';
 import { ScetchCanvasState } from '../ScetchCanvasState';
-import { CircleHandState } from '../Figures/Circle/CircleHandState';
-import { SquareHandState } from '../Figures/Square/SquareHandState';
 
 export function addShortcuts(state: ScetchCanvasState): () => void {
   function handleKeyDown(e: KeyboardEvent): void {
     if (e.code === 'Digit1') {
-      state.handState = new CircleHandState();
+      state.handState = new CirclePlacerHandState();
     }
     if (e.code === 'Digit2') {
-      state.handState = new SquareHandState();
+      state.handState = new RectanglePlacerHandState();
     }
   }
 

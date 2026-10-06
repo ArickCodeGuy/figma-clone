@@ -1,10 +1,15 @@
 import { addListeners } from './utils/addListeners';
-import { DefaultHandState } from './Figures/Default/DefaultHandState';
-import { BaseHandState } from './Figures/Base/BaseHandState';
 import { Sketch, Base, Point, ShapeOutliner, LineShape } from './FileSystem';
+import { BaseHandState } from './handStates/BaseHandState';
 
 export type ScetchCanvasStateOptions = {
   debug: boolean;
+};
+
+/** For rendering purposes */
+type CtxState = {
+  zoom: number;
+  translate: Point;
 };
 
 type ObserverCallback = (eventName: string, ...args: string[]) => void;
@@ -12,18 +17,26 @@ type ObserverCallback = (eventName: string, ...args: string[]) => void;
 export class ScetchCanvasState {
   private CANVAS_BACKGROUND_COLOR = '#FFFFFF';
 
-  public translate = new Point();
-  public zoom = 1;
   public windowSize = new Point(innerWidth, innerHeight);
-  public root = new Sketch('root');
-  public handState: BaseHandState = new DefaultHandState();
+  public scetch = new Sketch('root');
+  /** For moving and creating new shapes */
+  public handState: BaseHandState = new BaseHandState();
+  public selectedFigure: Base | undefined;
   public canvas: HTMLCanvasElement = document.createElement('canvas');
   public ctx: CanvasRenderingContext2D = this.canvas.getContext('2d')!;
-  public selectedFigure: Base | undefined;
+  public ctxState: CtxState = {
+    zoom: 1,
+    translate: new Point(),
+  };
+  /**
+   * Some parts of program need to know about specific events that happen in scetch
+   * e.g. selecting a figure should be followed by loading a component
+   * that will be able to edit selected figure
+   */
   private observers: ObserverCallback[] = new Array();
   private removeListeners: ReturnType<typeof addListeners> = () => null;
 
-  // For removing render interval on `destroy`
+  /** For removing render interval on `destroy` */
   private intervalId: number = -1;
 
   constructor(
@@ -65,17 +78,17 @@ export class ScetchCanvasState {
     this.loggerLog('draw');
 
     this.ctx.setTransform(
-      this.zoom,
+      this.ctxState.zoom,
       0,
       0,
-      this.zoom,
-      this.translate.x,
-      this.translate.y,
+      this.ctxState.zoom,
+      this.ctxState.translate.x,
+      this.ctxState.translate.y,
     );
 
     this.clear();
     this.drawAligners();
-    this.root.draw(this.ctx);
+    this.scetch.draw(this.ctx);
 
     if (this.selectedFigure) {
       ShapeOutliner.outline(this.selectedFigure).draw(this.ctx);

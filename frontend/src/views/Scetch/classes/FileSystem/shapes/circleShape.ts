@@ -6,7 +6,7 @@ import { registerType } from '../registry.js';
 interface CircleShapeJSON {
   type: string;
   name: string;
-  center: PointJSON;
+  position: PointJSON;
   radius: number;
   color: string;
   borderColor: string;
@@ -18,7 +18,7 @@ export class CircleShape extends Base implements Shape {
 
   constructor(
     public name: string,
-    public center: Point,
+    public position: Point,
     public radius: number,
     public color: string,
     public borderColor: string,
@@ -32,7 +32,7 @@ export class CircleShape extends Base implements Shape {
       return;
     }
     ctx.beginPath();
-    ctx.arc(this.center.x, this.center.y, this.radius, 0, Math.PI * 2);
+    ctx.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
     ctx.fillStyle = this.color;
     ctx.fill();
     ctx.strokeStyle = this.borderColor;
@@ -43,7 +43,7 @@ export class CircleShape extends Base implements Shape {
     const json: CircleShapeJSON = {
       type: CircleShape.type,
       name: this.name,
-      center: this.center.toJSON(),
+      position: this.position.toJSON(),
       radius: this.radius,
       color: this.color,
       borderColor: this.borderColor,
@@ -56,7 +56,7 @@ export class CircleShape extends Base implements Shape {
     const json = JSON.parse(str) as CircleShapeJSON;
     return new CircleShape(
       json.name,
-      Point.fromJSON(json.center),
+      Point.fromJSON(json.position),
       json.radius,
       json.color,
       json.borderColor,

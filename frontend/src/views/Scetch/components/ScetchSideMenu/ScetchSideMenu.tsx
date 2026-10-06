@@ -3,8 +3,8 @@ import './styles.scss';
 import { KButton, KButtonProps, KList, KTitle } from 'figmaclone-uikit';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../../../store/store';
-import { CircleHandState } from '../../classes/Figures/Circle/CircleHandState';
-import { SquareHandState } from '../../classes/Figures/Square/SquareHandState';
+import { CircleHandState } from '../../classes/handStates/circleHandState';
+import { SquareHandState } from '../../classes/handStates/squareHandState';
 import { ScetchFigureEdit } from '../ScetchFigureEdit/ScetchFigureEdit';
 
 export function ScetchSideMenu(props: ScetchSideMenuProps) {

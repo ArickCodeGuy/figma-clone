@@ -6,7 +6,7 @@ import { registerType } from '../registry.js';
 interface LineShapeJSON {
   type: string;
   name: string;
-  origin: PointJSON;
+  position: PointJSON;
   vector: PointJSON;
   color: string;
   isHidden: boolean;
@@ -17,7 +17,7 @@ export class LineShape extends Base implements Shape {
 
   constructor(
     public name: string,
-    public origin: Point,
+    public position: Point,
     public vector: Point,
     public color: string,
     isHidden: boolean = false,
@@ -25,11 +25,11 @@ export class LineShape extends Base implements Shape {
     super(isHidden);
   }
 
-  /** The line's endpoint: origin + vector. */
+  /** The line's endpoint: position + vector. */
   get endpoint(): Point {
     return new Point(
-      this.origin.x + this.vector.x,
-      this.origin.y + this.vector.y,
+      this.position.x + this.vector.x,
+      this.position.y + this.vector.y,
     );
   }
 
@@ -39,7 +39,7 @@ export class LineShape extends Base implements Shape {
     }
     const end = this.endpoint;
     ctx.beginPath();
-    ctx.moveTo(this.origin.x, this.origin.y);
+    ctx.moveTo(this.position.x, this.position.y);
     ctx.lineTo(end.x, end.y);
     ctx.strokeStyle = this.color;
     ctx.stroke();
@@ -49,7 +49,7 @@ export class LineShape extends Base implements Shape {
     const json: LineShapeJSON = {
       type: LineShape.type,
       name: this.name,
-      origin: this.origin.toJSON(),
+      position: this.position.toJSON(),
       vector: this.vector.toJSON(),
       color: this.color,
       isHidden: this.isHidden,
@@ -61,7 +61,7 @@ export class LineShape extends Base implements Shape {
     const json = JSON.parse(str) as LineShapeJSON;
     return new LineShape(
       json.name,
-      Point.fromJSON(json.origin),
+      Point.fromJSON(json.position),
       Point.fromJSON(json.vector),
       json.color,
       json.isHidden ?? false,
