@@ -124,7 +124,9 @@ export class ScetchCanvasState {
   }
 
   public setSelectedFigure(figure?: Base): void {
+    if (this.selectedFigure == figure) return;
     this.selectedFigure = figure;
+
     for (const cb of this.observers) cb('select');
   }
 

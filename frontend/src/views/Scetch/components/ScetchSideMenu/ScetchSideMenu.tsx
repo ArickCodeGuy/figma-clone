@@ -3,9 +3,9 @@ import './styles.scss';
 import { KButton, KButtonProps, KList, KTitle } from 'figmaclone-uikit';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../../../store/store';
-import { CircleHandState } from '../../classes/handStates/circleHandState';
-import { SquareHandState } from '../../classes/handStates/squareHandState';
 import { ScetchFigureEdit } from '../ScetchFigureEdit/ScetchFigureEdit';
+import { CirclePlacerHandState } from '../../classes/handStates/circlePlacerHandState';
+import { RectanglePlacerHandState } from '../../classes/handStates/rectanglePlacerHandState';
 
 export function ScetchSideMenu(props: ScetchSideMenuProps) {
   const actions: KButtonProps[] = [
@@ -41,15 +41,15 @@ export function ScetchSideMenu(props: ScetchSideMenuProps) {
       size: 'MINI',
       iconLeft: 'circle',
       onClick: () => {
-        state.handState = new CircleHandState();
+        state.handState = new CirclePlacerHandState();
       },
     },
     {
-      title: 'Square',
+      title: 'Rectangle',
       size: 'MINI',
       iconLeft: 'square',
       onClick: () => {
-        state.handState = new SquareHandState();
+        state.handState = new RectanglePlacerHandState();
       },
     },
   ];

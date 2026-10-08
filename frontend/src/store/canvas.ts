@@ -10,7 +10,7 @@ export type CanvasStore = {
 };
 
 const scetchCanvasState = new ScetchCanvasState({
-  debug: true,
+  // debug: true,
 });
 
 export const canvasSlice = createSlice({

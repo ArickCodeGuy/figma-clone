@@ -15,7 +15,6 @@ export function addListeners(state: ScetchCanvasState): () => void {
 
   function handleMouseDown(e: MouseEvent) {
     e.preventDefault();
-    console.log(mouseEventToCanvasPosition(e, state));
 
     state.handState.onMouseDown(e, state);
   }

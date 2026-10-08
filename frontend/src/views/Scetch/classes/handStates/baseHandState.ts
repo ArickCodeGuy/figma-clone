@@ -10,26 +10,22 @@ import { mouseEventToCanvasPosition } from '../utils/mouseEventToCanvasPosition'
 /**
  * Base class for specifying hand behavior.
  *
- * Used for applying translate, zoom to `ctx`
+ * Used for applying translate, zoom to `ctx`, selecting figures
  * Other implementation may specify behavior of adding new shapes
  */
 export class BaseHandState {
   readonly type = 'BaseHandState';
 
-  // abstract onMouseDown(e: MouseEvent, state: ScetchCanvasState): void;
-  // abstract onMouseMove(e: MouseEvent, state: ScetchCanvasState): void;
-  // abstract onMouseUp(e: MouseEvent, state: ScetchCanvasState): void;
-  // abstract onMouseClick(e: MouseEvent, state: ScetchCanvasState): void;
-  // abstract onWheel(e: WheelEvent, state: ScetchCanvasState): void;
-
   private isMouseDown = false;
-  private isMouseDownOnSelectFigure = false;
   // When we do mousedown
   // We need to know position where we clicked on page
-  // And where figure position was
+  // And where figure position was to apply translate
   private mouseDownFigurePosition = new Point();
+  /** Position on page */
   private mouseDownPosition = new Point();
-  private originalTranslate = new Point();
+  /** Translate on mousedown */
+  private originalTranslate: ScetchCanvasState['ctxState']['translate'] =
+    new Point();
 
   public onWheel(e: WheelEvent, state: ScetchCanvasState): void {
     if (this.isMouseDown) return;
@@ -51,21 +47,34 @@ export class BaseHandState {
   }
 
   public onMouseDown(e: MouseEvent, state: ScetchCanvasState): void {
+    this.mouseDownPosition = new Point(e.clientX, e.clientY);
+    const position = mouseEventToCanvasPosition(e, state);
     this.isMouseDown = true;
-    this.isMouseDownOnSelectFigure = false;
-
     this.originalTranslate = new Point(
       state.ctxState.translate.x,
       state.ctxState.translate.y,
     );
-    this.mouseDownPosition = new Point(e.clientX, e.clientY);
+
+    // Edge case. Give priority to already selected figure
+    // When clicking on multiple overlapping figures
     if (
       state.selectedFigure &&
-      isClickInsideOutline(state.selectedFigure, this.mouseDownPosition)
+      isClickInsideOutline(state.selectedFigure, position)
     ) {
-      this.isMouseDownOnSelectFigure = true;
-      this.mouseDownFigurePosition = getShapeOrigin(state.selectedFigure);
+      // Do nothing
+    } else {
+      let selectedFigure: ScetchCanvasState['selectedFigure'];
+      for (const figure of getClickableFigures(state.scetch.root)) {
+        if (!isClickInsideOutline(figure, position)) continue;
+        selectedFigure = figure;
+        break;
+      }
+      state.setSelectedFigure(selectedFigure);
     }
+
+    if (!state.selectedFigure) return;
+
+    this.mouseDownFigurePosition = getShapeOrigin(state.selectedFigure);
   }
 
   public onMouseMove(e: MouseEvent, state: ScetchCanvasState): void {
@@ -74,7 +83,7 @@ export class BaseHandState {
     const curr = new Point(e.clientX, e.clientY);
     const diff = Point.diff(this.mouseDownPosition, curr);
 
-    if (this.isMouseDownOnSelectFigure && state.selectedFigure) {
+    if (state.selectedFigure) {
       moveShape(
         state.selectedFigure,
         new Point(
@@ -91,17 +100,7 @@ export class BaseHandState {
     this.isMouseDown = false;
   }
   public onMouseClick(e: MouseEvent, state: ScetchCanvasState): void {
-    const position = mouseEventToCanvasPosition(e, state);
-    for (const figure of getClickableFigures(state.scetch)) {
-      // Can't select folders
-      if (figure instanceof Folder) continue;
-
-      if (!isClickInsideOutline(figure, position)) continue;
-      state.setSelectedFigure(figure);
-
-      return;
-    }
-    state.setSelectedFigure();
+    console.log('onMouseClick');
   }
 }
 

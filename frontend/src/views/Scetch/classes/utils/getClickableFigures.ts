@@ -7,12 +7,13 @@ export function getClickableFigures(root: Base): Base[] {
 
   while (stack.length) {
     const curr = stack.pop()!;
-    res.push(curr);
 
     if (curr instanceof Folder) {
       for (let i = curr.children.length - 1; i >= 0; i--) {
         stack.push(curr.children[i]);
       }
+    } else {
+      res.push(curr);
     }
   }
 
