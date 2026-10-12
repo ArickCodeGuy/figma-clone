@@ -1,28 +1,41 @@
-import { useEffect, useRef, type InputEvent } from 'react';
+import { useEffect, useState, type InputEvent } from 'react';
 import { classNameArrayToString } from '../../utils';
 import type { KInputProps, KInputSize } from './types';
 import './styles.scss';
 
 export function KInput(props: KInputProps) {
   const size: KInputSize = props.size || 'DEFAULT';
-
-  const classNames = classNameArrayToString(['KInput', `KInput--size-${size}`]);
-
-  const value = useRef<KInputProps['value']>(props.value);
-
-  function handleInput(e: InputEvent<HTMLInputElement>): void {
-    value.current = e.data;
-    props.onInput?.(value.current);
-  }
-
+  const classNames = classNameArrayToString([
+    'KInput',
+    `KInput--size-${size}`,
+    props.className,
+  ]);
+  const [value, setValue] = useState<KInputProps['value']>(props.value);
   useEffect(() => {
-    value.current = props.value;
+    setValue(props.value);
   }, [props.value]);
 
+  function handleInput(e: InputEvent<HTMLInputElement>): void {
+    if (props.readOnly) return;
+
+    // `e.data` is only the inserted text (and `null` on delete), the field value is on the input
+    const next = e.currentTarget.value;
+    setValue(next);
+    props.onInput?.(next);
+    props.onChange?.(next);
+  }
+
   return (
-    <label className={classNames}>
+    <label className={classNames} style={props.style}>
       {props.label && <div className="KInput-label">{props.label}</div>}
-      <input value={value.current} onInput={handleInput} />
+      <input
+        {...props.inputProps}
+        value={value}
+        placeholder={props.placeholder}
+        disabled={props.disabled}
+        readOnly={props.readOnly}
+        onInput={handleInput}
+      />
     </label>
   );
 }

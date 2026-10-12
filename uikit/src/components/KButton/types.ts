@@ -6,11 +6,16 @@ export type KButtonSizes = 'DEFAULT' | 'MINI';
 
 export type KButtonIconParent = KIconNames | KIconProps;
 
-export type KButtonPresetStyles = 'DEFAULT' | 'SECONDARY' | 'TRANSPARENT';
+export type KButtonPresetStyles =
+  | 'DEFAULT'
+  | 'SECONDARY'
+  | 'TRANSPARENT'
+  | 'SECONDARY-TRANSPARENT';
 
 export type KButtonProps = {
   children?: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  disabled?: boolean;
   size?: KButtonSizes;
   className?: string;
   iconLeft?: KButtonIconParent;

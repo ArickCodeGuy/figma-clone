@@ -15,6 +15,15 @@ const getProjectTheme = (): Theme =>
 beforeMount<HooksConfig>(async ({ hooksConfig }) => {
   const theme = hooksConfig?.theme ?? getProjectTheme();
 
+  // Switch without the global `background-color` transition,
+  // otherwise screenshots can catch the body mid-fade from dark to light
+  const noTransitions = document.createElement('style');
+  noTransitions.textContent = '* { transition: none !important; }';
+  document.head.append(noTransitions);
+
   document.body.classList.toggle('light', theme === 'light');
   document.documentElement.style.colorScheme = theme;
+
+  document.body.getBoundingClientRect(); // apply styles now
+  noTransitions.remove();
 });

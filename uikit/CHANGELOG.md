@@ -74,3 +74,9 @@ updated playwright screenshots
 - Updated playwright for `light`, `dark` themes
 - Updated storybook for `light`, `dark` themse
 - `KCard` actions minor update
+- Updated `KInput`
+  - Fixed reactivity
+  - Added screenshots
+  - Added props
+- Added `KSelect`
+- Added `KCheckbox`

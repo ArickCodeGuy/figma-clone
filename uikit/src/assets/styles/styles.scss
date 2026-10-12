@@ -34,8 +34,8 @@
   --link-color-light: #3366cc;
   --link-color-dark: #7ca8ff;
 
-  --block-color-dark: #3c3c3c;
-  --block-color-light: #bebebe;
+  --block-color-dark: #{vars.$block-color-dark};
+  --block-color-light: #{vars.$block-color-light};
 
   // margins, paddings
   --section-margin-xs: 30px;
@@ -93,7 +93,7 @@ body {
   --column-gutter: calc(var(--column-gap) / 2);
   --negative-column-gutter: calc(var(--column-gutter) * -1);
   --container-width: var(--container-width-xs);
-  --block-roundness: 10px;
+  --block-roundness: #{vars.$block-border-radius};
 
   // set default as dark theme
   --color-primary: var(--color-primary-dark);
@@ -120,25 +120,25 @@ body {
     --link-color: var(--link-color-light);
     --block-color: var(--block-color-light);
   }
-  @media (min-width: 576px) {
+  @media (min-width: vars.$breakpoint-sm) {
     --font-size: var(--font-size-sm);
     --container-width: var(--container-width-sm);
   }
-  @media (min-width: 768px) {
+  @media (min-width: vars.$breakpoint-md) {
     --section-margin: var(--section-margin-md);
     --section-padding: var(--section-padding-md);
     --font-size: var(--font-size-md);
     --container-width: var(--container-width-md);
   }
-  @media (min-width: 992px) {
+  @media (min-width: vars.$breakpoint-lg) {
     --container-width: var(--container-width-lg);
     --font-size: var(--font-size-lg);
     --column-gap: var(--column-gap-lg);
   }
-  @media (min-width: 1200px) {
+  @media (min-width: vars.$breakpoint-xl) {
     --container-width: var(--container-width-xl);
   }
-  @media (min-width: 1400px) {
+  @media (min-width: vars.$breakpoint-xxl) {
     --container-width: var(--container-width-xxl);
   }
 }
@@ -323,6 +323,8 @@ a,
 button,
 input,
 select {
+  border: none;
+
   &:focus {
     outline: 2px solid rgb(126, 126, 254);
   }

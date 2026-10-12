@@ -6,3 +6,5 @@ export * from './KCard';
 export * from './KTitle';
 export * from './KInput';
 export * from './KAccordion';
+export * from './KCheckbox';
+export * from './KSelect';

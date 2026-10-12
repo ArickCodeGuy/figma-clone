@@ -14,6 +14,7 @@ export function KButton(props: KButtonProps) {
     'KButton',
     `KButton--size-${size}`,
     `KButton--preset-style-${presetStyle}`,
+    props.disabled ? 'disabled' : '',
     props.className,
   ]);
 
@@ -24,6 +25,7 @@ export function KButton(props: KButtonProps) {
       className={className}
       title={props.title}
       style={props.style}
+      disabled={props.disabled}
       onClick={(e) => props.onClick?.(e)}
     >
       <KButtonIcon

@@ -1,21 +1,27 @@
+@use '../../assets/styles/vars' as *;
+
 .KInput {
   position: relative;
+  display: inline-block;
 
   .KInput-label {
     position: absolute;
     white-space: nowrap;
     overflow: hidden;
-    width: calc(100% - 40px);
+    width: calc(100% - $block-padding-left * 2);
     font-size: 8px;
     line-height: 1em;
-    top: 0px;
-    left: 20px;
+    top: 3px;
+    left: $block-padding-left;
   }
 
   input {
-    border-radius: var(--block-roundness);
-    overflow: hidden;
-    padding: 10px 20px;
-    border: none;
+    display: inline-block;
+    background-color: var(--block-color);
+    border-radius: #{$block-border-radius};
+    padding: #{$block-padding-top} #{$block-padding-left};
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 }

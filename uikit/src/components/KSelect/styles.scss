@@ -1,0 +1,76 @@
+@use '../../assets/styles/vars' as *;
+
+.KSelect {
+  position: relative;
+  display: inline-block;
+  min-width: 200px;
+  color: var(--color-primary);
+
+  &-trigger {
+    position: relative;
+  }
+
+  // Trigger is a readonly KInput
+  .KSelect-input {
+    input {
+      // Room for the chevron on the right
+      padding: #{$block-padding-top} #{$block-padding-left * 2}
+        #{$block-padding-top} #{$block-padding-left};
+      width: 100%;
+      cursor: pointer;
+      caret-color: transparent;
+      user-select: none;
+    }
+  }
+
+  &-chevron {
+    position: absolute;
+    top: 50%;
+    right: $block-padding-left;
+    display: inline-flex;
+    transform: translateY(-50%);
+    transition: transform 0.15s;
+    pointer-events: none;
+  }
+
+  &--open &-chevron {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  &-dropdown {
+    position: absolute;
+    z-index: 10;
+    top: calc(100% + 4px);
+    left: 0;
+    min-width: 100%;
+    max-height: 240px;
+    margin: 0;
+    padding: 4px;
+    list-style: none;
+    overflow-y: auto;
+    background-color: var(--block-color);
+    border-radius: var(--block-roundness);
+    box-shadow: 0 6px 20px rgba(var(--rgba-bgc), 0.35);
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &-option {
+    .KSelect-option-button {
+      width: 100%;
+      justify-content: flex-start;
+      white-space: nowrap;
+      text-align: left;
+
+      > span {
+        flex-grow: 1;
+      }
+    }
+
+    &--selected .KSelect-option-button {
+      --k-button-text-color: var(--btn-color);
+    }
+  }
+}

@@ -1,0 +1,66 @@
+.KCheckbox {
+  --k-checkbox-size: 18px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-primary);
+  cursor: pointer;
+  user-select: none;
+
+  // Native input stays in the DOM for forms, focus and screen readers
+  &-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &-box {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--k-checkbox-size);
+    height: var(--k-checkbox-size);
+    border: 2px solid var(--btn-color);
+    border-radius: calc(var(--block-roundness) / 2);
+    background-color: transparent;
+    color: var(--bgc);
+
+    .KIcon {
+      opacity: 0;
+      transform: scale(0.5);
+      transition:
+        opacity 0.15s,
+        transform 0.15s;
+    }
+  }
+
+  &:hover:not(&--disabled) &-box {
+    background-color: rgba(var(--rgba-contrast), 0.08);
+  }
+
+  &--checked &-box,
+  &--checked:hover:not(&--disabled) &-box {
+    background-color: var(--btn-color);
+
+    .KIcon {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  &-input:focus-visible + &-box {
+    outline: 2px solid rgb(126, 126, 254);
+    outline-offset: 2px;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}

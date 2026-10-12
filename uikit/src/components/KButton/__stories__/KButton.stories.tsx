@@ -24,6 +24,28 @@ export const Secondary: Story = {
   },
 };
 
+export const SecondaryTransparent: Story = {
+  args: {
+    children: 'Secondary and Transparent',
+    presetStyle: 'SECONDARY-TRANSPARENT',
+  },
+};
+
+export const SecondaryTransparentMini: Story = {
+  args: {
+    children: 'Secondary and Transparent Mini',
+    size: 'MINI',
+    presetStyle: 'SECONDARY-TRANSPARENT',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    children: 'Disabled',
+    disabled: true,
+  },
+};
+
 export const MiniIconTransparentButton: Story = {
   args: {
     iconLeft: 'x',
