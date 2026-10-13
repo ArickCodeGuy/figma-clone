@@ -1,7 +1,7 @@
 import { Point, RectangleShape } from '../FileSystem';
 import { ScetchCanvasState } from '../ScetchCanvasState';
 import { mouseEventToCanvasPosition } from '../utils/mouseEventToCanvasPosition';
-import { BaseHandState, BaseHandStateStatic } from './BaseHandState';
+import { BaseHandState, BaseHandStateStatic } from './baseHandState';
 
 export class RectanglePlacerHandState extends BaseHandState {
   public static type = 'SquarePlacerHandState';

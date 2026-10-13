@@ -1,6 +1,13 @@
 import { addListeners } from './utils/addListeners';
-import { Sketch, Base, Point, ShapeOutliner, LineShape } from './FileSystem';
-import { BaseHandState } from './handStates/BaseHandState';
+import {
+  Sketch,
+  Base,
+  Folder,
+  Point,
+  ShapeOutliner,
+  LineShape,
+} from './FileSystem';
+import { BaseHandState } from './handStates/baseHandState';
 
 export type ScetchCanvasStateOptions = {
   debug: boolean;
@@ -13,6 +20,9 @@ type CtxState = {
 };
 
 type ObserverCallback = (eventName: string, ...args: string[]) => void;
+
+/** localStorage key for `scetch.root`, written by `save` (Ctrl + S) */
+export const SCETCH_ROOT_STORAGE_KEY = 'figma-clone:scetch-root';
 
 export class ScetchCanvasState {
   private CANVAS_BACKGROUND_COLOR = '#FFFFFF';
@@ -43,7 +53,10 @@ export class ScetchCanvasState {
     private options: Partial<ScetchCanvasStateOptions> = {
       debug: false,
     },
-  ) {}
+  ) {
+    // Once per page load. Not in `init`, which runs on every `ScetchView` render
+    this.loadFromStorage();
+  }
 
   public clear() {
     // Save current transform state
@@ -127,7 +140,45 @@ export class ScetchCanvasState {
     if (this.selectedFigure == figure) return;
     this.selectedFigure = figure;
 
-    for (const cb of this.observers) cb('select');
+    this.notifyObservers('select');
+  }
+
+  /** Removes the selected figure from the sketch and clears the selection */
+  public deleteSelectedFigure(): void {
+    if (!this.selectedFigure) return;
+
+    this.scetch.root.remove(this.selectedFigure);
+    this.setSelectedFigure(undefined);
+  }
+
+  /** Saves `scetch.root` as JSON in localStorage */
+  public save(): void {
+    try {
+      localStorage.setItem(SCETCH_ROOT_STORAGE_KEY, this.scetch.root.toString());
+    } catch (e) {
+      console.error('ScetchCanvasState: could not save the sketch', e);
+    }
+  }
+
+  /** Replaces `scetch.root` with the one stored by `save`, if there is one */
+  public loadFromStorage(): void {
+    let json: string | null;
+    try {
+      json = localStorage.getItem(SCETCH_ROOT_STORAGE_KEY);
+    } catch {
+      return; // Storage is unavailable (e.g. blocked by the browser)
+    }
+    if (!json) return;
+
+    try {
+      this.scetch.root = Folder.fromString(json);
+    } catch (e) {
+      console.error('ScetchCanvasState: saved sketch is invalid, ignoring it', e);
+    }
+  }
+
+  public notifyObservers(eventName: string) {
+    for (const cb of this.observers) cb(eventName);
   }
 
   private loggerLog(...args: any): void {

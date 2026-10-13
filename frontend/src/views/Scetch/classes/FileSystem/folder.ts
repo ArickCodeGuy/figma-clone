@@ -24,6 +24,20 @@ export class Folder extends Base {
     this.children.push(child);
   }
 
+  /** Removes `child` from this folder or any nested folder. Returns `true` when it was found */
+  remove(child: Base): boolean {
+    const idx = this.children.indexOf(child);
+    if (idx !== -1) {
+      this.children.splice(idx, 1);
+      return true;
+    }
+
+    for (const c of this.children) {
+      if (c instanceof Folder && c.remove(child)) return true;
+    }
+    return false;
+  }
+
   draw(ctx: CanvasRenderingContext2D): void {
     if (this.isHidden) {
       return;

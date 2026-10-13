@@ -45,7 +45,7 @@
 - [ ] Front
   - [x] Define basic shapes (20-11-2025 @arickcodeguy)
   - [x] Define shapes layout. Shapes draw priority (20-11-2025 @arickcodeguy)
-  - [ ] Left sidebar
+  - [x] Left sidebar
     - [x] Hand. Move (18-02-2026 @arickcodeguy)
     - [x] Zoom (25-02-2026 @arickcodeguy)
     - [x] Cursor. Choose. Move figure (12-10-2026 @arickcodeguy)
@@ -55,12 +55,11 @@
       - [x] Rectangle (19-02-2026 @arickcodeguy)
     - [x] Keybinds (18-02-2026 @arickcodeguy)
   - [ ] Right Sidebar
-    - [ ] Edit figure
-      - [ ] Components
-        - [ ] Line
-        - [ ] Circle
-        - [ ] Rectangle
-    - [ ] Current chosen figure info
+    - [x] Edit figure
+      - [x] Components
+        - [x] Line (13-10-2026 @arickcodeguy)
+        - [x] Circle (13-10-2026 @arickcodeguy)
+        - [x] Rectangle (13-10-2026 @arickcodeguy)
     - [ ] Layout
   - [x] Layout class for storing and updating state (18-02-2026 @arickcodeguy)
 - [ ] Backend

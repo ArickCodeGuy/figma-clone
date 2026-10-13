@@ -1,4 +1,11 @@
 .ScetchSideMenu {
+  --column-gap: 5px;
+  --column-gutter: calc(var(--column-gap) / 2);
+  --negative-column-gutter: calc(var(--column-gap) * -1);
+  .KTitle {
+    margin-bottom: 0.5em;
+  }
+
   position: fixed;
   width: 250px;
   background-color: var(--bgc);

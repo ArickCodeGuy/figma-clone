@@ -1,8 +1,12 @@
-import { ScetchSideMenuProps } from './types';
 import './styles.scss';
+import { ScetchSideMenuProps } from './types';
 import { KButton, KButtonProps, KList, KTitle } from 'figmaclone-uikit';
 import { useSelector } from 'react-redux';
 import { StoreState } from '../../../../store/store';
+import {
+  selectSelectedFigure,
+  selectSelectedFigureVersion,
+} from '../../../../store/canvas';
 import { ScetchFigureEdit } from '../ScetchFigureEdit/ScetchFigureEdit';
 import { CirclePlacerHandState } from '../../classes/handStates/circlePlacerHandState';
 import { RectanglePlacerHandState } from '../../classes/handStates/rectanglePlacerHandState';
@@ -58,20 +62,27 @@ export function ScetchSideMenu(props: ScetchSideMenuProps) {
     (state) => state.canvas.state,
   );
 
+  // Re-renders on every "select" event, see `connectCanvasState`
+  const selectedFigure = useSelector<
+    StoreState,
+    StoreState['canvas']['state']['selectedFigure']
+  >(selectSelectedFigure);
+  // Same figure object while it is dragged, so re-render on every move too
+  useSelector(selectSelectedFigureVersion);
+
   return (
     <div className="ScetchSideMenu">
-      <div className="side-menu-list">
-        <div>
+      <div className="side-menu-list krow">
+        <div className="kcol-12">
           <KTitle> Actions </KTitle>
           <KList component={KButton} items={actions} />
         </div>
-        <div>
+        <div className="kcol-12">
           <KTitle> Figures </KTitle>
           <KList component={KButton} items={figures} />
         </div>
-        <div>
-          <KTitle> Edit figure </KTitle>
-          <ScetchFigureEdit />
+        <div className="kcol-12">
+          <ScetchFigureEdit figure={selectedFigure} />
         </div>
       </div>
     </div>

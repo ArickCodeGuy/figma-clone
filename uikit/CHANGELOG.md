@@ -80,3 +80,7 @@ updated playwright screenshots
   - Added props
 - Added `KSelect`
 - Added `KCheckbox`
+
+### 0.0.11
+
+`KInput` minor style update

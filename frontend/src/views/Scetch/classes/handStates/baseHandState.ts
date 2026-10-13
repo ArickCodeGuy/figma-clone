@@ -91,6 +91,7 @@ export class BaseHandState {
           this.mouseDownFigurePosition.y + diff.y,
         ),
       );
+      state.notifyObservers('selectedFigureMove');
     } else {
       state.ctxState.translate.x = this.originalTranslate.x + diff.x;
       state.ctxState.translate.y = this.originalTranslate.y + diff.y;
@@ -99,9 +100,7 @@ export class BaseHandState {
   public onMouseUp(e: MouseEvent, state: ScetchCanvasState): void {
     this.isMouseDown = false;
   }
-  public onMouseClick(e: MouseEvent, state: ScetchCanvasState): void {
-    console.log('onMouseClick');
-  }
+  public onMouseClick(e: MouseEvent, state: ScetchCanvasState): void {}
 }
 
 export interface BaseHandStateStatic<T extends BaseHandState = BaseHandState> {

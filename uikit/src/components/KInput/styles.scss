@@ -3,6 +3,7 @@
 .KInput {
   position: relative;
   display: inline-block;
+  width: 100%;
 
   .KInput-label {
     position: absolute;
@@ -16,6 +17,7 @@
   }
 
   input {
+    width: 100%;
     display: inline-block;
     background-color: var(--block-color);
     border-radius: #{$block-border-radius};
