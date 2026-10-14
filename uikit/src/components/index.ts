@@ -8,3 +8,4 @@ export * from './KInput';
 export * from './KAccordion';
 export * from './KCheckbox';
 export * from './KSelect';
+export * from './KModal';

@@ -4,24 +4,24 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.example.backend.scetch.Scetch;
-import com.example.backend.scetch.ScetchRepository;
+import com.example.backend.sketch.Sketch;
+import com.example.backend.sketch.SketchRepository;
 
 @Configuration
 public class StartupDataLoader {
     @Bean
-    public CommandLineRunner addTestData(ScetchRepository scetchRepository) {
+    public CommandLineRunner addTestData(SketchRepository sketchRepository) {
         return args -> {
-            Scetch testScetch = new Scetch()
-                    .setName("Test scetch")
-                    .setDescription("Test scetch description");
-            Scetch testScetch2 = new Scetch()
-                    .setName("Test scetch 2")
-                    .setDescription("Test scetch description 2");
+            Sketch testSketch = new Sketch()
+                    .setName("Test sketch")
+                    .setDescription("Test sketch description");
+            Sketch testSketch2 = new Sketch()
+                    .setName("Test sketch 2")
+                    .setDescription("Test sketch description 2");
 
-            if (scetchRepository.count() == 0) {
-                scetchRepository.save(testScetch);
-                scetchRepository.save(testScetch2);
+            if (sketchRepository.count() == 0) {
+                sketchRepository.save(testSketch);
+                sketchRepository.save(testSketch2);
             }
         };
     }

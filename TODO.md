@@ -23,7 +23,7 @@
       - [x] Card component (27-07-2025 @arickcodeguy)
       - [x] Call `GET` sketches. (27-07-2025 @arickcodeguy)
       - [x] Display sketches in row of `KCards`. (30-07-2025 @arickcodeguy)
-    - [x] Scetch page (01-08-2025 @arickcodeguy)
+    - [x] Sketch page (01-08-2025 @arickcodeguy)
       - [x] Draw empty canvas (01-08-2025 @arickcodeguy)
 
 ## First iteration
@@ -49,22 +49,25 @@
     - [x] Hand. Move (18-02-2026 @arickcodeguy)
     - [x] Zoom (25-02-2026 @arickcodeguy)
     - [x] Cursor. Choose. Move figure (12-10-2026 @arickcodeguy)
-    - [x] Figures list
+    - [x] Create figures
       - [x] Line (12-10-2026 @arickcodeguy)
       - [x] Circle (18-02-2026 @arickcodeguy)
       - [x] Rectangle (19-02-2026 @arickcodeguy)
     - [x] Keybinds (18-02-2026 @arickcodeguy)
-  - [ ] Right Sidebar
-    - [x] Edit figure
-      - [x] Components
-        - [x] Line (13-10-2026 @arickcodeguy)
-        - [x] Circle (13-10-2026 @arickcodeguy)
-        - [x] Rectangle (13-10-2026 @arickcodeguy)
-    - [ ] Layout
+    - [x] Edit figures
+      - [x] Line (13-10-2026 @arickcodeguy)
+      - [x] Circle (13-10-2026 @arickcodeguy)
+      - [x] Rectangle (13-10-2026 @arickcodeguy)
+  - [ ] Modals
+    - [ ] Redux state for modal
+    - [ ] Auth modal. Send auth, login requests
+    - [ ] Sketch heading edit or create modal
+    - [ ] After login or if logged in - fetch sketches
+  - [x] Save sketch state as string (14-10-2026 @arickcodeguy)
   - [x] Layout class for storing and updating state (18-02-2026 @arickcodeguy)
 - [ ] Backend
   - [x] Swagger on backend (10-08-2025 @arickcodeguy)
-  - [x] Scetch content API
+  - [x] Sketch content API
   - [ ] Auth with JWT
   - [ ] Fetch list of sketches
   - [ ] Fetch content of exact sketch
@@ -78,3 +81,4 @@
   - [ ] uikit. Testing. Jest
   - [ ] Vitest integration testing
   - [ ] Draw rooler background on sketch
+  - [ ] Layout of sketch

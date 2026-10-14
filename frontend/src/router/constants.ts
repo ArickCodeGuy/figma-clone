@@ -1,4 +1,4 @@
 export const ROUTER_ROUTES = {
   HOME: '/',
-  SCETCH: '/scetch/:id',
+  SKETCH: '/sketch/:id',
 } as const;

@@ -7,8 +7,8 @@ Fullstack application. Figma clone.
 ## Non-functional Requirements
 
 - Users can log in
-- User can view scetches, update, delete (No collaboration for now)
-- Users can draw scetches like in figma (Assume we have 3 base figures. Square, Circle and Line)
+- User can view sketches, update, delete (No collaboration for now)
+- Users can draw sketches like in figma (Assume we have 3 base figures. Square, Circle and Line)
 
 ## Frontend
 

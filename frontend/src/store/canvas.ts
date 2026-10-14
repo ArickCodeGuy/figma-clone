@@ -1,21 +1,21 @@
 import { createSlice, type Dispatch } from '@reduxjs/toolkit';
-import { ScetchCanvasState } from '../views/Scetch/classes/ScetchCanvasState';
+import { SketchCanvasState } from '../views/Sketch/classes/SketchCanvasState';
 
 export type CanvasStore = {
-  state: ScetchCanvasState;
+  state: SketchCanvasState;
   /**
    * `state` is mutated outside Redux, so selectors would never re-run on its own changes.
-   * Bumped on every "select" and "selectedFigureMove" event to notify subscribers (e.g. `ScetchSideMenu`)
+   * Bumped on every "select" and "selectedFigureMove" event to notify subscribers (e.g. `SketchSideMenu`)
    */
   selectedFigureVersion: number;
 };
 
-const scetchCanvasState = new ScetchCanvasState({
+const sketchCanvasState = new SketchCanvasState({
   // debug: true,
 });
 
 const initialState: CanvasStore = {
-  state: scetchCanvasState,
+  state: sketchCanvasState,
   selectedFigureVersion: 0,
 };
 
@@ -42,9 +42,9 @@ export const selectSelectedFigure = (store: { canvas: CanvasStore }) =>
 export const selectSelectedFigureVersion = (store: { canvas: CanvasStore }) =>
   store.canvas.selectedFigureVersion;
 
-/** Forwards `ScetchCanvasState` events to Redux. Called once in `store.ts`, after the store is created */
+/** Forwards `SketchCanvasState` events to Redux. Called once in `store.ts`, after the store is created */
 export function connectCanvasState(dispatch: Dispatch) {
-  scetchCanvasState.subscribe((eventName) => {
+  sketchCanvasState.subscribe((eventName) => {
     if (eventName === 'select' || eventName === 'selectedFigureMove')
       dispatch(selectedFigureChanged());
   });

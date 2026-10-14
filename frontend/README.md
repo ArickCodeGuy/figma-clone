@@ -11,4 +11,4 @@
 - Test ui kit with playwright + storybook
 - Write integration tests
 - Use canvas for drawing
-- Implement file system (Scetch)
+- Implement file system (Sketch)

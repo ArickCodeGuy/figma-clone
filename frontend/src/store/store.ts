@@ -8,7 +8,7 @@ export type StoreState = {
 };
 
 /**
- * `canvas.state` is a `ScetchCanvasState` instance (canvas element, 2D context, shape classes).
+ * `canvas.state` is a `SketchCanvasState` instance (canvas element, 2D context, shape classes).
  * It is never serializable and is mutated outside Redux on purpose,
  * so the dev-only checks skip it. Everything else is still checked
  */

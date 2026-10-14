@@ -1,12 +1,12 @@
 import { DefaultLayout } from '../../layouts/DefaultLayout/DefaultLayout';
-import { ScetchesPersonalSection } from './components/ScetchesPersonalSection/ScetchesPersonalSection';
-import { ScetchesCollaborateSection } from './components/ScetchesCollaborateSection/ScetchesCollaborateSection';
+import { SketchesPersonalSection } from './components/SketchesPersonalSection/SketchesPersonalSection';
+import { SketchesCollaborateSection } from './components/SketchesCollaborateSection/SketchesCollaborateSection';
 
 export function HomeView() {
   return (
     <DefaultLayout>
-      <ScetchesPersonalSection />
-      <ScetchesCollaborateSection />
+      <SketchesPersonalSection />
+      <SketchesCollaborateSection />
     </DefaultLayout>
   );
 }
