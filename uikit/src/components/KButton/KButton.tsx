@@ -24,6 +24,7 @@ export function KButton(props: KButtonProps) {
     <button
       className={className}
       title={props.title}
+      type={props.type}
       style={props.style}
       disabled={props.disabled}
       onClick={(e) => props.onClick?.(e)}
@@ -32,7 +33,7 @@ export function KButton(props: KButtonProps) {
         {...KButtonIconParentToKButtonIconProps(props.iconLeft, iconSize)}
       />
 
-      {props.children && <span>{props.children}</span>}
+      {props.children}
 
       <KButtonIcon
         {...KButtonIconParentToKButtonIconProps(props.iconRight, iconSize)}

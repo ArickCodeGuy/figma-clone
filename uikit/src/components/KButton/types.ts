@@ -1,6 +1,7 @@
 import type React from 'react';
 import type { KIconNames } from '../KIcon/iconNames';
 import type { KIconProps } from '../KIcon';
+import type { ButtonHTMLAttributes } from 'react';
 
 export type KButtonSizes = 'DEFAULT' | 'MINI';
 
@@ -15,6 +16,7 @@ export type KButtonPresetStyles =
 export type KButtonProps = {
   children?: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  type?: ButtonHTMLAttributes<unknown>['type'];
   disabled?: boolean;
   size?: KButtonSizes;
   className?: string;

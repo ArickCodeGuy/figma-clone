@@ -87,8 +87,6 @@ updated playwright screenshots
 
 ### 0.0.12
 
-@@TODO
-
 - Added `KButton` `type` prop
 - Imported `KModal`. Now you can actually use it
-- Added `KModal` `size` prop
+- Added `KModal` `style` prop

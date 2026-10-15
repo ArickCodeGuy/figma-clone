@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { KModalStory } from './KModalStory';
 import { fn } from 'storybook/test';
+import { KTitle } from '../../KTitle';
+import { KInput } from '../../KInput';
+import { KButton } from '../../KButton';
+import { KCheckbox } from '../../KCheckbox';
 
 export default {
   title: 'Components/KModal',
@@ -14,6 +18,42 @@ export const Primary: Story = {
   args: {
     isShown: true,
     children: <div>KModal.children</div>,
+    close: fn,
+  },
+};
+
+export const Small: Story = {
+  args: {
+    style: {
+      width: '250px',
+      height: '320px',
+    },
+    isShown: true,
+    children: (
+      <form>
+        <KTitle> Title </KTitle>
+        <div className="krow">
+          <div className="kcol-12">
+            <KInput label="username" value="" />
+          </div>
+          <div className="kcol-12">
+            <KInput
+              label="password"
+              value=""
+              inputProps={{ type: 'password' }}
+            />
+          </div>
+          <div className="kcol-12">
+            <KCheckbox checked={true} label="Remember me" />
+          </div>
+          <div className="kcol-12">
+            <KButton type="submit" style={{ marginLeft: 'auto' }}>
+              Submit
+            </KButton>
+          </div>
+        </div>
+      </form>
+    ),
     close: fn,
   },
 };
