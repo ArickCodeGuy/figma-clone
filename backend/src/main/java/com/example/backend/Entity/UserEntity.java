@@ -9,7 +9,6 @@ import jakarta.persistence.Entity;
 // import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 // id, created_at, updated_at come from BaseEntity.
@@ -19,7 +18,6 @@ import lombok.Setter;
 @Table(name = "UserEntity")
 @Getter
 @Setter
-@NoArgsConstructor
 public class UserEntity extends BaseEntity {
   @Column(nullable = false, unique = true)
   private String username;
@@ -30,6 +28,10 @@ public class UserEntity extends BaseEntity {
   // @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval =
   // true)
   // private List<TodoEntity> todos = new ArrayList<>();
+
+  /** For JPA, which creates entities through a no-argument constructor */
+  protected UserEntity() {
+  }
 
   public UserEntity(String username, String password) {
     this.username = username;
