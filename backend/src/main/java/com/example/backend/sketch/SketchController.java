@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.NonNull;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,8 +22,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RestController
 @RequestMapping("/api/v1/sketches")
 public class SketchController {
-  @Autowired
   private SketchRepository sketchRepository;
+
+  public SketchController(SketchRepository sketchRepository) {
+    this.sketchRepository = sketchRepository;
+  }
 
   @Operation(summary = "Get list of sketches")
   @GetMapping
@@ -39,7 +43,7 @@ public class SketchController {
 
   @Operation(summary = "Get sketch by id")
   @GetMapping("/{id}")
-  private ResponseEntity<Sketch> getSketchById(@PathVariable Long id) {
+  private ResponseEntity<Sketch> getSketchById(@PathVariable @NonNull Long id) {
     Optional<Sketch> optionalSketch = sketchRepository.findById(id);
 
     if (optionalSketch.isEmpty()) {
