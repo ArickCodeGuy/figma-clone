@@ -25,11 +25,8 @@ public class UserEntity extends BaseEntity {
   @Column(nullable = false)
   private String password;
 
-  // @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval =
-  // true)
-  // private List<TodoEntity> todos = new ArrayList<>();
+  // @@TODO Add @ЩneToMany relation to SketchEntity
 
-  /** For JPA, which creates entities through a no-argument constructor */
   protected UserEntity() {
   }
 
