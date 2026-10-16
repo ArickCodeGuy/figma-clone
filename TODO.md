@@ -65,13 +65,13 @@
     - [ ] After login or if logged in - fetch sketches
   - [x] Save sketch state as string (14-10-2026 @arickcodeguy)
   - [x] Layout class for storing and updating state (18-02-2026 @arickcodeguy)
-- [ ] Backend
+- [x] Backend
   - [x] Swagger on backend (10-08-2025 @arickcodeguy)
-  - [x] Sketch content API
-  - [ ] Auth with JWT
-  - [ ] Fetch list of sketches
-  - [ ] Fetch content of exact sketch
-  - [ ] Generate .d.ts files for API
+  - [x] Sketch content API (16-10-2026 @arickcodeguy)
+  - [x] Auth with JWT (16-10-2026 @arickcodeguy)
+  - [x] Fetch list of sketches (16-10-2026 @arickcodeguy)
+  - [x] Fetch content of exact sketch (16-10-2026 @arickcodeguy)
+  - [x] Generate .d.ts files for API (16-10-2026 @arickcodeguy)
 
 ### Postpone
 
