@@ -1,7 +1,6 @@
-export type AuthData = {
-  username: string;
-  password: string;
-};
+import { components } from './schema';
+
+export type AuthData = components['schemas']['AuthRequestDto'];
 
 export function createAuthData(): AuthData {
   return {
