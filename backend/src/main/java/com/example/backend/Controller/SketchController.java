@@ -1,8 +1,7 @@
-package com.example.backend.sketch;
+package com.example.backend.Controller;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.backend.Dto.SketchFullDto;
+import com.example.backend.Entity.SketchEntity;
+import com.example.backend.Repository.SketchRepository;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.NonNull;
@@ -31,20 +34,17 @@ public class SketchController {
   @Operation(summary = "Get list of sketches")
   @GetMapping
   @ResponseBody
-  private ResponseEntity<List<SketchDto>> getSketches() {
-    List<SketchDto> res = sketchRepository
-        .findAll()
-        .stream()
-        .map(i -> Sketch.toDto(i))
-        .collect(Collectors.toList());
+  private ResponseEntity<List<SketchFullDto>> getSketches() {
+    // @@TODO return all sketches that belong to UserEntity
+    // Use AuthUser from config
 
-    return ResponseEntity.ok(res);
+    return ResponseEntity.ok(null);
   }
 
   @Operation(summary = "Get sketch by id")
   @GetMapping("/{id}")
-  private ResponseEntity<Sketch> getSketchById(@PathVariable @NonNull Long id) {
-    Optional<Sketch> optionalSketch = sketchRepository.findById(id);
+  private ResponseEntity<SketchEntity> getSketchById(@PathVariable @NonNull Long id) {
+    Optional<SketchEntity> optionalSketch = sketchRepository.findById(id);
 
     if (optionalSketch.isEmpty()) {
       return ResponseEntity.notFound().build();
@@ -55,34 +55,34 @@ public class SketchController {
 
   @Operation(summary = "Create sketch")
   @PostMapping("/create")
-  public Sketch createSketch(@RequestBody SketchDto sketchDto) {
-    Sketch sketch = new Sketch()
-        .setName(sketchDto.name)
-        .setDescription(sketchDto.description)
-        .setContent(sketchDto.content);
+  public SketchEntity createSketch(@RequestBody SketchFullDto sketchDto) {
+    SketchEntity sketch = new SketchEntity();
+    sketch.setTitle(sketchDto.title());
+    sketch.setDescription(sketchDto.description());
+    sketch.setContent(sketchDto.content());
 
     return sketchRepository.save(sketch);
   }
 
   @Operation(summary = "Update sketch by id")
   @PutMapping("/update")
-  public ResponseEntity<Sketch> updateSketch(@RequestBody SketchDto sketchDto) {
-    if (sketchDto.id == null) {
+  public ResponseEntity<SketchEntity> updateSketch(@RequestBody SketchFullDto sketchDto) {
+    if (sketchDto.id() == null) {
       return ResponseEntity.notFound().build();
     }
 
-    Optional<Sketch> optionalSketch = sketchRepository.findById(sketchDto.id);
+    // Validate that sketch belongs to user
+    Optional<SketchEntity> optionalSketch = sketchRepository.findById(sketchDto.id());
 
     if (optionalSketch.isEmpty()) {
       return ResponseEntity.notFound().build();
     }
 
-    Sketch sketch = optionalSketch.get();
+    SketchEntity sketch = optionalSketch.get();
 
-    sketch
-        .setName(sketchDto.name)
-        .setDescription(sketchDto.description)
-        .setContent(sketchDto.content);
+    sketch.setTitle(sketchDto.title());
+    sketch.setDescription(sketchDto.description());
+    sketch.setContent(sketchDto.content());
 
     return ResponseEntity.ok(sketchRepository.save(sketch));
   }
@@ -90,7 +90,8 @@ public class SketchController {
   @Operation(summary = "Delete sketch by id")
   @DeleteMapping("/{id}")
   public ResponseEntity<Boolean> deleteSketch(@PathVariable Long id) {
-    Optional<Sketch> optionalSketch = sketchRepository.findById(id);
+    // Validate that sketch belongs to user
+    Optional<SketchEntity> optionalSketch = sketchRepository.findById(id);
 
     if (optionalSketch.isEmpty()) {
       return ResponseEntity.notFound().build();
