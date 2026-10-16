@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,13 +24,15 @@ import com.example.backend.Repository.UserRepository;
 import io.swagger.v3.oas.annotations.Operation;
 
 /**
- * Sketches of the logged-in user. Every endpoint requires a token (see SecurityConfig),
+ * Sketches of the logged-in user. Every endpoint requires a token (see
+ * SecurityConfig),
  * so {@code user} is never null.
  *
  * A sketch of another user answers 404, same as a missing one,
  * so ids of other users' sketches cannot be probed.
  *
- * Responses are DTOs, never entities: SketchEntity.user would expose the password hash.
+ * Responses are DTOs, never entities: SketchEntity.user would expose the
+ * password hash.
  */
 @RestController
 @RequestMapping("/api/v1/sketches")
@@ -73,7 +74,6 @@ public class SketchController {
       return ResponseEntity.badRequest().build();
     }
 
-    // Reference only, no SELECT: JwtFilter already checked that the user exists
     UserEntity owner = userRepository.getReferenceById(user.id());
     SketchEntity sketch = new SketchEntity(owner, sketchDto.title().trim(), sketchDto.description(),
         sketchDto.content());
@@ -83,7 +83,6 @@ public class SketchController {
 
   @Operation(summary = "Update sketch by id")
   @PutMapping("/update")
-  @Transactional
   public ResponseEntity<SketchFullDto> updateSketch(@AuthenticationPrincipal AuthUser user,
       @RequestBody SketchFullDto sketchDto) {
     if (sketchDto == null || sketchDto.id() == null) {
@@ -99,8 +98,7 @@ public class SketchController {
           sketch.setDescription(sketchDto.description());
           sketch.setContent(sketchDto.content());
 
-          // saveAndFlush, so updated_at in the response is the new one
-          return ResponseEntity.ok(toFullDto(sketchRepository.saveAndFlush(sketch)));
+          return ResponseEntity.ok(toFullDto(sketchRepository.save(sketch)));
         })
         .orElse(ResponseEntity.notFound().build());
   }

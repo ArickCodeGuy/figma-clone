@@ -1,20 +1,17 @@
+import { components } from './schema';
+
 const API_PREVIX = '/api/v1/sketches';
 
-export type SketchItem = {
-  id: number;
-  owner_id: number;
-  name: string;
-  description: string;
-};
+export type SketchItem = components['schemas']['SketchFullDto'];
 
 export type GetSketchesReturnType = Awaited<ReturnType<typeof getSketches>>;
 
 export function createSketchItem(): SketchItem {
   return {
     id: 0,
-    owner_id: 0,
-    name: '',
+    title: '',
     description: '',
+    content: '',
   };
 }
 
