@@ -1,104 +1,132 @@
 package com.example.backend.Controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.example.backend.Dto.SketchFullDto;
-import com.example.backend.Entity.SketchEntity;
-import com.example.backend.Repository.SketchRepository;
-
-import io.swagger.v3.oas.annotations.Operation;
-import lombok.NonNull;
-
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.Config.AuthUser;
+import com.example.backend.Dto.SketchDto;
+import com.example.backend.Dto.SketchFullDto;
+import com.example.backend.Entity.SketchEntity;
+import com.example.backend.Entity.UserEntity;
+import com.example.backend.Repository.SketchRepository;
+import com.example.backend.Repository.UserRepository;
+
+import io.swagger.v3.oas.annotations.Operation;
+
+/**
+ * Sketches of the logged-in user. Every endpoint requires a token (see SecurityConfig),
+ * so {@code user} is never null.
+ *
+ * A sketch of another user answers 404, same as a missing one,
+ * so ids of other users' sketches cannot be probed.
+ *
+ * Responses are DTOs, never entities: SketchEntity.user would expose the password hash.
+ */
 @RestController
 @RequestMapping("/api/v1/sketches")
 public class SketchController {
-  private SketchRepository sketchRepository;
+  private final SketchRepository sketchRepository;
+  private final UserRepository userRepository;
 
-  public SketchController(SketchRepository sketchRepository) {
+  public SketchController(SketchRepository sketchRepository, UserRepository userRepository) {
     this.sketchRepository = sketchRepository;
+    this.userRepository = userRepository;
   }
 
-  @Operation(summary = "Get list of sketches")
+  @Operation(summary = "Get list of sketches of the logged-in user, without content")
   @GetMapping
-  @ResponseBody
-  private ResponseEntity<List<SketchFullDto>> getSketches() {
-    // @@TODO return all sketches that belong to UserEntity
-    // Use AuthUser from config
+  public ResponseEntity<List<SketchDto>> getSketches(@AuthenticationPrincipal AuthUser user) {
+    List<SketchDto> res = sketchRepository
+        .findAllByUserIdOrderByUpdatedAtDesc(user.id())
+        .stream()
+        .map(SketchController::toDto)
+        .toList();
 
-    return ResponseEntity.ok(null);
+    return ResponseEntity.ok(res);
   }
 
   @Operation(summary = "Get sketch by id")
   @GetMapping("/{id}")
-  private ResponseEntity<SketchEntity> getSketchById(@PathVariable @NonNull Long id) {
-    Optional<SketchEntity> optionalSketch = sketchRepository.findById(id);
-
-    if (optionalSketch.isEmpty()) {
-      return ResponseEntity.notFound().build();
-    }
-
-    return ResponseEntity.ok(optionalSketch.get());
+  public ResponseEntity<SketchFullDto> getSketchById(@AuthenticationPrincipal AuthUser user,
+      @PathVariable Long id) {
+    return sketchRepository.findByIdAndUserId(id, user.id())
+        .map(sketch -> ResponseEntity.ok(toFullDto(sketch)))
+        .orElse(ResponseEntity.notFound().build());
   }
 
   @Operation(summary = "Create sketch")
   @PostMapping("/create")
-  public SketchEntity createSketch(@RequestBody SketchFullDto sketchDto) {
-    SketchEntity sketch = new SketchEntity();
-    sketch.setTitle(sketchDto.title());
-    sketch.setDescription(sketchDto.description());
-    sketch.setContent(sketchDto.content());
+  public ResponseEntity<SketchFullDto> createSketch(@AuthenticationPrincipal AuthUser user,
+      @RequestBody SketchFullDto sketchDto) {
+    if (!isValid(sketchDto)) {
+      return ResponseEntity.badRequest().build();
+    }
 
-    return sketchRepository.save(sketch);
+    // Reference only, no SELECT: JwtFilter already checked that the user exists
+    UserEntity owner = userRepository.getReferenceById(user.id());
+    SketchEntity sketch = new SketchEntity(owner, sketchDto.title().trim(), sketchDto.description(),
+        sketchDto.content());
+
+    return ResponseEntity.ok(toFullDto(sketchRepository.save(sketch)));
   }
 
   @Operation(summary = "Update sketch by id")
   @PutMapping("/update")
-  public ResponseEntity<SketchEntity> updateSketch(@RequestBody SketchFullDto sketchDto) {
-    if (sketchDto.id() == null) {
+  @Transactional
+  public ResponseEntity<SketchFullDto> updateSketch(@AuthenticationPrincipal AuthUser user,
+      @RequestBody SketchFullDto sketchDto) {
+    if (sketchDto == null || sketchDto.id() == null) {
       return ResponseEntity.notFound().build();
     }
-
-    // Validate that sketch belongs to user
-    Optional<SketchEntity> optionalSketch = sketchRepository.findById(sketchDto.id());
-
-    if (optionalSketch.isEmpty()) {
-      return ResponseEntity.notFound().build();
+    if (!isValid(sketchDto)) {
+      return ResponseEntity.badRequest().build();
     }
 
-    SketchEntity sketch = optionalSketch.get();
+    return sketchRepository.findByIdAndUserId(sketchDto.id(), user.id())
+        .map(sketch -> {
+          sketch.setTitle(sketchDto.title().trim());
+          sketch.setDescription(sketchDto.description());
+          sketch.setContent(sketchDto.content());
 
-    sketch.setTitle(sketchDto.title());
-    sketch.setDescription(sketchDto.description());
-    sketch.setContent(sketchDto.content());
-
-    return ResponseEntity.ok(sketchRepository.save(sketch));
+          // saveAndFlush, so updated_at in the response is the new one
+          return ResponseEntity.ok(toFullDto(sketchRepository.saveAndFlush(sketch)));
+        })
+        .orElse(ResponseEntity.notFound().build());
   }
 
   @Operation(summary = "Delete sketch by id")
   @DeleteMapping("/{id}")
-  public ResponseEntity<Boolean> deleteSketch(@PathVariable Long id) {
-    // Validate that sketch belongs to user
-    Optional<SketchEntity> optionalSketch = sketchRepository.findById(id);
+  public ResponseEntity<Boolean> deleteSketch(@AuthenticationPrincipal AuthUser user,
+      @PathVariable Long id) {
+    return sketchRepository.findByIdAndUserId(id, user.id())
+        .map(sketch -> {
+          sketchRepository.delete(sketch);
+          return ResponseEntity.ok(true);
+        })
+        .orElse(ResponseEntity.notFound().build());
+  }
 
-    if (optionalSketch.isEmpty()) {
-      return ResponseEntity.notFound().build();
-    }
+  private static boolean isValid(SketchFullDto sketchDto) {
+    return sketchDto != null && sketchDto.title() != null && !sketchDto.title().isBlank();
+  }
 
-    sketchRepository.delete(optionalSketch.get());
+  private static SketchDto toDto(SketchEntity sketch) {
+    return new SketchDto(sketch.getId(), sketch.getTitle(), sketch.getDescription());
+  }
 
-    return ResponseEntity.ok(true);
+  private static SketchFullDto toFullDto(SketchEntity sketch) {
+    return new SketchFullDto(sketch.getId(), sketch.getTitle(), sketch.getDescription(),
+        sketch.getContent());
   }
 }
