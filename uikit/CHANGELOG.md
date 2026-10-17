@@ -95,3 +95,9 @@ updated playwright screenshots
 
 - Exported SCSS variables: `@use 'figmaclone-uikit/vars' as *;`
 - Fixed `AnimationApplier` for showing
+
+### 0.0.14
+
+- `KInput` `required`
+- `KSelect` `witdh: 100%`
+- `KCheckbox` `required`

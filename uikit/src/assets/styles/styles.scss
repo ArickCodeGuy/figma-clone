@@ -261,7 +261,10 @@ img {
 }
 
 .krow {
-  --column-gap: var(--column-gap-xs);
+  --column-gap: #{vars.$column-gap-xs};
+  @media (min-width: vars.$breakpoint-lg) {
+    --column-gap: #{vars.$column-gap-lg};
+  }
   --column-gutter: calc(var(--column-gap) / 2);
   --negative-column-gutter: calc(var(--column-gutter) * -1);
 

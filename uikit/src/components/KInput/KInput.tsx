@@ -25,12 +25,17 @@ export function KInput(props: KInputProps) {
     props.onChange?.(next);
   }
 
+  const requiredString = props.required ? ' *' : '';
+
   return (
     <label className={classNames} style={props.style}>
-      {props.label && <div className="KInput-label">{props.label}</div>}
+      {props.label && (
+        <div className="KInput-label">{props.label + requiredString}</div>
+      )}
       <input
         {...props.inputProps}
         value={value}
+        required={props.required}
         placeholder={props.placeholder}
         disabled={props.disabled}
         readOnly={props.readOnly}

@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer, { type CounterStore } from './counter';
 import canvasReducer, { connectCanvasState, type CanvasStore } from './canvas';
+import popupReducer, { type PopupStore } from './popup';
 
 export type StoreState = {
-  counter: CounterStore;
   canvas: CanvasStore;
+  popup: PopupStore;
 };
 
 /**
@@ -16,8 +16,8 @@ const IGNORED_PATHS = ['canvas.state'];
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     canvas: canvasReducer,
+    popup: popupReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

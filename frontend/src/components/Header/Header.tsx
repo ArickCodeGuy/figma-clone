@@ -1,7 +1,7 @@
 import './styles.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import type { StoreState } from '../../store/store';
-import { decrement, increment } from '../../store/counter';
+import { KButton } from 'figmaclone-uikit';
+import { showLoginPopup, showSketchPopup } from '../Popup/showPopup';
+import { createSketchItem } from '../../api/sketchesController';
 
 export function Burger() {
   return (
@@ -14,19 +14,15 @@ export function Burger() {
 }
 
 export function Header() {
-  const count = useSelector<StoreState, StoreState['counter']['value']>(
-    (state) => state.counter.value
-  );
-  const dispatch = useDispatch();
-
   return (
     <header className="Header">
       <div className="container">
         <Burger />
 
-        {/* <button onClick={() => dispatch(increment())}>Increment</button>
-        <span>{count}</span>
-        <button onClick={() => dispatch(decrement())}>Decrement</button> */}
+        <KButton onClick={() => showLoginPopup}>Login</KButton>
+        {/* <KButton onClick={() => showSketchPopup(createSketchItem())}>
+          Sketch
+        </KButton> */}
       </div>
     </header>
   );

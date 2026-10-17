@@ -135,6 +135,7 @@ export function KSelect<T extends KSelectValue>(props: KSelectProps<T>) {
         <KInput
           className="KSelect-input"
           value={selected?.label ?? ''}
+          required={props.required}
           placeholder={props.placeholder}
           label={props.label}
           disabled={props.disabled}
@@ -185,6 +186,8 @@ export function KSelect<T extends KSelectValue>(props: KSelectProps<T>) {
                 // Keyboard highlight looks the same as hover
                 idx === activeIndex ? 'hover' : undefined,
               ])}
+              // Not "submit": options must not submit a surrounding <form>
+              type="button"
               presetStyle="SECONDARY-TRANSPARENT"
               iconLeft={option.icon}
               iconRight={idx === selectedIndex ? 'check' : undefined}

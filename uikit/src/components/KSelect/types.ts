@@ -1,4 +1,5 @@
 import type { KIconNames } from '../KIcon/iconNames';
+import type { KInputProps } from '../KInput';
 
 export type KSelectValue = string | number;
 
@@ -11,14 +12,14 @@ export type KSelectOption<T extends KSelectValue = KSelectValue> = {
   disabled?: boolean;
 };
 
-export type KSelectProps<T extends KSelectValue = KSelectValue> = {
+export type KSelectProps<T extends KSelectValue = KSelectValue> = Pick<
+  KInputProps,
+  'required' | 'placeholder' | 'label' | 'disabled'
+> & {
   options: KSelectOption<T>[];
   value?: T;
-  /** Shown while nothing is selected */
-  placeholder?: string;
   /** Text above the field */
-  label?: string;
-  disabled?: boolean;
+  label?: KInputProps['label'];
   /** Opens the dropdown from outside */
   isOpen?: boolean;
   className?: string;

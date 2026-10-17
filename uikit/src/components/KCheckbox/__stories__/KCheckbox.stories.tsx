@@ -14,6 +14,7 @@ type Story = StoryObj<typeof KCheckbox>;
 export const Primary: Story = {
   args: {
     label: 'Show grid',
+    required: true,
   },
 };
 

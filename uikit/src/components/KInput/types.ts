@@ -6,6 +6,7 @@ export type KInputProps = {
   value: KInputValue;
   disabled?: boolean;
   readOnly?: boolean;
+  required?: boolean;
   size?: KInputSize;
   onInput?: (v: KInputValue) => void;
   /** Shown while nothing is selected */

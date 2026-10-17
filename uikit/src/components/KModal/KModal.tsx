@@ -33,6 +33,7 @@ export function KModal(props: KModalProps) {
         <KButton
           size="MINI"
           iconLeft="x"
+          type="button"
           presetStyle="SECONDARY-TRANSPARENT"
           className="KModalClose"
           onClick={close}

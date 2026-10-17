@@ -1,12 +1,12 @@
-@use '../../assets/styles/vars';
+@use '../../assets/styles/vars' as *;
 
 .KList {
   list-style: none;
   margin: 0;
   padding: 0;
-  border-radius: var(--column-gutter);
+  border-radius: $block-border-radius;
   display: flex;
-  gap: var(--column-gutter);
+  gap: $column-gap-xs;
 
   li {
     list-style: none;

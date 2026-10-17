@@ -3,6 +3,7 @@ export type KCheckboxProps = {
   /** Text next to the box. Clicking it toggles the checkbox */
   label?: React.ReactNode;
   disabled?: boolean;
+  required?: boolean;
   name?: string;
   value?: string;
   title?: string;
