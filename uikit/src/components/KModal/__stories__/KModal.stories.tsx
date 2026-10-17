@@ -5,6 +5,7 @@ import { KTitle } from '../../KTitle';
 import { KInput } from '../../KInput';
 import { KButton } from '../../KButton';
 import { KCheckbox } from '../../KCheckbox';
+import type { CSSProperties } from 'react';
 
 export default {
   title: 'Components/KModal',
@@ -26,13 +27,16 @@ export const Small: Story = {
   args: {
     style: {
       width: '250px',
-      height: '320px',
+      height: '250px',
     },
     isShown: true,
     children: (
       <form>
-        <KTitle> Title </KTitle>
-        <div className="krow">
+        <KTitle> Login </KTitle>
+        <div
+          className="krow"
+          style={{ '--column-gap': '10px' } as CSSProperties}
+        >
           <div className="kcol-12">
             <KInput label="username" value="" />
           </div>

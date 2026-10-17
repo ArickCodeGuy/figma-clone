@@ -89,9 +89,6 @@ body {
 
   --section-margin: var(--section-margin-xs);
   --section-padding: var(--section-padding-xs);
-  --column-gap: var(--column-gap-xs);
-  --column-gutter: calc(var(--column-gap) / 2);
-  --negative-column-gutter: calc(var(--column-gutter) * -1);
   --container-width: var(--container-width-xs);
   --block-roundness: #{vars.$block-border-radius};
 
@@ -264,6 +261,10 @@ img {
 }
 
 .krow {
+  --column-gap: var(--column-gap-xs);
+  --column-gutter: calc(var(--column-gap) / 2);
+  --negative-column-gutter: calc(var(--column-gutter) * -1);
+
   display: flex;
   flex-wrap: wrap;
   margin-left: var(--negative-column-gutter);

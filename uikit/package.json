@@ -1,11 +1,12 @@
 {
   "name": "figmaclone-uikit",
   "private": true,
-  "version": "0.0.12",
+  "version": "0.0.13",
   "type": "module",
   "scripts": {
     "dev": "storybook dev -p 7007",
     "build": "tsc -b && vite build",
+    "build-pack": "tsc -b && vite build && npm pack",
     "lint": "eslint .",
     "build-storybook": "storybook build",
     "playwright": "playwright test --config=playwright/playwright.config.ts",
@@ -14,12 +15,14 @@
     "playwright:light": "npm run playwright -- --project=light"
   },
   "files": [
-    "dist"
+    "dist",
+    "src/assets/styles/_vars.scss"
   ],
   "main": "./dist/index.js",
   "exports": {
     ".": "./dist/index.js",
-    "./styles": "./dist/index.css"
+    "./styles": "./dist/index.css",
+    "./vars": "./src/assets/styles/_vars.scss"
   },
   "types": "./dist/index.d.ts",
   "styles": "./dist/index.css",

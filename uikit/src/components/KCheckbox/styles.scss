@@ -8,6 +8,7 @@
   color: var(--color-primary);
   cursor: pointer;
   user-select: none;
+  font-size: 0.7rem;
 
   // Native input stays in the DOM for forms, focus and screen readers
   &-input {

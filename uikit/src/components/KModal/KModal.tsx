@@ -1,22 +1,21 @@
 import type { KModalProps } from './types';
 import './styles.scss';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { AnimationApplier } from '../../utils/AnimationApplier';
 import { KButton } from '../index';
 import { classNameArrayToString } from '../../utils';
 
 export function KModal(props: KModalProps) {
-  const [animation, setAnimation] = useState<AnimationApplier>();
+  const animation = useRef<AnimationApplier>(null);
   const el = useRef<HTMLDivElement>(null);
 
+  // Created in the same effect that uses it, so the first `isShown` (mounted open or closed)
+  // is applied too, not only later changes
   useEffect(() => {
-    setAnimation(new AnimationApplier(1000, el.current!));
-  }, []);
+    animation.current ??= new AnimationApplier(300, el.current!);
+    if (props.isShown === undefined) return;
 
-  useEffect(() => {
-    if (!animation || props.isShown === undefined) return;
-
-    animation.animate(props.isShown);
+    animation.current.animate(props.isShown);
   }, [props.isShown]);
 
   function close() {

@@ -1,3 +1,5 @@
+@use 'figmaclone-uikit/vars' as *;
+
 .SketchSideMenu {
   --column-gap: 5px;
   --column-gutter: calc(var(--column-gap) / 2);
@@ -10,9 +12,8 @@
   width: 250px;
   background-color: var(--bgc);
   border: 1px solid rgba(var(--rgba-contrast));
-  // @@TODO block padding var
-  padding: 10px;
-  border-radius: var(--block-roundness);
+  padding: $block-padding-top;
+  border-radius: $block-border-radius;
   top: 40px;
   left: 40px;
   height: calc(100vh - 80px);

@@ -90,3 +90,8 @@ updated playwright screenshots
 - Added `KButton` `type` prop
 - Imported `KModal`. Now you can actually use it
 - Added `KModal` `style` prop
+
+### 0.0.13
+
+- Exported SCSS variables: `@use 'figmaclone-uikit/vars' as *;`
+- Fixed `AnimationApplier` for showing
