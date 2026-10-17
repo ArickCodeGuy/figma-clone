@@ -59,10 +59,12 @@
       - [x] Circle (13-10-2026 @arickcodeguy)
       - [x] Rectangle (13-10-2026 @arickcodeguy)
   - [ ] Modals
-    - [ ] Redux state for modal
-    - [ ] Auth modal. Send auth, login requests
-    - [ ] Sketch heading edit or create modal
+    - [x] Redux state for modal (17-10-2026 @arickcodeguy)
+    - [x] Auth modal. Send auth, login requests (17-10-2026 @arickcodeguy)
+    - [x] Sketch heading edit or create modal (17-10-2026 @arickcodeguy)
     - [ ] After login or if logged in - fetch sketches
+    - [ ] Create sketches locally
+    - [ ] Create sketches on backend
   - [x] Save sketch state as string (14-10-2026 @arickcodeguy)
   - [x] Layout class for storing and updating state (18-02-2026 @arickcodeguy)
 - [x] Backend
