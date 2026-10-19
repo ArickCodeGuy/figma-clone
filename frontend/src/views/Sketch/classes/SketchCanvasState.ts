@@ -2,7 +2,6 @@ import { addListeners } from './utils/addListeners';
 import {
   Sketch,
   Base,
-  Folder,
   Point,
   ShapeOutliner,
   LineShape,
@@ -20,10 +19,6 @@ type CtxState = {
 };
 
 type ObserverCallback = (eventName: string, ...args: string[]) => void;
-
-/** localStorage key for `sketch.root`, written by `save` (Ctrl + S) */
-// @@TODO use LOCAL_SKETCHES value
-export const SKETCH_ROOT_STORAGE_KEY = 'figma-clone:sketch-root';
 
 export class SketchCanvasState {
   private CANVAS_BACKGROUND_COLOR = '#FFFFFF';
@@ -54,10 +49,7 @@ export class SketchCanvasState {
     private options: Partial<SketchCanvasStateOptions> = {
       debug: false,
     },
-  ) {
-    // Once per page load. Not in `init`, which runs on every `SketchView` render
-    this.loadFromStorage();
-  }
+  ) {}
 
   public clear() {
     // Save current transform state
@@ -152,29 +144,9 @@ export class SketchCanvasState {
     this.setSelectedFigure(undefined);
   }
 
-  /** Saves `sketch.root` as JSON in localStorage */
+  /** Ctrl + S. Notifies `save`, `saveSketch` in `store/canvas.ts` stores `sketch.root` */
   public save(): void {
-    localStorage.setItem(SKETCH_ROOT_STORAGE_KEY, this.sketch.root.toString());
-  }
-
-  /** Replaces `sketch.root` with the one stored by `save`, if there is one */
-  public loadFromStorage(): void {
-    let json: string | null;
-    try {
-      json = localStorage.getItem(SKETCH_ROOT_STORAGE_KEY);
-    } catch {
-      return; // Storage is unavailable (e.g. blocked by the browser)
-    }
-    if (!json) return;
-
-    try {
-      this.sketch.root = Folder.fromString(json);
-    } catch (e) {
-      console.error(
-        'SketchCanvasState: saved sketch is invalid, ignoring it',
-        e,
-      );
-    }
+    this.notifyObservers('save');
   }
 
   public notifyObservers(eventName: string) {

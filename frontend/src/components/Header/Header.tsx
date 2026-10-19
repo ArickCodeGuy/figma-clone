@@ -19,7 +19,7 @@ export function Header() {
       <div className="container">
         <Burger />
 
-        <KButton onClick={() => showLoginPopup}>Login</KButton>
+        <KButton onClick={showLoginPopup}>Login</KButton>
         {/* <KButton onClick={() => showSketchPopup(createSketchItem())}>
           Sketch
         </KButton> */}

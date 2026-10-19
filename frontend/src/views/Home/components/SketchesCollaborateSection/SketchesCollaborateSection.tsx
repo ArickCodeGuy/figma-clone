@@ -1,28 +1,53 @@
 import { KCardSceleton } from 'figmaclone-uikit';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
-  GetSketchesReturnType,
   sketchesController,
+  type SketchItem,
 } from '../../../../api/sketchesController';
 import { sketchColClasses } from '../../../../components/Sketch/sketchColClasses';
 import { Sketch } from '../../../../components/Sketch/Sketch';
 import { SketchCreate } from '../../../../components/SketchCreate/SketchCreate';
+import { showSketchPopup } from '../../../../components/Popup/showPopup';
+import { useAuthToken } from '../../../../hooks/useAuthToken';
+import type { StoreState } from '../../../../store/store';
 
+/** Sketches of the logged-in user, stored on the backend */
 export function SketchesCollaborateSection() {
-  // Sort with lru cache?
-  // Store in localStorage
-  const [sketches, setSketches] = useState<GetSketchesReturnType>([]);
-  const [isFetching, setIsFetching] = useState<boolean>(true);
+  const token = useAuthToken();
+  // The sketch popup may have edited or deleted one, so reload after it closes
+  const isPopupShown = useSelector<StoreState, boolean>(
+    (state) => state.popup.isShown,
+  );
+  const [sketches, setSketches] = useState<SketchItem[]>([]);
+  const [isFetching, setIsFetching] = useState<boolean>(false);
 
-  async function fetchSketches() {
-    try {
-      const res = await sketchesController.getSketches();
-      setSketches(res);
-    } catch (e) {}
+  useEffect(() => {
+    if (!token) {
+      setSketches([]);
+      return;
+    }
+    if (isPopupShown) return;
 
-    // setIsFetching(false);
-  }
-  fetchSketches();
+    let isCancelled = false;
+    setIsFetching(true);
+    sketchesController
+      .getSketches()
+      .then((res) => {
+        if (!isCancelled) setSketches(res);
+      })
+      .catch(() => {
+        // @@TODO show in notifications store, like `LoginPopup` errors
+        if (!isCancelled) setSketches([]);
+      })
+      .finally(() => {
+        if (!isCancelled) setIsFetching(false);
+      });
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [token, isPopupShown]);
 
   return (
     <section className="section">
@@ -38,9 +63,18 @@ export function SketchesCollaborateSection() {
                   <KCardSceleton />
                 </div>
               ))
-            : (sketches || []).map((s) => (
-                <div className={sketchColClasses}>
-                  <Sketch sketch={s} />
+            : sketches.map((s) => (
+                <div className={sketchColClasses} key={s.id}>
+                  <Sketch
+                    sketch={s}
+                    actions={[
+                      {
+                        icon: 'pen',
+                        description: 'Edit',
+                        onClick: () => showSketchPopup(s),
+                      },
+                    ]}
+                  />
                 </div>
               ))}
         </div>

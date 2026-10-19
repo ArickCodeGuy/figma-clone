@@ -9,6 +9,7 @@ import { CSSProperties, useState, type FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { authController, createAuthData } from '../../api/authController';
 import { popupClosed } from '../../store/popup';
+import { loggedIn } from '../../store/auth';
 
 type AuthMode = 'register' | 'login';
 
@@ -29,11 +30,11 @@ export function LoginPopup() {
 
     setIsLoading(true);
     try {
-      if (mode === 'login') {
-        await authController.login(formData);
-      } else {
-        await authController.register(formData);
-      }
+      const token =
+        mode === 'login'
+          ? await authController.login(formData)
+          : await authController.register(formData);
+      dispatch(loggedIn(token));
       dispatch(popupClosed());
     } catch (err) {
       // @@TODO create store for notifications and figure out what component to use
