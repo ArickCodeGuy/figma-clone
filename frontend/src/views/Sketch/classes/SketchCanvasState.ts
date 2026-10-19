@@ -22,10 +22,10 @@ type CtxState = {
 type ObserverCallback = (eventName: string, ...args: string[]) => void;
 
 /** localStorage key for `sketch.root`, written by `save` (Ctrl + S) */
+// @@TODO use LOCAL_SKETCHES value
 export const SKETCH_ROOT_STORAGE_KEY = 'figma-clone:sketch-root';
 
 export class SketchCanvasState {
-  public name: string = 'new_sketch';
   private CANVAS_BACKGROUND_COLOR = '#FFFFFF';
 
   public windowSize = new Point(innerWidth, innerHeight);
@@ -154,14 +154,7 @@ export class SketchCanvasState {
 
   /** Saves `sketch.root` as JSON in localStorage */
   public save(): void {
-    try {
-      localStorage.setItem(
-        SKETCH_ROOT_STORAGE_KEY + ':' + this.name,
-        this.sketch.root.toString(),
-      );
-    } catch (e) {
-      console.error('SketchCanvasState: could not save the sketch', e);
-    }
+    localStorage.setItem(SKETCH_ROOT_STORAGE_KEY, this.sketch.root.toString());
   }
 
   /** Replaces `sketch.root` with the one stored by `save`, if there is one */
