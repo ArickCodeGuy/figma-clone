@@ -87,12 +87,10 @@
   - [ ] Display Sketch layout
   - [ ] Hide and show `Shape`
   - [ ] Drag and Drop for `Shape` in layout
+- [x] Use env params to connect to db (22-10-2026 @arickcodeguy)
 
 ### Postpone
 
-- Backend
-  - [ ] Use env params to connect to db
 - Frontend
   - [ ] uikit. Testing. Jest
   - [ ] Vitest integration testing
-  - [ ] Draw rooler background on sketch
