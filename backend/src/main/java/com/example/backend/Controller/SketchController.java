@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.Config.AuthUser;
+import com.example.backend.Dto.SketchCreateDto;
 import com.example.backend.Dto.SketchDto;
 import com.example.backend.Dto.SketchFullDto;
 import com.example.backend.Entity.SketchEntity;
@@ -69,8 +70,8 @@ public class SketchController {
   @Operation(summary = "Create sketch")
   @PostMapping("/create")
   public ResponseEntity<SketchFullDto> createSketch(@AuthenticationPrincipal AuthUser user,
-      @RequestBody SketchFullDto sketchDto) {
-    if (!isValid(sketchDto)) {
+      @RequestBody SketchCreateDto sketchDto) {
+    if (sketchDto == null || !isValidTitle(sketchDto.title())) {
       return ResponseEntity.badRequest().build();
     }
 
@@ -88,7 +89,7 @@ public class SketchController {
     if (sketchDto == null || sketchDto.id() == null) {
       return ResponseEntity.notFound().build();
     }
-    if (!isValid(sketchDto)) {
+    if (!isValidTitle(sketchDto.title())) {
       return ResponseEntity.badRequest().build();
     }
 
@@ -115,8 +116,8 @@ public class SketchController {
         .orElse(ResponseEntity.notFound().build());
   }
 
-  private static boolean isValid(SketchFullDto sketchDto) {
-    return sketchDto != null && sketchDto.title() != null && !sketchDto.title().isBlank();
+  private static boolean isValidTitle(String title) {
+    return title != null && !title.isBlank();
   }
 
   private static SketchDto toDto(SketchEntity sketch) {
