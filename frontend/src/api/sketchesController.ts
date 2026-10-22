@@ -5,6 +5,8 @@ const API_PREVIX = '/api/v1/sketches';
 
 export type SketchItemFull = components['schemas']['SketchFullDto'];
 export type SketchItem = components['schemas']['SketchDto'];
+/** Request of `createSketch`. The backend generates the id */
+export type SketchItemCreate = components['schemas']['SketchCreateDto'];
 
 export type GetSketchesReturnType = Awaited<ReturnType<typeof getSketches>>;
 
@@ -72,7 +74,7 @@ function getSketch(id: number): Promise<SketchItemFull> {
   return request(`/${id}`);
 }
 
-function createSketch(sketch: SketchItemFull): Promise<SketchItemFull> {
+function createSketch(sketch: SketchItemCreate): Promise<SketchItemFull> {
   return request('/create', { method: 'POST', body: JSON.stringify(sketch) });
 }
 

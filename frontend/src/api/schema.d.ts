@@ -111,7 +111,12 @@ export interface components {
     schemas: {
         SketchFullDto: {
             /** Format: int64 */
-            id?: number;
+            id: number;
+            title?: string;
+            description?: string;
+            content?: string;
+        };
+        SketchCreateDto: {
             title?: string;
             description?: string;
             content?: string;
@@ -125,7 +130,7 @@ export interface components {
         };
         SketchDto: {
             /** Format: int64 */
-            id?: number;
+            id: number;
             title?: string;
             description?: string;
         };
@@ -171,7 +176,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["SketchFullDto"];
+                "application/json": components["schemas"]["SketchCreateDto"];
             };
         };
         responses: {

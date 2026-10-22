@@ -35,7 +35,12 @@ export function SketchCreate(props: SketchCreateProps) {
     }
 
     // Create sketch and navigate to it
-    const item = await sketchesController.createSketch(createSketchItemFull());
+    const { title, description, content } = createSketchItemFull();
+    const item = await sketchesController.createSketch({
+      title,
+      description,
+      content,
+    });
     navigate(replaceRouteParams('SKETCH', { id: item.id }));
   }
 

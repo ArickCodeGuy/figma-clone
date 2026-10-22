@@ -16,7 +16,7 @@ import { replaceRouteParams } from '../../router/replaceRouteParams';
  */
 export function SketchPopup(props: { sketch: SketchItem }) {
   const id = props.sketch.id;
-  const isCreate = id === undefined || id === -1;
+  const isCreate = id === -1;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

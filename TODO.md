@@ -26,7 +26,7 @@
     - [x] Sketch page (01-08-2025 @arickcodeguy)
       - [x] Draw empty canvas (01-08-2025 @arickcodeguy)
 
-## First iteration
+## First Iteration
 
 - [x] uikit
   - [x] Fix ui icon build (10-02-2026 @arickcodeguy)
@@ -75,6 +75,19 @@
   - [x] Fetch content of exact sketch (16-10-2026 @arickcodeguy)
   - [x] Generate .d.ts files for API (16-10-2026 @arickcodeguy)
 
+## Second Iteration
+
+- [ ] `KInputColor`
+- [ ] `KInputFile`
+- [ ] `KAlert`
+- [ ] Add actions to `Sketch` component
+  - [ ] Edit
+  - [ ] Delete
+- [ ] Layout
+  - [ ] Display Sketch layout
+  - [ ] Hide and show `Shape`
+  - [ ] Drag and Drop for `Shape` in layout
+
 ### Postpone
 
 - Backend
@@ -83,4 +96,3 @@
   - [ ] uikit. Testing. Jest
   - [ ] Vitest integration testing
   - [ ] Draw rooler background on sketch
-  - [ ] Layout of sketch

@@ -13,10 +13,10 @@ export function delayedInvoke(
 ): () => void {
   const timeoutMs = options.timeout || 300;
 
-  let timeoutId: NodeJS.Timeout;
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
   return function () {
-    if (timeoutId) timeoutId.close();
+    clearTimeout(timeoutId);
 
     timeoutId = setTimeout(fn, timeoutMs);
   };
