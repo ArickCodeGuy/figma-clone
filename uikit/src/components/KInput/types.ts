@@ -1,6 +1,17 @@
+import type { KIconNames } from '../KIcon/iconNames';
+
 export type KInputSize = 'DEFAULT' | 'SMALL';
 
 export type KInputValue = string;
+
+/** Mini button inside the field, on the right */
+export type KInputAction = {
+  icon?: KIconNames;
+  /** Tooltip and accessible name of the button */
+  title?: string;
+  disabled?: boolean;
+  onClick?: () => void;
+};
 
 export type KInputProps = {
   value: KInputValue;
@@ -27,4 +38,5 @@ export type KInputProps = {
     | 'name'
   >;
   onChange?: (value: KInputValue) => void;
+  actions?: KInputAction[];
 };

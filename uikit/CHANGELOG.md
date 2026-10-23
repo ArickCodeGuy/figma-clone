@@ -101,3 +101,10 @@ updated playwright screenshots
 - `KInput` `required`
 - `KSelect` `witdh: 100%`
 - `KCheckbox` `required`
+
+### 0.0.15
+
+- `KInputColor`
+- `KInputFile`
+- `KAlert`
+- `KInput` `KInputAction`

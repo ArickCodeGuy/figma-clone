@@ -1,0 +1,51 @@
+@use '../../assets/styles/vars' as *;
+
+.KInputColor {
+  --k-input-color-swatch-size: 16px;
+
+  position: relative;
+  display: inline-block;
+  width: 100%;
+
+  // Room for the swatch before the text
+  .KInput input {
+    padding-left: calc(
+      #{$block-padding-left} + var(--k-input-color-swatch-size) + 8px
+    );
+    cursor: pointer;
+  }
+
+  &-swatch {
+    position: absolute;
+    top: 50%;
+    left: $block-padding-left;
+    translate: 0 -50%;
+    width: var(--k-input-color-swatch-size);
+    height: var(--k-input-color-swatch-size);
+    border-radius: 4px;
+    background-color: var(--k-input-color-value);
+    // Visible on any background, also when the color equals the field color
+    box-shadow: 0 0 0 1px rgba(var(--rgba-contrast), 0.4);
+    pointer-events: none;
+  }
+
+  // Kept rendered (not `display: none`) so the browser can open its picker,
+  // positioned at the bottom so the picker pops up under the field
+  &-native {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    padding: 0;
+    border: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &--disabled {
+    .KInput input {
+      cursor: not-allowed;
+    }
+  }
+}

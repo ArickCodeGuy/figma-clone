@@ -1,13 +1,15 @@
 import { useEffect, useState, type InputEvent } from 'react';
 import { classNameArrayToString } from '../../utils';
-import type { KInputProps, KInputSize } from './types';
+import type { KInputAction, KInputProps, KInputSize } from './types';
 import './styles.scss';
+import { KButton } from '../KButton';
 
 export function KInput(props: KInputProps) {
   const size: KInputSize = props.size || 'DEFAULT';
   const classNames = classNameArrayToString([
     'KInput',
     `KInput--size-${size}`,
+    props.actions?.length ? 'KInput--with-actions' : undefined,
     props.className,
   ]);
   const [value, setValue] = useState<KInputProps['value']>(props.value);
@@ -27,8 +29,24 @@ export function KInput(props: KInputProps) {
 
   const requiredString = props.required ? ' *' : '';
 
+  function handleActionClick(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    action: KInputAction,
+  ): void {
+    e.stopPropagation();
+    action.onClick?.();
+  }
+
   return (
-    <label className={classNames} style={props.style}>
+    <label
+      className={classNames}
+      style={
+        {
+          '--k-input-actions-count': props.actions?.length ?? 0,
+          ...props.style,
+        } as React.CSSProperties
+      }
+    >
       {props.label && (
         <div className="KInput-label">{props.label + requiredString}</div>
       )}
@@ -41,6 +59,24 @@ export function KInput(props: KInputProps) {
         readOnly={props.readOnly}
         onInput={handleInput}
       />
+
+      {props.actions?.length ? (
+        <div className="KInputActions">
+          {props.actions.map((action, idx) => (
+            <KButton
+              key={action.title ?? idx}
+              // Not `submit`: actions are often inside forms
+              type="button"
+              iconLeft={action.icon}
+              title={action.title}
+              size="MINI"
+              presetStyle="SECONDARY"
+              disabled={props.disabled || action.disabled}
+              onClick={(e) => handleActionClick(e, action)}
+            />
+          ))}
+        </div>
+      ) : null}
     </label>
   );
 }

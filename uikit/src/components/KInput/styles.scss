@@ -26,4 +26,20 @@
       cursor: not-allowed;
     }
   }
+
+  // Keep the text clear of the action buttons (22px each + 4px gap)
+  &--with-actions input {
+    padding-right: calc(
+      #{$block-padding-left} + var(--k-input-actions-count) * 26px
+    );
+  }
+
+  .KInputActions {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    right: #{$block-padding-left};
+    display: flex;
+    gap: 4px;
+  }
 }

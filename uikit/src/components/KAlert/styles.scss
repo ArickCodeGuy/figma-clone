@@ -1,0 +1,61 @@
+@use '../../assets/styles/vars' as *;
+
+.KAlert {
+  // Same accent in both themes, readable on dark and light backgrounds
+  --k-alert-color: #22c55e;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: $block-padding-top $block-padding-left;
+  color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--k-alert-color) 15%, var(--bgc));
+  border: 1px solid var(--k-alert-color);
+  border-left-width: 4px;
+  border-radius: $block-border-radius;
+
+  &--type {
+    &-SUCCESS {
+      --k-alert-color: #22c55e;
+    }
+
+    &-WARNING {
+      --k-alert-color: #f59e0b;
+    }
+
+    &-ERROR {
+      --k-alert-color: #ef4444;
+    }
+  }
+
+  &-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    color: var(--k-alert-color);
+    // Align with the first line of text
+    margin-top: 0.1em;
+  }
+
+  &-content {
+    flex-grow: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  &-title {
+    font-weight: bold;
+  }
+
+  &-title + &-message {
+    margin-top: 4px;
+  }
+
+  &-message {
+    color: var(--color-secondary);
+  }
+
+  &-close {
+    flex-shrink: 0;
+  }
+}

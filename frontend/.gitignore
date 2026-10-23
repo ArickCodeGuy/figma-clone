@@ -25,3 +25,6 @@ dist-ssr
 
 # Vitest results
 /coverage
+
+# Local settings, see .env.example
+.env

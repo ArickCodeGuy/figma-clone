@@ -16,6 +16,11 @@ export const Primary: Story = {
     value: 'Dummy text '.repeat(10),
     required: true,
     label: 'label '.repeat(20),
+    actions: [
+      {
+        icon: 'x',
+      },
+    ],
   },
 };
 
