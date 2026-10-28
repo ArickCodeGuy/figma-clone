@@ -6,7 +6,11 @@ import { KInput } from '../KInput';
 
 /**
  * Read-only `KInput` showing the color as text and a swatch.
- * The palette action (or a click on the field) opens the native color picker
+ *
+ * The native color input lies invisibly over the whole field, so a click anywhere
+ * on it is a real click on that input and the browser opens its own picker.
+ * Opening it with `showPicker()` from an invisible input is not reliable:
+ * some browsers open the picker but never report the chosen color
  */
 export function KInputColor(props: KInputColorProps) {
   const [value, setValue] = useState<KInputColorValue>(props.value);
@@ -16,10 +20,10 @@ export function KInputColor(props: KInputColorProps) {
 
   const picker = useRef<HTMLInputElement>(null);
 
+  /** Keyboard path: the palette action is focusable, the overlay is not */
   function openPicker(): void {
     if (props.disabled || !picker.current) return;
 
-    // `showPicker` keeps focus handling right, `click` is the fallback for older browsers
     if (typeof picker.current.showPicker === 'function') {
       picker.current.showPicker();
     } else {
@@ -53,7 +57,6 @@ export function KInputColor(props: KInputColorProps) {
         size={props.size}
         label={props.label}
         placeholder={props.placeholder}
-        inputProps={{ onClick: openPicker }}
         actions={[
           { icon: 'palette', title: 'Choose color', onClick: openPicker },
         ]}

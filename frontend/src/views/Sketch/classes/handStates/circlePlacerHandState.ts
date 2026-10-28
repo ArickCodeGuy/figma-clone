@@ -9,8 +9,8 @@ export class CirclePlacerHandState extends BaseHandState {
     'New Circle',
     new Point(),
     0,
-    'black',
-    'black',
+    '#000000',
+    '#000000',
   );
   private isPlaced = false;
 

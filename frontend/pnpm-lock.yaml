@@ -12,8 +12,8 @@ importers:
         specifier: ^2.11.2
         version: 2.11.2(react-redux@9.2.0(@types/react@19.2.13)(react@19.2.4)(redux@5.0.1))(react@19.2.4)
       figmaclone-uikit:
-        specifier: file:..\uikit\figmaclone-uikit-0.0.14.tgz
-        version: file:../uikit/figmaclone-uikit-0.0.14.tgz(@types/node@24.1.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@4.57.1)(typescript@5.8.3)(vite@7.3.1(@types/node@24.1.0)(sass@1.97.3))
+        specifier: file:..\uikit\figmaclone-uikit-0.0.16.tgz
+        version: file:../uikit/figmaclone-uikit-0.0.16.tgz(@types/node@24.1.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@4.57.1)(typescript@5.8.3)(vite@7.3.1(@types/node@24.1.0)(sass@1.97.3))
       openapi-typescript:
         specifier: ^7.13.0
         version: 7.13.0(typescript@5.8.3)
@@ -1127,9 +1127,9 @@ packages:
       picomatch:
         optional: true
 
-  figmaclone-uikit@file:../uikit/figmaclone-uikit-0.0.14.tgz:
-    resolution: {integrity: sha512-SmljgUuCtxaSIMrA3fWcYRuXoqZqKE2O6QySExZVT31k+S9DqM14HDmH1AILcBKtJY/0LVL70I7Jh68LHp705Q==, tarball: file:../uikit/figmaclone-uikit-0.0.14.tgz}
-    version: 0.0.14
+  figmaclone-uikit@file:../uikit/figmaclone-uikit-0.0.16.tgz:
+    resolution: {integrity: sha512-iD8s1ja7xSh/uKcYH0kWrLwgj/+RIVTHpIzii7zajyrgcKKqJe9WugGpXyh58vfNlocvs1PK2e/wppAzBROqBg==, tarball: file:../uikit/figmaclone-uikit-0.0.16.tgz}
+    version: 0.0.16
     peerDependencies:
       react: ^19.2.3
       react-dom: ^19.2.3
@@ -2870,7 +2870,7 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.3
 
-  figmaclone-uikit@file:../uikit/figmaclone-uikit-0.0.14.tgz(@types/node@24.1.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@4.57.1)(typescript@5.8.3)(vite@7.3.1(@types/node@24.1.0)(sass@1.97.3)):
+  figmaclone-uikit@file:../uikit/figmaclone-uikit-0.0.16.tgz(@types/node@24.1.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(rollup@4.57.1)(typescript@5.8.3)(vite@7.3.1(@types/node@24.1.0)(sass@1.97.3)):
     dependencies:
       '@fortawesome/fontawesome-free': 7.1.0
       react: 19.2.4

@@ -1,12 +1,13 @@
-import { KInput } from 'figmaclone-uikit';
+import { KInput, KInputColor } from 'figmaclone-uikit';
 import { RectangleShape } from '../../classes/FileSystem';
 import { ValueEditProps } from './types';
 import { PointEdit } from './PointEdit';
+import { toHexColor } from './toHexColor';
 
 export type RectangleShapeEditProps = ValueEditProps<RectangleShape>;
 
 type RectangleShapePatch = Partial<
-  Pick<RectangleShape, 'name' | 'position' | 'size'>
+  Pick<RectangleShape, 'name' | 'position' | 'size' | 'color' | 'borderColor'>
 >;
 
 export function RectangleShapeEdit(props: RectangleShapeEditProps) {
@@ -17,8 +18,8 @@ export function RectangleShapeEdit(props: RectangleShapeEditProps) {
         patch.name ?? v.name,
         patch.position ?? v.position,
         patch.size ?? v.size,
-        v.color,
-        v.borderColor,
+        patch.color ?? v.color,
+        patch.borderColor ?? v.borderColor,
         v.isHidden,
       ),
     );
@@ -44,6 +45,20 @@ export function RectangleShapeEdit(props: RectangleShapeEditProps) {
           title="Size"
           value={props.value.size}
           onUpdate={(size) => update({ size })}
+        />
+      </div>
+      <div className="kcol-12">
+        <KInputColor
+          label="Background"
+          value={toHexColor(props.value.color)}
+          onChange={(color) => update({ color })}
+        />
+      </div>
+      <div className="kcol-12">
+        <KInputColor
+          label="Border"
+          value={toHexColor(props.value.borderColor)}
+          onChange={(borderColor) => update({ borderColor })}
         />
       </div>
     </div>

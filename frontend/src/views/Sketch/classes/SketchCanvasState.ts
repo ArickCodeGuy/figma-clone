@@ -1,11 +1,5 @@
 import { addListeners } from './utils/addListeners';
-import {
-  Sketch,
-  Base,
-  Point,
-  ShapeOutliner,
-  LineShape,
-} from './FileSystem';
+import { Sketch, Base, Point, ShapeOutliner, LineShape } from './FileSystem';
 import { BaseHandState } from './handStates/baseHandState';
 
 export type SketchCanvasStateOptions = {
@@ -67,13 +61,13 @@ export class SketchCanvasState {
       'xAxis',
       new Point(this.windowSize.x / 2, 0),
       new Point(0, this.windowSize.y),
-      'black',
+      '#000000',
     );
     const yAxis = new LineShape(
       'yAxis',
       new Point(0, this.windowSize.y / 2),
       new Point(this.windowSize.x, 0),
-      'black',
+      '#000000',
     );
 
     xAxis.draw(this.ctx);

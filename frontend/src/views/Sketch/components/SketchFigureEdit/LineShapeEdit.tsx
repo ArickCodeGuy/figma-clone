@@ -1,11 +1,14 @@
-import { KInput } from 'figmaclone-uikit';
+import { KInput, KInputColor } from 'figmaclone-uikit';
 import { LineShape } from '../../classes/FileSystem';
 import { ValueEditProps } from './types';
 import { PointEdit } from './PointEdit';
+import { toHexColor } from './toHexColor';
 
 export type LineShapeEditProps = ValueEditProps<LineShape>;
 
-type LineShapePatch = Partial<Pick<LineShape, 'name' | 'position' | 'vector'>>;
+type LineShapePatch = Partial<
+  Pick<LineShape, 'name' | 'position' | 'vector' | 'color'>
+>;
 
 export function LineShapeEdit(props: LineShapeEditProps) {
   function update(patch: LineShapePatch) {
@@ -15,7 +18,7 @@ export function LineShapeEdit(props: LineShapeEditProps) {
         patch.name ?? v.name,
         patch.position ?? v.position,
         patch.vector ?? v.vector,
-        v.color,
+        patch.color ?? v.color,
         v.isHidden,
       ),
     );
@@ -41,6 +44,13 @@ export function LineShapeEdit(props: LineShapeEditProps) {
           title="Vector"
           value={props.value.vector}
           onUpdate={(vector) => update({ vector })}
+        />
+      </div>
+      <div className="kcol-12">
+        <KInputColor
+          label="Color"
+          value={toHexColor(props.value.color)}
+          onChange={(color) => update({ color })}
         />
       </div>
     </div>

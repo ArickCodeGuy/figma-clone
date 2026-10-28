@@ -108,3 +108,7 @@ updated playwright screenshots
 - `KInputFile`
 - `KAlert`
 - `KInput` `KInputAction`
+
+### 0.0.16
+
+- Fixed `KInputColor` `onChange` not called after choosing a color

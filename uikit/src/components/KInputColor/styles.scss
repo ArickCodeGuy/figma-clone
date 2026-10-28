@@ -12,7 +12,6 @@
     padding-left: calc(
       #{$block-padding-left} + var(--k-input-color-swatch-size) + 8px
     );
-    cursor: pointer;
   }
 
   &-swatch {
@@ -29,22 +28,20 @@
     pointer-events: none;
   }
 
-  // Kept rendered (not `display: none`) so the browser can open its picker,
-  // positioned at the bottom so the picker pops up under the field
+  // Invisible, over the whole field: clicks on the field land on it
+  // and the browser opens its picker anchored to the field
   &-native {
     position: absolute;
-    left: 0;
-    bottom: 0;
+    inset: 0;
     width: 100%;
-    height: 0;
+    height: 100%;
+    margin: 0;
     padding: 0;
     border: 0;
     opacity: 0;
-    pointer-events: none;
-  }
+    cursor: pointer;
 
-  &--disabled {
-    .KInput input {
+    &:disabled {
       cursor: not-allowed;
     }
   }

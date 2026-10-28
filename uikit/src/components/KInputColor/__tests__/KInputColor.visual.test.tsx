@@ -52,6 +52,48 @@ test.describe('KInputColor', { tag: '@KInputColor' }, () => {
     await expect.poll(() => changes).toEqual(['#123456']);
   });
 
+  test('a click on the field lands on the native color input', async ({
+    mount,
+    page,
+  }) => {
+    const component = await mount(<KInputColorComposedStories.Primary />);
+
+    // Text, swatch and palette button are all covered by the native input
+    const box = (await component.getByRole('textbox').boundingBox())!;
+    for (const x of [box.x + 5, box.x + box.width / 2, box.x + box.width - 25]) {
+      const hit = await page.evaluate(
+        ([px, py]) => {
+          const el = document.elementFromPoint(px, py) as HTMLInputElement;
+          return `${el.tagName}:${el.type}`;
+        },
+        [x, box.y + box.height / 2],
+      );
+      expect(hit).toBe('INPUT:color');
+    }
+  });
+
+  test('picker reports the color like a browser does', async ({ mount }) => {
+    const changes: string[] = [];
+    const component = await mount(
+      <KInputColorComposedStories.Primary onChange={(v) => changes.push(v)} />,
+    );
+
+    // The picker sets the value internally, bypassing React's value setter
+    await component
+      .locator('input[type="color"]')
+      .evaluate((el: HTMLInputElement) => {
+        Object.getOwnPropertyDescriptor(
+          HTMLInputElement.prototype,
+          'value',
+        )!.set!.call(el, '#abcdef');
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+
+    await expect(component.getByRole('textbox')).toHaveValue('#abcdef');
+    await expect.poll(() => changes).toEqual(['#abcdef']);
+  });
+
   test('action button does not submit a form', async ({ mount }) => {
     let submitted = false;
     const component = await mount(

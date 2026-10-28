@@ -9,8 +9,8 @@ export class RectanglePlacerHandState extends BaseHandState {
     'New Rectangle',
     new Point(),
     new Point(),
-    'black',
-    'black',
+    '#000000',
+    '#000000',
   );
   private isPlaced = false;
 
