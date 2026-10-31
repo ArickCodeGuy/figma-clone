@@ -1,24 +1,33 @@
 import { KButton, KInput, KTitle } from 'figmaclone-uikit';
 import { CSSProperties, useState, type FormEvent } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
-  SketchRequestError,
+  createSketchItemFull,
   sketchesController,
   type SketchItem,
 } from '../../api/sketchesController';
 import { popupClosed } from '../../store/popup';
 import { replaceRouteParams } from '../../router/replaceRouteParams';
+import {
+  localSketchDeleted,
+  localSketchSaved,
+  selectLocalSketch,
+} from '../../store/localSketches';
 
 /**
  * Create or edit a sketch's title and description.
- * Shown with `showSketchPopup(sketch)`; `sketch.id === -1` creates a new one
+ * Shown with `showSketchPopup(sketch)`; `sketch.id === -1` creates a new one.
+ * With `isLocal` (`showLocalSketchPopup`) it edits the sketch stored in the browser
  */
-export function SketchPopup(props: { sketch: SketchItem }) {
+export function SketchPopup(props: { sketch: SketchItem; isLocal?: boolean }) {
   const id = props.sketch.id;
-  const isCreate = id === -1;
+  // The local sketch also has id `-1`, but always exists already
+  const isCreate = id === -1 && !props.isLocal;
 
   const dispatch = useDispatch();
+  // Its `content`, which the title and description edit must keep
+  const localSketch = useSelector(selectLocalSketch);
   const navigate = useNavigate();
   const [title, setTitle] = useState(props.sketch.title ?? '');
   const [description, setDescription] = useState(
@@ -44,6 +53,17 @@ export function SketchPopup(props: { sketch: SketchItem }) {
     e.preventDefault();
 
     await run(async () => {
+      if (props.isLocal) {
+        dispatch(
+          localSketchSaved({
+            ...(localSketch ?? createSketchItemFull()),
+            title: title.trim(),
+            description,
+          }),
+        );
+        return;
+      }
+
       if (isCreate) {
         const created = await sketchesController.createSketch({
           title: title.trim(),
@@ -66,6 +86,13 @@ export function SketchPopup(props: { sketch: SketchItem }) {
 
   async function handleDelete() {
     if (isCreate) return;
+
+    if (props.isLocal) {
+      await run(async () => {
+        dispatch(localSketchDeleted(id));
+      });
+      return;
+    }
 
     await run(() => sketchesController.deleteSketch(id));
   }

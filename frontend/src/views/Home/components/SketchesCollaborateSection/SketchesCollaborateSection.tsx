@@ -22,6 +22,17 @@ export function SketchesCollaborateSection() {
   const [sketches, setSketches] = useState<SketchItem[]>([]);
   const [isFetching, setIsFetching] = useState<boolean>(false);
 
+  /** No confirmation on purpose. Removed from the list once the backend has deleted it */
+  async function deleteSketch(id: number) {
+    try {
+      await sketchesController.deleteSketch(id);
+      setSketches((prev) => prev.filter((s) => s.id !== id));
+    } catch (err) {
+      // @@TODO show in notifications store, like `LoginPopup` errors
+      console.error('Could not delete the sketch', err);
+    }
+  }
+
   useEffect(() => {
     if (!token) {
       setSketches([]);
@@ -72,6 +83,11 @@ export function SketchesCollaborateSection() {
                         icon: 'pen',
                         description: 'Edit',
                         onClick: () => showSketchPopup(s),
+                      },
+                      {
+                        icon: 'trash',
+                        description: 'Delete',
+                        onClick: () => deleteSketch(s.id),
                       },
                     ]}
                   />

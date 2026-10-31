@@ -80,9 +80,9 @@
 - [x] `KInputColor` (23-10-2026 @arickcodeguy)
 - [x] `KInputFile` (23-10-2026 @arickcodeguy)
 - [x] `KAlert` (23-10-2026 @arickcodeguy)
-- [ ] Add actions to `Sketch` component
-  - [ ] Edit
-  - [ ] Delete
+- [x] Add actions to `Sketch` component
+  - [x] Edit (31-10-2026 @arickcodeguy)
+  - [x] Delete (31-10-2026 @arickcodeguy)
 - [ ] Layout
   - [ ] Display Sketch layout
   - [ ] Hide and show `Shape`

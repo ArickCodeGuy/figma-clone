@@ -8,8 +8,11 @@ export type PopupName = 'login' | 'sketch';
 /** Props of each popup's content component. Plain data only, it is stored in Redux */
 export type PopupContentProps = {
   login: Record<string, never>;
-  /** `sketch.id === -1` creates a new sketch */
-  sketch: { sketch: SketchItem };
+  /**
+   * `sketch.id === -1` creates a new sketch.
+   * `isLocal` edits the sketch stored in the browser (`localSketches`) instead of the backend
+   */
+  sketch: { sketch: SketchItem; isLocal?: boolean };
 };
 
 /** Serializable part of `KModalProps`. `children` and `close` come from `PopupHost` */

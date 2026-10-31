@@ -26,6 +26,11 @@ export function showSketchPopup(sketch: SketchItem): void {
   openPopup('sketch', { sketch });
 }
 
+/** Edit the title and description of a sketch stored in the browser */
+export function showLocalSketchPopup(sketch: SketchItem): void {
+  openPopup('sketch', { sketch, isLocal: true });
+}
+
 export function closePopup(): void {
   store.dispatch(popupClosed());
 }

@@ -20,6 +20,10 @@ export const localSketchesSlice = createSlice({
     localSketchSaved(store, action: PayloadAction<SketchItemFull>) {
       store.sketches[0] = { ...action.payload, id: LOCAL_SKETCH_ID };
     },
+    /** Removes the local sketch with id `payload` */
+    localSketchDeleted(store, action: PayloadAction<number>) {
+      store.sketches = store.sketches.filter((s) => s.id !== action.payload);
+    },
     clearLocalSketches(store) {
       localStorage.removeItem('LOCAL_SKETCHES');
       store.sketches = readLocalSketches();
@@ -27,7 +31,7 @@ export const localSketchesSlice = createSlice({
   },
 });
 
-export const { localSketchSaved, clearLocalSketches } =
+export const { localSketchSaved, localSketchDeleted, clearLocalSketches } =
   localSketchesSlice.actions;
 
 export const selectLocalSketches = (store: {

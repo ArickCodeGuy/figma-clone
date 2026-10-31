@@ -1,8 +1,12 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SketchCreate } from '../../../../components/SketchCreate/SketchCreate';
 import { Sketch } from '../../../../components/Sketch/Sketch';
 import { sketchColClasses } from '../../../../components/Sketch/sketchColClasses';
-import { selectLocalSketches } from '../../../../store/localSketches';
+import {
+  localSketchDeleted,
+  selectLocalSketches,
+} from '../../../../store/localSketches';
+import { showLocalSketchPopup } from '../../../../components/Popup/showPopup';
 
 /**
  * Sketches stored in localStorage (`LOCAL_SKETCHES`), no account needed.
@@ -10,6 +14,7 @@ import { selectLocalSketches } from '../../../../store/localSketches';
  */
 export function SketchesPersonalSection() {
   const sketches = useSelector(selectLocalSketches);
+  const dispatch = useDispatch();
 
   return (
     <section className="section">
@@ -20,9 +25,24 @@ export function SketchesPersonalSection() {
             <SketchCreate isLocal />
           </div>
           {sketches.length
-            ? sketches.slice(0, 1).map((s) => (
+            ? sketches.map((s) => (
                 <div className={sketchColClasses} key={s.id}>
-                  <Sketch sketch={s} />
+                  <Sketch
+                    sketch={s}
+                    actions={[
+                      {
+                        icon: 'pen',
+                        description: 'Edit',
+                        onClick: () => showLocalSketchPopup(s),
+                      },
+                      {
+                        icon: 'trash',
+                        description: 'Delete',
+                        // No confirmation on purpose
+                        onClick: () => dispatch(localSketchDeleted(s.id)),
+                      },
+                    ]}
+                  />
                 </div>
               ))
             : null}
