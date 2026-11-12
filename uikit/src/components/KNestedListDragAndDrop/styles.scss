@@ -1,0 +1,71 @@
+.KNestedListDragAndDrop {
+  --k-nested-list-indent: 20px;
+  --k-nested-list-drop-color: var(--color-primary);
+
+  // `:where` keeps the reset weaker than the classes below
+  :where(ul, li) {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  // Children sit one step right of their list title
+  &-ul > &-item,
+  &-ul > &-nested {
+    margin-left: var(--k-nested-list-indent);
+  }
+
+  &-ul[draggable='true'] > &-title,
+  &-item {
+    cursor: grab;
+  }
+
+  &-title,
+  &-item {
+    position: relative;
+    padding: 4px 8px;
+    border-radius: 6px;
+    user-select: none;
+  }
+
+  &-title:hover,
+  &-item:hover,
+  .active &-title,
+  &-item.active {
+    background-color: rgba(var(--rgba-contrast), 0.08);
+  }
+
+  &-title {
+    font-weight: bold;
+  }
+
+  &--dragged {
+    opacity: 0.5;
+  }
+
+  // Drop indicators: a line where the item will land
+  &-item--drop-after,
+  &-ul--drop-after {
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 2px;
+      background-color: var(--k-nested-list-drop-color);
+    }
+  }
+
+  // Under the list title, indented like its children
+  &-ul--drop-inside > &-title::after {
+    content: '';
+    position: absolute;
+    left: var(--k-nested-list-indent);
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background-color: var(--k-nested-list-drop-color);
+  }
+}

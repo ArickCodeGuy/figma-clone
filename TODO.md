@@ -84,6 +84,7 @@
   - [x] Edit (31-10-2026 @arickcodeguy)
   - [x] Delete (31-10-2026 @arickcodeguy)
 - [ ] Layout
+  - [x] `KNestedListDragAndDrop` (12-11-2026 @arickcodeguy)
   - [ ] Display Sketch layout
   - [ ] Hide and show `Shape`
   - [ ] Drag and Drop for `Shape` in layout

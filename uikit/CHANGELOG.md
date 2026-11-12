@@ -112,3 +112,7 @@ updated playwright screenshots
 ### 0.0.16
 
 - Fixed `KInputColor` `onChange` not called after choosing a color
+
+### 0.0.17
+
+- `KNestedListDragAndDrop`
