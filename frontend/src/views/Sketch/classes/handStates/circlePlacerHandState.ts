@@ -18,10 +18,6 @@ export class CirclePlacerHandState extends BaseHandState {
     super();
   }
 
-  public onWheel(e: WheelEvent, state: SketchCanvasState): void {
-    this.onWheel(e, state);
-  }
-
   public onMouseDown(e: MouseEvent, state: SketchCanvasState): void {
     switch (this.isPlaced) {
       case false:

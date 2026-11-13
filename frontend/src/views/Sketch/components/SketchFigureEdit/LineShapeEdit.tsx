@@ -1,4 +1,4 @@
-import { KInput, KInputColor } from 'figmaclone-uikit';
+import { KCheckbox, KInput, KInputColor } from 'figmaclone-uikit';
 import { LineShape } from '../../classes/FileSystem';
 import { ValueEditProps } from './types';
 import { PointEdit } from './PointEdit';
@@ -7,7 +7,7 @@ import { toHexColor } from './toHexColor';
 export type LineShapeEditProps = ValueEditProps<LineShape>;
 
 type LineShapePatch = Partial<
-  Pick<LineShape, 'name' | 'position' | 'vector' | 'color'>
+  Pick<LineShape, 'name' | 'position' | 'vector' | 'color' | 'isHidden'>
 >;
 
 export function LineShapeEdit(props: LineShapeEditProps) {
@@ -19,7 +19,7 @@ export function LineShapeEdit(props: LineShapeEditProps) {
         patch.position ?? v.position,
         patch.vector ?? v.vector,
         patch.color ?? v.color,
-        v.isHidden,
+        patch.isHidden ?? v.isHidden,
       ),
     );
   }
@@ -51,6 +51,13 @@ export function LineShapeEdit(props: LineShapeEditProps) {
           label="Color"
           value={toHexColor(props.value.color)}
           onChange={(color) => update({ color })}
+        />
+      </div>
+      <div className="kcol-12">
+        <KCheckbox
+          label="Hidden"
+          checked={props.value.isHidden}
+          onChange={(isHidden) => update({ isHidden })}
         />
       </div>
     </div>

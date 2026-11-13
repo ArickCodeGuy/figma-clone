@@ -1,4 +1,4 @@
-import { KInput, KInputColor, KTitle } from 'figmaclone-uikit';
+import { KCheckbox, KInput, KInputColor, KTitle } from 'figmaclone-uikit';
 import { CircleShape } from '../../classes/FileSystem';
 import { ValueEditProps } from './types';
 import { PointEdit } from './PointEdit';
@@ -8,7 +8,10 @@ import { toHexColor } from './toHexColor';
 export type CircleShapeEditProps = ValueEditProps<CircleShape>;
 
 type CircleShapePatch = Partial<
-  Pick<CircleShape, 'name' | 'position' | 'radius' | 'color' | 'borderColor'>
+  Pick<
+    CircleShape,
+    'name' | 'position' | 'radius' | 'color' | 'borderColor' | 'isHidden'
+  >
 >;
 
 export function CircleShapeEdit(props: CircleShapeEditProps) {
@@ -21,7 +24,7 @@ export function CircleShapeEdit(props: CircleShapeEditProps) {
         patch.radius ?? v.radius,
         patch.color ?? v.color,
         patch.borderColor ?? v.borderColor,
-        v.isHidden,
+        patch.isHidden ?? v.isHidden,
       ),
     );
   }
@@ -65,6 +68,13 @@ export function CircleShapeEdit(props: CircleShapeEditProps) {
           label="Border"
           value={toHexColor(props.value.borderColor)}
           onChange={(borderColor) => update({ borderColor })}
+        />
+      </div>
+      <div className="kcol-12">
+        <KCheckbox
+          label="Hidden"
+          checked={props.value.isHidden}
+          onChange={(isHidden) => update({ isHidden })}
         />
       </div>
     </div>

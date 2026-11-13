@@ -1,4 +1,5 @@
 import { CirclePlacerHandState } from '../handStates/circlePlacerHandState';
+import { LinePlacerHandState } from '../handStates/linePlacerHandState';
 import { RectanglePlacerHandState } from '../handStates/rectanglePlacerHandState';
 import { SketchCanvasState } from '../SketchCanvasState';
 
@@ -30,9 +31,12 @@ export function addShortcuts(state: SketchCanvasState): () => void {
       return;
     }
     if (e.code === 'Digit1') {
-      state.handState = new CirclePlacerHandState();
+      state.handState = new LinePlacerHandState();
     }
     if (e.code === 'Digit2') {
+      state.handState = new CirclePlacerHandState();
+    }
+    if (e.code === 'Digit3') {
       state.handState = new RectanglePlacerHandState();
     }
   }

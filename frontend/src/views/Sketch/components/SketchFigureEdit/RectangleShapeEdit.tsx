@@ -1,4 +1,4 @@
-import { KInput, KInputColor } from 'figmaclone-uikit';
+import { KCheckbox, KInput, KInputColor } from 'figmaclone-uikit';
 import { RectangleShape } from '../../classes/FileSystem';
 import { ValueEditProps } from './types';
 import { PointEdit } from './PointEdit';
@@ -7,7 +7,10 @@ import { toHexColor } from './toHexColor';
 export type RectangleShapeEditProps = ValueEditProps<RectangleShape>;
 
 type RectangleShapePatch = Partial<
-  Pick<RectangleShape, 'name' | 'position' | 'size' | 'color' | 'borderColor'>
+  Pick<
+    RectangleShape,
+    'name' | 'position' | 'size' | 'color' | 'borderColor' | 'isHidden'
+  >
 >;
 
 export function RectangleShapeEdit(props: RectangleShapeEditProps) {
@@ -20,7 +23,7 @@ export function RectangleShapeEdit(props: RectangleShapeEditProps) {
         patch.size ?? v.size,
         patch.color ?? v.color,
         patch.borderColor ?? v.borderColor,
-        v.isHidden,
+        patch.isHidden ?? v.isHidden,
       ),
     );
   }
@@ -59,6 +62,13 @@ export function RectangleShapeEdit(props: RectangleShapeEditProps) {
           label="Border"
           value={toHexColor(props.value.borderColor)}
           onChange={(borderColor) => update({ borderColor })}
+        />
+      </div>
+      <div className="kcol-12">
+        <KCheckbox
+          label="Hidden"
+          checked={props.value.isHidden}
+          onChange={(isHidden) => update({ isHidden })}
         />
       </div>
     </div>

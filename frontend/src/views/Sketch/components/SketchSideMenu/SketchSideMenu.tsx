@@ -9,6 +9,7 @@ import {
 } from '../../../../store/canvas';
 import { SketchFigureEdit } from '../SketchFigureEdit/SketchFigureEdit';
 import { CirclePlacerHandState } from '../../classes/handStates/circlePlacerHandState';
+import { LinePlacerHandState } from '../../classes/handStates/linePlacerHandState';
 import { RectanglePlacerHandState } from '../../classes/handStates/rectanglePlacerHandState';
 
 export function SketchSideMenu(props: SketchSideMenuProps) {
@@ -35,9 +36,9 @@ export function SketchSideMenu(props: SketchSideMenuProps) {
     {
       title: 'Line',
       size: 'MINI',
-      iconLeft: 'lines-leaning',
+      iconLeft: 'grip-lines-vertical',
       onClick: () => {
-        console.log('Line');
+        state.handState = new LinePlacerHandState();
       },
     },
     {

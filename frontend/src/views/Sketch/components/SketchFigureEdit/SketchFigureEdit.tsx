@@ -4,12 +4,14 @@ import type { SketchFigureEditProps } from './types';
 import {
   Base,
   CircleShape,
+  Folder,
   LineShape,
   RectangleShape,
 } from '../../classes/FileSystem';
 import { RectangleShapeEdit } from './RectangleShapeEdit';
 import { LineShapeEdit } from './LineShapeEdit';
 import { CircleShapeEdit } from './CircleShapeEdit';
+import { FolderEdit } from './FolderEdit';
 import { KTitle } from 'figmaclone-uikit';
 
 export function SketchFigureEdit(props: SketchFigureEditProps) {
@@ -45,6 +47,10 @@ export function SketchFigureEdit(props: SketchFigureEditProps) {
       return (
         <CircleShapeEdit value={figure} onUpdate={(v) => apply(figure, v)} />
       );
+    }
+
+    if (figure instanceof Folder) {
+      return <FolderEdit value={figure} onUpdate={(v) => apply(figure, v)} />;
     }
 
     return <>Unknown edit component</>;
