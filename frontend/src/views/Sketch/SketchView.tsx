@@ -8,6 +8,7 @@ import {
   selectSketchLoadError,
   selectSketchLoadStatus,
 } from '../../store/canvas';
+import { SketchLayoutMenu } from './components/SketchLayoutMenu/SketchLayoutMenu';
 
 export function SketchView() {
   const params = useParams<{ id: string }>();
@@ -47,6 +48,7 @@ export function SketchView() {
         </div>
       )}
       <SketchSideMenu />
+      <SketchLayoutMenu />
     </div>
   );
 }

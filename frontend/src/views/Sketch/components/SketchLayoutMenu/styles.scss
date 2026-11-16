@@ -1,0 +1,25 @@
+@use 'figmaclone-uikit/vars' as *;
+
+.SketchLayoutMenu {
+  --column-gap: 5px;
+  --column-gutter: calc(var(--column-gap) / 2);
+  --negative-column-gutter: calc(var(--column-gap) * -1);
+  .KTitle {
+    margin-bottom: 0.5em;
+  }
+
+  position: fixed;
+  width: 200px;
+  background-color: var(--bgc);
+  padding: $block-padding-top;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  overflow-y: auto;
+
+  // Hidden figures stay in the list, dimmed
+  .SketchLayoutMenu-node--hidden:is(li),
+  .SketchLayoutMenu-node--hidden > .KNestedListDragAndDrop-title {
+    opacity: 0.5;
+  }
+}

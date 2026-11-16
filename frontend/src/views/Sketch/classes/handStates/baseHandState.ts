@@ -56,9 +56,12 @@ export class BaseHandState {
     );
 
     // Edge case. Give priority to already selected figure
-    // When clicking on multiple overlapping figures
+    // When clicking on multiple overlapping figures.
+    // Not for folders (selected in the layout menu): they can't be dragged,
+    // a click on the canvas picks the shape under the cursor instead
     if (
       state.selectedFigure &&
+      !(state.selectedFigure instanceof Folder) &&
       isClickInsideOutline(state.selectedFigure, position)
     ) {
       // Do nothing

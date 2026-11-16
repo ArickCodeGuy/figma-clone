@@ -1,4 +1,4 @@
-import { Base, BaseStatic } from '../base.js';
+import { Base } from '../base.js';
 import { Point } from '../point.js';
 import { CircleShape } from '../shapes/circleShape.js';
 import { RectangleShape } from '../shapes/rectangleShape.js';
