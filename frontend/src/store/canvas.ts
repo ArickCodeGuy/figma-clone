@@ -15,6 +15,8 @@ import {
   type SketchItemFull,
 } from '../api/sketchesController';
 import { isLocalSketchId } from '../api/localSketches';
+// The slice, not `showAlert`: that one imports the store, which imports this file
+import { alertShown } from './alerts';
 import type { StoreState } from './store';
 
 /** `idle` before the first `openSketch` */
@@ -114,7 +116,16 @@ export const saveSketch = createAsyncThunk<SketchItemFull, void, ThunkConfig>(
   async (_, { getState, dispatch, rejectWithValue }) => {
     const { sketchItem, loadStatus } = getState().canvas;
     // Saving now would overwrite the sketch with an empty or half loaded canvas
-    if (loadStatus !== 'loaded') return rejectWithValue('Sketch is not loaded');
+    if (loadStatus !== 'loaded') {
+      dispatch(
+        alertShown({
+          type: 'WARNING',
+          title: 'Not saved',
+          content: 'The sketch has not loaded yet',
+        }),
+      );
+      return rejectWithValue('Sketch is not loaded');
+    }
 
     const item: SketchItemFull = {
       ...sketchItem,
@@ -123,14 +134,33 @@ export const saveSketch = createAsyncThunk<SketchItemFull, void, ThunkConfig>(
 
     if (isLocalSketchId(item.id)) {
       dispatch(localSketchSaved(item));
+      dispatch(
+        alertShown({
+          type: 'SUCCESS',
+          title: 'Sketch saved',
+          content: 'Stored in this browser',
+        }),
+      );
       return item;
     }
 
     try {
-      return await sketchesController.updateSketch(item);
+      const saved = await sketchesController.updateSketch(item);
+      dispatch(
+        alertShown({ type: 'SUCCESS', title: 'Sketch saved', content: '' }),
+      );
+      return saved;
     } catch (err) {
       console.error('canvas: could not save the sketch', err);
-      return rejectWithValue(errorMessage(err));
+      const message = errorMessage(err);
+      dispatch(
+        alertShown({
+          type: 'ERROR',
+          title: 'Could not save',
+          content: message,
+        }),
+      );
+      return rejectWithValue(message);
     }
   },
 );
