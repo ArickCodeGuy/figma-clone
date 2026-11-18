@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { authController, createAuthData } from '../../api/authController';
 import { popupClosed } from '../../store/popup';
 import { loggedIn } from '../../store/auth';
+import { errorToMessage, showErrorAlert } from '../Alert/showAlert';
 
 type AuthMode = 'register' | 'login';
 
@@ -37,8 +38,10 @@ export function LoginPopup() {
       dispatch(loggedIn(token));
       dispatch(popupClosed());
     } catch (err) {
-      // @@TODO create store for notifications and figure out what component to use
-      // msg: 'Could not reach the server'
+      showErrorAlert({
+        title: mode === 'login' ? 'Login failed' : 'Registration failed',
+        content: errorToMessage(err),
+      });
     } finally {
       setIsLoading(false);
     }

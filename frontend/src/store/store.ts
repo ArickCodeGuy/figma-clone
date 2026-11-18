@@ -5,10 +5,12 @@ import authReducer, { type AuthStore } from './auth';
 import localSketchesReducer, { type LocalSketchesStore } from './localSketches';
 import { setTokenSource, writeToken } from '../api/authController';
 import { writeLocalSketches } from '../api/localSketches';
+import alertsReducer, { type AlertsStore } from './alerts';
 
 export type StoreState = {
   canvas: CanvasStore;
   popup: PopupStore;
+  alerts: AlertsStore;
   auth: AuthStore;
   localSketches: LocalSketchesStore;
 };
@@ -24,7 +26,8 @@ const IGNORED_PATHS = ['canvas.state'];
 const persistence = createListenerMiddleware<StoreState>();
 
 persistence.startListening({
-  predicate: (_, current, previous) => current.auth.token !== previous.auth.token,
+  predicate: (_, current, previous) =>
+    current.auth.token !== previous.auth.token,
   effect: (_, api) => writeToken(api.getState().auth.token),
 });
 
@@ -38,6 +41,7 @@ export const store = configureStore({
   reducer: {
     canvas: canvasReducer,
     popup: popupReducer,
+    alerts: alertsReducer,
     auth: authReducer,
     localSketches: localSketchesReducer,
   },

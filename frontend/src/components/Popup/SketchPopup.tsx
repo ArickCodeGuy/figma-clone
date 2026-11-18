@@ -14,6 +14,11 @@ import {
   localSketchSaved,
   selectLocalSketch,
 } from '../../store/localSketches';
+import {
+  errorToMessage,
+  showErrorAlert,
+  showSuccessAlert,
+} from '../Alert/showAlert';
 
 /**
  * Create or edit a sketch's title and description.
@@ -42,8 +47,8 @@ export function SketchPopup(props: { sketch: SketchItem; isLocal?: boolean }) {
       await action();
       dispatch(popupClosed());
     } catch (err) {
-      // @@TODO create store for alerts
-      // msg: 'Could not reach the server'
+      // The popup stays open, so the user can retry
+      showErrorAlert({ title: 'Could not save', content: errorToMessage(err) });
     } finally {
       setIsLoading(false);
     }
@@ -61,6 +66,11 @@ export function SketchPopup(props: { sketch: SketchItem; isLocal?: boolean }) {
             description,
           }),
         );
+
+        showSuccessAlert({
+          title: 'Success',
+          content: 'Sketch updated',
+        });
         return;
       }
 
@@ -71,16 +81,20 @@ export function SketchPopup(props: { sketch: SketchItem; isLocal?: boolean }) {
           content: '',
         });
         navigate(replaceRouteParams('SKETCH', { id: created.id }));
-        return;
-      }
+      } else {
+        // The update replaces `content` too, so send the current one back
+        const current = await sketchesController.getSketch(id);
+        await sketchesController.updateSketch({
+          ...current,
+          title: title.trim(),
+          description,
+        });
 
-      // The update replaces `content` too, so send the current one back
-      const current = await sketchesController.getSketch(id);
-      await sketchesController.updateSketch({
-        ...current,
-        title: title.trim(),
-        description,
-      });
+        showSuccessAlert({
+          title: 'Success',
+          content: 'Sketch updated',
+        });
+      }
     });
   }
 
@@ -91,10 +105,14 @@ export function SketchPopup(props: { sketch: SketchItem; isLocal?: boolean }) {
       await run(async () => {
         dispatch(localSketchDeleted(id));
       });
-      return;
+    } else {
+      await run(() => sketchesController.deleteSketch(id));
     }
 
-    await run(() => sketchesController.deleteSketch(id));
+    showSuccessAlert({
+      title: 'Success',
+      content: 'Sketch deleted',
+    });
   }
 
   return (
@@ -115,13 +133,11 @@ export function SketchPopup(props: { sketch: SketchItem; isLocal?: boolean }) {
               onChange={setDescription}
             />
           </div>
-          <div className="kcol-12">
+          <div className="flex-box kcol-12">
             <KButton type="submit" disabled={isLoading}>
               {isCreate ? 'Create' : 'Save'}
             </KButton>
-          </div>
-          {!isCreate && (
-            <div className="kcol-12">
+            {!isCreate && (
               <KButton
                 type="button"
                 presetStyle="SECONDARY"
@@ -130,8 +146,8 @@ export function SketchPopup(props: { sketch: SketchItem; isLocal?: boolean }) {
               >
                 Delete
               </KButton>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </form>
     </div>

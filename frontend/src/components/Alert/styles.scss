@@ -1,0 +1,16 @@
+.AlertHost {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(360px, calc(100vw - 80px));
+  // Empty space between alerts must not block clicks on the page
+  pointer-events: none;
+
+  > * {
+    pointer-events: auto;
+  }
+}

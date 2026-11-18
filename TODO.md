@@ -89,6 +89,7 @@
   - [x] Display Sketch layout (16-11-2026 @arickcodeguy)
   - [x] Drag and Drop for `Shape` in layout (16-11-2026 @arickcodeguy)
 - [x] Use env params to connect to db (22-10-2026 @arickcodeguy)
+- [x] Alerts (18-11-2026 @arickcodeguy)
 
 ### Postpone
 

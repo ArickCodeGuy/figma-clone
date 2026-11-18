@@ -11,6 +11,10 @@ import { SketchCreate } from '../../../../components/SketchCreate/SketchCreate';
 import { showSketchPopup } from '../../../../components/Popup/showPopup';
 import { useAuthToken } from '../../../../hooks/useAuthToken';
 import type { StoreState } from '../../../../store/store';
+import {
+  errorToMessage,
+  showErrorAlert,
+} from '../../../../components/Alert/showAlert';
 
 /** Sketches of the logged-in user, stored on the backend */
 export function SketchesCollaborateSection() {
@@ -28,8 +32,10 @@ export function SketchesCollaborateSection() {
       await sketchesController.deleteSketch(id);
       setSketches((prev) => prev.filter((s) => s.id !== id));
     } catch (err) {
-      // @@TODO show in notifications store, like `LoginPopup` errors
-      console.error('Could not delete the sketch', err);
+      showErrorAlert({
+        title: 'Could not delete the sketch',
+        content: errorToMessage(err),
+      });
     }
   }
 
@@ -47,9 +53,13 @@ export function SketchesCollaborateSection() {
       .then((res) => {
         if (!isCancelled) setSketches(res);
       })
-      .catch(() => {
-        // @@TODO show in notifications store, like `LoginPopup` errors
-        if (!isCancelled) setSketches([]);
+      .catch((err) => {
+        if (isCancelled) return;
+        setSketches([]);
+        showErrorAlert({
+          title: 'Could not load sketches',
+          content: errorToMessage(err),
+        });
       })
       .finally(() => {
         if (!isCancelled) setIsFetching(false);

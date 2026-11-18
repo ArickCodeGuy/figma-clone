@@ -116,3 +116,7 @@ updated playwright screenshots
 ### 0.0.17
 
 - `KNestedListDragAndDrop`
+
+### 0.0.18
+
+- `kcol` fix

@@ -275,7 +275,9 @@ img {
   margin-top: calc(var(--negative-column-gutter) * 2);
 }
 
+// Any class starting with `kcol-`, also when it is not the first class
 [class^='kcol-'],
+[class*=' kcol-'],
 .kcol {
   width: 100%;
   padding-left: var(--column-gutter);
@@ -354,4 +356,10 @@ select {
     background: rgba(var(--rgba-contrast), 1);
     border-radius: 10px;
   }
+}
+
+.flex-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--column-gap);
 }
